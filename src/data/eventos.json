@@ -1,0 +1,11 @@
+[
+  {
+    "slug": "activacion-otono-invierno",
+    "titulo": "Ejemplo: activación Otoño · Invierno",
+    "descripcion": "Contenido de ejemplo. Se sustituye desde el panel de administración cuando el equipo de la plaza confirme el próximo evento, con fecha, horario y detalles reales.",
+    "fecha_inicio": "2026-08-15",
+    "fecha_fin": "2026-08-30",
+    "imagen": null,
+    "demo": true
+  }
+]

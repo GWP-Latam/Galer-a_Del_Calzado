@@ -4,6 +4,7 @@ import { NavLink } from "./NavLink";
 import { SearchTrigger } from "./SearchTrigger";
 import { SearchDialog } from "./SearchDialog";
 import { MobileNav } from "./MobileNav";
+import { HeaderVisibility } from "./HeaderVisibility";
 import { buildSearchIndex } from "@/lib/search-index";
 import type { Plaza } from "@/lib/content/types";
 
@@ -21,7 +22,7 @@ export function Header({ plaza }: { plaza: Plaza }) {
   const searchIndex = buildSearchIndex();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
+    <HeaderVisibility>
       {/* Wider cap than the site's editorial --container-max (1440px): the
           header is UI chrome, not reading content, and with an icon-only
           search + icon-only phone (not a labeled search box or full phone
@@ -57,6 +58,6 @@ export function Header({ plaza }: { plaza: Plaza }) {
 
       {/* Single search modal instance for the whole site. */}
       <SearchDialog index={searchIndex} />
-    </header>
+    </HeaderVisibility>
   );
 }

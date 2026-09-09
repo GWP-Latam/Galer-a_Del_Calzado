@@ -1,8 +1,13 @@
 {
   "activa": true,
-  "titulo": "Otoño · Invierno",
-  "subtitulo": "La selección de la temporada ya está en los locales de la plaza.",
+  "slug": "eres-arte",
+  "titulo": "Eres Arte",
+  "subtitulo": "La campaña de Otoño · Invierno ya está en los locales de la plaza.",
   "imagen": null,
-  "cta_label": "Conocer promociones",
-  "cta_href": "/promociones"
+  "cta_label": "Conocer la campaña",
+  "concepto": [
+    "Contenido de ejemplo. Aquí va el concepto real de la campaña \"Eres Arte\", redactado por el equipo de Galería del Calzado: de dónde nace la idea, qué temporada representa y qué historia busca contar en los locales de la plaza.",
+    "Este espacio se sustituye desde el panel de administración con el texto definitivo cuando la campaña esté lista para publicarse."
+  ],
+  "imagenes": []
 }

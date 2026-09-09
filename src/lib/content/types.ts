@@ -124,11 +124,27 @@ export interface Promocion {
  */
 export interface Campana {
   activa: boolean;
+  slug: string;
   titulo: string;
   subtitulo: string;
   imagen: string | null;
   cta_label: string;
-  cta_href: string;
+  /** Cuerpo del artículo de la campaña (uno o más párrafos). */
+  concepto: string[];
+  /** Galería de imágenes de la campaña mostrada dentro del artículo. */
+  imagenes: string[];
+}
+
+export interface Evento {
+  slug: string;
+  titulo: string;
+  descripcion: string;
+  /** Un evento puede durar más de un día: fecha_inicio y fecha_fin pueden
+   * ser el mismo día, o abrir un periodo (p. ej. una activación de 2 semanas). */
+  fecha_inicio: string;
+  fecha_fin: string;
+  imagen: string | null;
+  demo?: boolean;
 }
 
 export interface LocalRenta {

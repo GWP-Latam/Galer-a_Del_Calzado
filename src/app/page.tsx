@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/Hero";
 import { BrandMarquee } from "@/components/home/BrandMarquee";
-import { CampaignBanner } from "@/components/home/CampaignBanner";
+import { CampaignAndEvents } from "@/components/home/CampaignAndEvents";
 import { PromoSection } from "@/components/home/PromoSection";
 import { StyleCategories } from "@/components/home/StyleCategories";
 import { BenefitsSection } from "@/components/home/BenefitsSection";
@@ -14,7 +14,7 @@ export default function HomePage() {
     <>
       <Hero plaza={plaza} />
       <BrandMarquee />
-      <CampaignBanner />
+      <CampaignAndEvents />
       <PromoSection />
       <StyleCategories />
       <BenefitsSection />

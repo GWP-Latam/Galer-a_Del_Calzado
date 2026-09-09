@@ -16,12 +16,14 @@ import campanaData from "@/data/campana.json";
 import localesRentaData from "@/data/locales-renta.json";
 import vacantesData from "@/data/vacantes.json";
 import espaciosPublicitariosData from "@/data/espacios-publicitarios.json";
+import eventosData from "@/data/eventos.json";
 import type {
   Amenidad,
   Beneficio,
   Campana,
   CategoriaCalzado,
   EspacioPublicitario,
+  Evento,
   Local,
   LocalRenta,
   Marca,
@@ -106,4 +108,32 @@ export function getVacantes(): Vacante[] {
 
 export function getEspaciosPublicitarios(): EspacioPublicitario[] {
   return espaciosPublicitariosData as EspacioPublicitario[];
+}
+
+export function getEventos(): Evento[] {
+  return (eventosData as Evento[])
+    .slice()
+    .sort((a, b) => a.fecha_inicio.localeCompare(b.fecha_inicio));
+}
+
+/**
+ * The one event worth surfacing on the home page: the next upcoming event
+ * (or the one currently in progress), or — if none is upcoming — the most
+ * recently finished one, so the section is never empty as long as at least
+ * one event has ever been loaded.
+ */
+export function getEventoDestacado(): Evento | null {
+  const eventos = getEventos();
+  if (eventos.length === 0) return null;
+
+  const hoy = new Date().toISOString().slice(0, 10);
+  const proximosOEnCurso = eventos
+    .filter((e) => e.fecha_fin >= hoy)
+    .sort((a, b) => a.fecha_inicio.localeCompare(b.fecha_inicio));
+  if (proximosOEnCurso.length > 0) return proximosOEnCurso[0];
+
+  const pasados = eventos
+    .filter((e) => e.fecha_fin < hoy)
+    .sort((a, b) => b.fecha_fin.localeCompare(a.fecha_fin));
+  return pasados[0] ?? null;
 }
