@@ -1,0 +1,22 @@
+[
+  {
+    "icono": "parking-circle",
+    "titulo": "Estacionamiento gratuito",
+    "descripcion": "Con vigilancia dentro de las instalaciones."
+  },
+  {
+    "icono": "shield-check",
+    "titulo": "Seguridad privada",
+    "descripcion": "Personal de seguridad en todo el recinto."
+  },
+  {
+    "icono": "video",
+    "titulo": "CCTV",
+    "descripcion": "Circuito cerrado de televisión en áreas comunes."
+  },
+  {
+    "icono": "wifi",
+    "titulo": "WiFi gratuito",
+    "descripcion": "Conexión gratuita dentro de Galería del Calzado."
+  }
+]

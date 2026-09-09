@@ -1,0 +1,72 @@
+[
+  {
+    "nombre": "Steria Coffee",
+    "tipo": "servicio",
+    "icono": "coffee",
+    "local": "38",
+    "nivel": "gc-piso",
+    "telefonos": [],
+    "revisar": false
+  },
+  {
+    "nombre": "Banco Santander",
+    "tipo": "servicio",
+    "icono": "landmark",
+    "local": "5 y 6",
+    "nivel": "gc-piso",
+    "telefonos": [
+      "33 3647 5393"
+    ],
+    "revisar": false
+  },
+  {
+    "nombre": "Cuple/Bsupply/Colors",
+    "tipo": "servicio",
+    "icono": "shopping-bag",
+    "local": "34, 34A, 34B",
+    "nivel": "gc-piso",
+    "telefonos": [
+      "333 647 65 00",
+      "331 957 69 76"
+    ],
+    "revisar": true
+  },
+  {
+    "nombre": "Administración",
+    "tipo": "instalacion",
+    "icono": "building-2",
+    "local": "L-2, Lob 1, 02",
+    "nivel": "sotano",
+    "telefonos": [
+      "33 3647 6422"
+    ],
+    "revisar": false
+  },
+  {
+    "nombre": "Distrito Beauty",
+    "tipo": "servicio",
+    "icono": "sparkles",
+    "local": "L-2, Lob 2, 07",
+    "nivel": "sotano",
+    "telefonos": [],
+    "revisar": false
+  },
+  {
+    "nombre": "WC Damas",
+    "tipo": "instalacion",
+    "icono": "user",
+    "local": "L-2, Lob 2, 06",
+    "nivel": "sotano",
+    "telefonos": [],
+    "revisar": false
+  },
+  {
+    "nombre": "WC Caballeros",
+    "tipo": "instalacion",
+    "icono": "user",
+    "local": "L-2, Lob 2, 05",
+    "nivel": "sotano",
+    "telefonos": [],
+    "revisar": false
+  }
+]

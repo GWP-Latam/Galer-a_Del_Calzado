@@ -1,0 +1,1096 @@
+[
+  {
+    "slug": "andrea",
+    "nombre": "Andrea",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 803 61 70"
+    ],
+    "correo": "andreagaleriagdl@moderof.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "31"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "antoneli",
+    "nombre": "Antoneli",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "39"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "arcade",
+    "nombre": "Arcade",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 69 63"
+    ],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-arcade-1.png",
+    "logo_generico": false,
+    "locales": [
+      "14"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "arro",
+    "nombre": "Arro",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "35",
+      "43"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "bambola",
+    "nombre": "Bambola",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 56 75",
+      "332 847 12 15"
+    ],
+    "correo": "contacto@bambola.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-bambola-1.png",
+    "logo_generico": false,
+    "locales": [
+      "26A"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "brantano",
+    "nombre": "Brantano",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 122 63 00",
+      "477 274 89 97"
+    ],
+    "correo": "galeriadelcalzado@brantano.com.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-brantano-1.png",
+    "logo_generico": false,
+    "locales": [
+      "12"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "capa-de-ozono",
+    "nombre": "Capa de Ozono",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "28"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "caray-sandals",
+    "nombre": "Caray Sandals",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 64 54",
+      "333 636 10 34"
+    ],
+    "correo": "marisol.balcazar@grupocaray.com",
+    "web": "http://www.caray.com.mx",
+    "tienda_en_linea": "",
+    "instagram": "caraysandals",
+    "facebook": "caraysandals",
+    "fotos": [],
+    "logo": "/logos/Marca-Caray.png",
+    "logo_generico": false,
+    "locales": [
+      "61"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "catalina-vargas",
+    "nombre": "Catalina Vargas",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-catalina-vargas.png",
+    "logo_generico": false,
+    "locales": [
+      "48",
+      "44"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "charly",
+    "nombre": "Charly",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 63 26",
+      "333 719 05 74"
+    ],
+    "correo": "teresapina@charly.com.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "7"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "christian-divat",
+    "nombre": "Christian Divat",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "3"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "cklass-outlet",
+    "nombre": "CKlass Outlet",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "36"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "claudio-rocco",
+    "nombre": "Claudio Rocco",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 122 19 42",
+      "331 368 75 75",
+      "331 368 76 76"
+    ],
+    "correo": "",
+    "web": "https://calzamarket.com/",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "56"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "coqueta-y-audaz",
+    "nombre": "Coqueta y Audaz",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "46"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "diego-torreblanca",
+    "nombre": "Diego Torreblanca",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 70 13",
+      "332 963 11 33",
+      "333 647 7017"
+    ],
+    "correo": "info@diegotorreblanca.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-diego-torreblanca-1.png",
+    "logo_generico": false,
+    "locales": [
+      "4",
+      "47"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "dione",
+    "nombre": "Dione",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 72 14",
+      "331 970 71 82"
+    ],
+    "correo": "online@dione.com.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-dione-1.png",
+    "logo_generico": false,
+    "locales": [
+      "60"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "duetto",
+    "nombre": "Duetto",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 47 22",
+      "331 442 6806"
+    ],
+    "correo": "caminarconestilo@outlook.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-duetto-1.png",
+    "logo_generico": false,
+    "locales": [
+      "33"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "dunlop",
+    "nombre": "Dunlop",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 366 90 07",
+      "333 621 13 69"
+    ],
+    "correo": "dunlopgaleriagdl2@moderof.com",
+    "web": "http://www.moderof.com",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/Marca-Dunlop.png",
+    "logo_generico": false,
+    "locales": [
+      "1",
+      "51"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "duque-di-galeano",
+    "nombre": "Duque Di Galeano",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "52"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "el-desvan-de-catherine",
+    "nombre": "El Desvan de Catherine",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-el-desvan-de-catherine-1.png",
+    "logo_generico": false,
+    "locales": [
+      "45"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "enzo-carrara",
+    "nombre": "Enzo Carrara",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-enzo-carrara-1.png",
+    "logo_generico": false,
+    "locales": [
+      "23"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "flexi",
+    "nombre": "Flexi",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 69 13",
+      "331 342 29 31"
+    ],
+    "correo": "anunez@flexi.com.mx",
+    "web": "http://www.flexi.com.mx",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-flexi-1.png",
+    "logo_generico": false,
+    "locales": [
+      "13"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "francis",
+    "nombre": "Francis",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "20"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "francis-deluxe",
+    "nombre": "Francis Deluxe",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 74 21",
+      "333 642 17 31"
+    ],
+    "correo": "rhfrancis17@gmail.com",
+    "web": "http://www.francis.com.mx",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-francis-1.png",
+    "logo_generico": false,
+    "locales": [
+      "55",
+      "40",
+      "42"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "gillio",
+    "nombre": "Gillio",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 79 41",
+      "331 006 05 35"
+    ],
+    "correo": "gilliogal@hotmail.com",
+    "web": "http://www.gillio.mx",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-gillio-1.png",
+    "logo_generico": false,
+    "locales": [
+      "32"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "gran-via-outlet",
+    "nombre": "Gran Vía Outlet",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 73 13"
+    ],
+    "correo": "",
+    "web": "https://granviaoutlet.mx/",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-granvia.png",
+    "logo_generico": false,
+    "locales": [
+      "18"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "kactus",
+    "nombre": "Kactus",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "54"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "karsten",
+    "nombre": "Karsten",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "27"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "kleiman-store",
+    "nombre": "Kleiman Store",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "01"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "la-poupee",
+    "nombre": "La Poupee",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "26"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "lady-paulina",
+    "nombre": "Lady Paulina",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "21"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "lanvin",
+    "nombre": "Lanvin",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 1135",
+      "333 674 11 88"
+    ],
+    "correo": "ruthgutierrez_vlanvin@hotmail.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "9"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "life-feet",
+    "nombre": "Life Feet",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 67 94",
+      "331 368 75 75",
+      "331 368 76 76"
+    ],
+    "correo": "contabilidad@lifefeet.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "25"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "lob-footwear",
+    "nombre": "LOB Footwear",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 122 15 91",
+      "331 895 67 35"
+    ],
+    "correo": "footwear.galeriasc@lobfw.com.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-lob-1.png",
+    "logo_generico": false,
+    "locales": [
+      "19A"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "mabo",
+    "nombre": "Mabo",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "tienda@mariabonita.mx",
+    "web": "https://mabo.moda/",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-mabo-1.png",
+    "logo_generico": false,
+    "locales": [
+      "41"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "maria-piel",
+    "nombre": "Maria Piel",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "8"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "maroli",
+    "nombre": "Maroli",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "29"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "mia",
+    "nombre": "Mia",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "27A"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "moderof",
+    "nombre": "Moderof",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 33 87"
+    ],
+    "correo": "galeriadelcalzado@moderof.com",
+    "web": "http://www.moderof.com",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-moderof-1.png",
+    "logo_generico": false,
+    "locales": [
+      "56A"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "muro",
+    "nombre": "Muro",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-muro-1.png",
+    "logo_generico": false,
+    "locales": [
+      "57"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "nine-west",
+    "nombre": "Nine West",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 68 63",
+      "331 601 42 10",
+      "800 700 64 63"
+    ],
+    "correo": "galeria_calzado@piagui.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-nine-west-1.png",
+    "logo_generico": false,
+    "locales": [
+      "16"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "plazapar",
+    "nombre": "Plazapar",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-plazapar.png",
+    "logo_generico": false,
+    "locales": [
+      "37",
+      "59",
+      "30"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "quirelli",
+    "nombre": "Quirelli",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "53"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "restres",
+    "nombre": "Restres",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "19B"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "scarpe",
+    "nombre": "Scarpe",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 87 51"
+    ],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-scarpe.png",
+    "logo_generico": false,
+    "locales": [
+      "63",
+      "L-2, Lob 1, 04"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "senties",
+    "nombre": "Senties",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 647 63 50",
+      "333 457 76 45"
+    ],
+    "correo": "tiendas@senties.mx",
+    "web": "http://www.senties.mx",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-senties-1.png",
+    "logo_generico": false,
+    "locales": [
+      "62"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "sketcher",
+    "nombre": "Sketcher",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 121 71 48",
+      "333 719 05 74"
+    ],
+    "correo": "teresapina@charly.com.mx",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "22"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "split",
+    "nombre": "Split",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "17"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "the-factory",
+    "nombre": "The Factory",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "331 599 9170",
+      "331 804 05 22"
+    ],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "thefactorygdl",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "11"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "viveka",
+    "nombre": "Viveka",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 857 41 02",
+      "331 016 64 06"
+    ],
+    "correo": "vivekashoes@hotmail.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "24"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "voyante",
+    "nombre": "Voyante",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 661 69 39"
+    ],
+    "correo": "luvoy2@hotmail.com",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "voyante_gdl",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-voyante-1.png",
+    "logo_generico": false,
+    "locales": [
+      "58"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "zapateria-luna",
+    "nombre": "Zapatería Luna",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "19"
+    ],
+    "revisar": false
+  },
+  {
+    "slug": "zata-selection",
+    "nombre": "Zata Selection",
+    "descripcion": "",
+    "categorias_producto": [],
+    "telefonos": [
+      "333 122 49 79"
+    ],
+    "correo": "zata.selection@gmail.com",
+    "web": "http://www.zataselection.com",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": "/logos/marca-zataselection.png",
+    "logo_generico": false,
+    "locales": [
+      "10"
+    ],
+    "revisar": false
+  }
+]

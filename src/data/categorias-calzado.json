@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "zapatos",
+    "nombre": "Zapatos",
+    "perfil": "Hombre y Mujer",
+    "imagen": "/estilos/estilo-zapatos-Hombre-Mujer.png"
+  },
+  {
+    "slug": "sneakers",
+    "nombre": "Sneakers",
+    "perfil": "Hombre y Mujer",
+    "imagen": "/estilos/estilo-sneakers-hombre-mujer.png"
+  },
+  {
+    "slug": "sandalias",
+    "nombre": "Sandalias",
+    "perfil": "Hombre y Mujer",
+    "imagen": "/estilos/estilo-sandalias-hombre-mujer.png"
+  },
+  {
+    "slug": "botas",
+    "nombre": "Botas",
+    "perfil": "Hombre y Mujer",
+    "imagen": "/estilos/estilo-botas-hombre-mujer.png"
+  },
+  {
+    "slug": "zapatos-ninos",
+    "nombre": "Zapatos",
+    "perfil": "Niños y Niñas",
+    "imagen": "/estilos/estilo-kids-zapatos.png"
+  },
+  {
+    "slug": "sneakers-ninos",
+    "nombre": "Sneakers",
+    "perfil": "Niños y Niñas",
+    "imagen": "/estilos/estilo-kids-sneakers.png"
+  }
+]

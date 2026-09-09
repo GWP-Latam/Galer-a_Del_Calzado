@@ -1,0 +1,722 @@
+[
+  {
+    "id_interno": "steria-coffee",
+    "numero": "38",
+    "nivel": "gc-piso",
+    "x": 0.1891,
+    "y": 0.2861,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "Steria Coffee"
+  },
+  {
+    "id_interno": "plazapar",
+    "numero": "37",
+    "nivel": "gc-piso",
+    "x": 0.2401,
+    "y": 0.2774,
+    "estado": "ocupado",
+    "marca_slug": "plazapar",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "cklass-outlet",
+    "numero": "36",
+    "nivel": "gc-piso",
+    "x": 0.3152,
+    "y": 0.2566,
+    "estado": "ocupado",
+    "marca_slug": "cklass-outlet",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "arro",
+    "numero": "35",
+    "nivel": "gc-piso",
+    "x": 0.3585,
+    "y": 0.2757,
+    "estado": "ocupado",
+    "marca_slug": "arro",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "duetto",
+    "numero": "33",
+    "nivel": "gc-piso",
+    "x": 0.4069,
+    "y": 0.241,
+    "estado": "ocupado",
+    "marca_slug": "duetto",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "andrea",
+    "numero": "31",
+    "nivel": "gc-piso",
+    "x": 0.4362,
+    "y": 0.2757,
+    "estado": "ocupado",
+    "marca_slug": "andrea",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "maroli",
+    "numero": "29",
+    "nivel": "gc-piso",
+    "x": 0.4961,
+    "y": 0.2791,
+    "estado": "ocupado",
+    "marca_slug": "maroli",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "mia",
+    "numero": "27A",
+    "nivel": "gc-piso",
+    "x": 0.5292,
+    "y": 0.215,
+    "estado": "ocupado",
+    "marca_slug": "mia",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "kersten",
+    "numero": "27",
+    "nivel": "gc-piso",
+    "x": 0.5572,
+    "y": 0.2791,
+    "estado": "ocupado",
+    "marca_slug": "karsten",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "lifefeet",
+    "numero": "25",
+    "nivel": "gc-piso",
+    "x": 0.5878,
+    "y": 0.2046,
+    "estado": "ocupado",
+    "marca_slug": "life-feet",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "dunlop",
+    "numero": "1",
+    "nivel": "gc-piso",
+    "x": 0.6477,
+    "y": 0.2965,
+    "estado": "ocupado",
+    "marca_slug": "dunlop",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "christiandivat",
+    "numero": "3",
+    "nivel": "gc-piso",
+    "x": 0.6528,
+    "y": 0.2046,
+    "estado": "ocupado",
+    "marca_slug": "christian-divat",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "diegotorreblanca",
+    "numero": "4",
+    "nivel": "gc-piso",
+    "x": 0.6209,
+    "y": 0.1595,
+    "estado": "ocupado",
+    "marca_slug": "diego-torreblanca",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "santander",
+    "numero": "5 y 6",
+    "nivel": "gc-piso",
+    "x": 0.7508,
+    "y": 0.2306,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "Banco Santander"
+  },
+  {
+    "id_interno": "charly",
+    "numero": "7",
+    "nivel": "gc-piso",
+    "x": 0.7929,
+    "y": 0.2895,
+    "estado": "ocupado",
+    "marca_slug": "charly",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "mariapiel",
+    "numero": "8",
+    "nivel": "gc-piso",
+    "x": 0.7534,
+    "y": 0.345,
+    "estado": "ocupado",
+    "marca_slug": "maria-piel",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "lanvin",
+    "numero": "9",
+    "nivel": "gc-piso",
+    "x": 0.803,
+    "y": 0.3762,
+    "estado": "ocupado",
+    "marca_slug": "lanvin",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "zata",
+    "numero": "10",
+    "nivel": "gc-piso",
+    "x": 0.7551,
+    "y": 0.4358,
+    "estado": "ocupado",
+    "marca_slug": "zata-selection",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "the factory",
+    "numero": "11",
+    "nivel": "gc-piso",
+    "x": 0.7967,
+    "y": 0.501,
+    "estado": "ocupado",
+    "marca_slug": "the-factory",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "brantano",
+    "numero": "12",
+    "nivel": "gc-piso",
+    "x": 0.7419,
+    "y": 0.5495,
+    "estado": "ocupado",
+    "marca_slug": "brantano",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "flexi",
+    "numero": "13",
+    "nivel": "gc-piso",
+    "x": 0.789,
+    "y": 0.6188,
+    "estado": "ocupado",
+    "marca_slug": "flexi",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "arcade",
+    "numero": "14",
+    "nivel": "gc-piso",
+    "x": 0.7521,
+    "y": 0.6812,
+    "estado": "ocupado",
+    "marca_slug": "arcade",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "localdisponible-15",
+    "numero": "15 Disponible",
+    "nivel": "gc-piso",
+    "x": 0.803,
+    "y": 0.7956,
+    "estado": "disponible",
+    "marca_slug": null,
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "ninewest",
+    "numero": "16",
+    "nivel": "gc-piso",
+    "x": 0.7636,
+    "y": 0.8407,
+    "estado": "ocupado",
+    "marca_slug": "nine-west",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "split",
+    "numero": "17",
+    "nivel": "gc-piso",
+    "x": 0.7254,
+    "y": 0.8043,
+    "estado": "ocupado",
+    "marca_slug": "split",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "gvsale",
+    "numero": "18",
+    "nivel": "gc-piso",
+    "x": 0.64,
+    "y": 0.8095,
+    "estado": "ocupado",
+    "marca_slug": "gran-via-outlet",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "scarpe",
+    "numero": "63",
+    "nivel": "gc-piso",
+    "x": 0.6012,
+    "y": 0.8324,
+    "estado": "ocupado",
+    "marca_slug": "scarpe",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "plazapar-2",
+    "numero": "59",
+    "nivel": "gc-piso",
+    "x": 0.5241,
+    "y": 0.8441,
+    "estado": "ocupado",
+    "marca_slug": "plazapar",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "muro",
+    "numero": "57",
+    "nivel": "gc-piso",
+    "x": 0.4783,
+    "y": 0.7956,
+    "estado": "ocupado",
+    "marca_slug": "muro",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "francis-deluxe",
+    "numero": "55",
+    "nivel": "gc-piso",
+    "x": 0.4456,
+    "y": 0.8083,
+    "estado": "ocupado",
+    "marca_slug": "francis-deluxe",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "quirelli",
+    "numero": "53",
+    "nivel": "gc-piso",
+    "x": 0.398,
+    "y": 0.8199,
+    "estado": "ocupado",
+    "marca_slug": "quirelli",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "dunlop-51",
+    "numero": "51",
+    "nivel": "gc-piso",
+    "x": 0.3878,
+    "y": 0.8364,
+    "estado": "ocupado",
+    "marca_slug": "dunlop",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "localdisponible-50",
+    "numero": "50 disponible",
+    "nivel": "gc-piso",
+    "x": 0.3114,
+    "y": 0.8407,
+    "estado": "disponible",
+    "marca_slug": null,
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "localdisponible-49",
+    "numero": "49 disponible",
+    "nivel": "gc-piso",
+    "x": 0.2254,
+    "y": 0.7978,
+    "estado": "disponible",
+    "marca_slug": null,
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "catalinavargas",
+    "numero": "48",
+    "nivel": "gc-piso",
+    "x": 0.1853,
+    "y": 0.7436,
+    "estado": "ocupado",
+    "marca_slug": "catalina-vargas",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "diegotorreblanca-2",
+    "numero": "47",
+    "nivel": "gc-piso",
+    "x": 0.2261,
+    "y": 0.6968,
+    "estado": "ocupado",
+    "marca_slug": "diego-torreblanca",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "desvan-catherine",
+    "numero": "45",
+    "nivel": "gc-piso",
+    "x": 0.2032,
+    "y": 0.6396,
+    "estado": "ocupado",
+    "marca_slug": "el-desvan-de-catherine",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "arro-2",
+    "numero": "43",
+    "nivel": "gc-piso",
+    "x": 0.2363,
+    "y": 0.572,
+    "estado": "ocupado",
+    "marca_slug": "arro",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "mabo",
+    "numero": "41",
+    "nivel": "gc-piso",
+    "x": 0.1968,
+    "y": 0.5114,
+    "estado": "ocupado",
+    "marca_slug": "mabo",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "francis-deluxe2",
+    "numero": "40",
+    "nivel": "gc-piso",
+    "x": 0.2388,
+    "y": 0.423,
+    "estado": "ocupado",
+    "marca_slug": "francis-deluxe",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "antoneli",
+    "numero": "39",
+    "nivel": "gc-piso",
+    "x": 0.1993,
+    "y": 0.3797,
+    "estado": "ocupado",
+    "marca_slug": "antoneli",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "cuple-bsupply-colors",
+    "numero": "34, 34A, 34B",
+    "nivel": "gc-piso",
+    "x": 0.3433,
+    "y": 0.4472,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "Cuple/Bsupply/Colors"
+  },
+  {
+    "id_interno": "gillio",
+    "numero": "32",
+    "nivel": "gc-piso",
+    "x": 0.3955,
+    "y": 0.4871,
+    "estado": "ocupado",
+    "marca_slug": "gillio",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "plazapar-3",
+    "numero": "30",
+    "nivel": "gc-piso",
+    "x": 0.4362,
+    "y": 0.4386,
+    "estado": "ocupado",
+    "marca_slug": "plazapar",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "capadeozono",
+    "numero": "28",
+    "nivel": "gc-piso",
+    "x": 0.4872,
+    "y": 0.4906,
+    "estado": "ocupado",
+    "marca_slug": "capa-de-ozono",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "bambola",
+    "numero": "26A",
+    "nivel": "gc-piso",
+    "x": 0.5241,
+    "y": 0.4264,
+    "estado": "ocupado",
+    "marca_slug": "bambola",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "la-poupee",
+    "numero": "26",
+    "nivel": "gc-piso",
+    "x": 0.5521,
+    "y": 0.494,
+    "estado": "ocupado",
+    "marca_slug": "la-poupee",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "viveka",
+    "numero": "24",
+    "nivel": "gc-piso",
+    "x": 0.584,
+    "y": 0.4299,
+    "estado": "ocupado",
+    "marca_slug": "viveka",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "enzo-carrara",
+    "numero": "23",
+    "nivel": "gc-piso",
+    "x": 0.6553,
+    "y": 0.4005,
+    "estado": "ocupado",
+    "marca_slug": "enzo-carrara",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "sketcher",
+    "numero": "22",
+    "nivel": "gc-piso",
+    "x": 0.6298,
+    "y": 0.4628,
+    "estado": "ocupado",
+    "marca_slug": "sketcher",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "lady-paulina",
+    "numero": "21",
+    "nivel": "gc-piso",
+    "x": 0.6553,
+    "y": 0.5131,
+    "estado": "ocupado",
+    "marca_slug": "lady-paulina",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "francis",
+    "numero": "20",
+    "nivel": "gc-piso",
+    "x": 0.6273,
+    "y": 0.5564,
+    "estado": "ocupado",
+    "marca_slug": "francis",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "restres",
+    "numero": "19B",
+    "nivel": "gc-piso",
+    "x": 0.6579,
+    "y": 0.6067,
+    "estado": "ocupado",
+    "marca_slug": "restres",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "zapaterialuna",
+    "numero": "19",
+    "nivel": "gc-piso",
+    "x": 0.6579,
+    "y": 0.6691,
+    "estado": "ocupado",
+    "marca_slug": "zapateria-luna",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "lob",
+    "numero": "19A",
+    "nivel": "gc-piso",
+    "x": 0.6196,
+    "y": 0.6656,
+    "estado": "ocupado",
+    "marca_slug": "lob-footwear",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "senties",
+    "numero": "62",
+    "nivel": "gc-piso",
+    "x": 0.584,
+    "y": 0.6136,
+    "estado": "ocupado",
+    "marca_slug": "senties",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "dione",
+    "numero": "60",
+    "nivel": "gc-piso",
+    "x": 0.5305,
+    "y": 0.6587,
+    "estado": "ocupado",
+    "marca_slug": "dione",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "voyante",
+    "numero": "58",
+    "nivel": "gc-piso",
+    "x": 0.4897,
+    "y": 0.6032,
+    "estado": "ocupado",
+    "marca_slug": "voyante",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "Moderof",
+    "numero": "56A",
+    "nivel": "gc-piso",
+    "x": 0.4566,
+    "y": 0.6587,
+    "estado": "ocupado",
+    "marca_slug": "moderof",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "claudio-rocco",
+    "numero": "56",
+    "nivel": "gc-piso",
+    "x": 0.4299,
+    "y": 0.5946,
+    "estado": "ocupado",
+    "marca_slug": "claudio-rocco",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "kactus",
+    "numero": "54",
+    "nivel": "gc-piso",
+    "x": 0.3942,
+    "y": 0.6188,
+    "estado": "ocupado",
+    "marca_slug": "kactus",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "duque-di-galeano",
+    "numero": "52",
+    "nivel": "gc-piso",
+    "x": 0.3522,
+    "y": 0.6933,
+    "estado": "ocupado",
+    "marca_slug": "duque-di-galeano",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "coqueta-y-audaz",
+    "numero": "46",
+    "nivel": "gc-piso",
+    "x": 0.328,
+    "y": 0.6379,
+    "estado": "ocupado",
+    "marca_slug": "coqueta-y-audaz",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "catalinavargas-2",
+    "numero": "44",
+    "nivel": "gc-piso",
+    "x": 0.3534,
+    "y": 0.5512,
+    "estado": "ocupado",
+    "marca_slug": "catalina-vargas",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "francis-deluxe3",
+    "numero": "42",
+    "nivel": "gc-piso",
+    "x": 0.3242,
+    "y": 0.5096,
+    "estado": "ocupado",
+    "marca_slug": "francis-deluxe",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "caray",
+    "numero": "61",
+    "nivel": "gc-piso",
+    "x": 0.6012,
+    "y": 0.7916,
+    "estado": "ocupado",
+    "marca_slug": "caray-sandals",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "kleiman-store",
+    "numero": "01",
+    "nivel": "sotano",
+    "x": 0.6846,
+    "y": 0.8753,
+    "estado": "ocupado",
+    "marca_slug": "kleiman-store",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "administracion",
+    "numero": "L-2, Lob 1, 02",
+    "nivel": "sotano",
+    "x": 0.6808,
+    "y": 0.9516,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "Administración"
+  },
+  {
+    "id_interno": "scarpe-l2",
+    "numero": "L-2, Lob 1, 04",
+    "nivel": "sotano",
+    "x": 0.6023,
+    "y": 0.8667,
+    "estado": "ocupado",
+    "marca_slug": "scarpe",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "distrito beauty",
+    "numero": "L-2, Lob 2, 07",
+    "nivel": "sotano",
+    "x": 0.2299,
+    "y": 0.2393,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "Distrito Beauty"
+  },
+  {
+    "id_interno": "damas",
+    "numero": "L-2, Lob 2, 06",
+    "nivel": "sotano",
+    "x": 0.3203,
+    "y": 0.1977,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "WC Damas"
+  },
+  {
+    "id_interno": "caballeros",
+    "numero": "L-2, Lob 2, 05",
+    "nivel": "sotano",
+    "x": 0.3201,
+    "y": 0.2721,
+    "estado": "ocupado",
+    "marca_slug": null,
+    "amenidad_nombre": "WC Caballeros"
+  }
+]

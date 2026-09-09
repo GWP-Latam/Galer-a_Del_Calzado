@@ -1,0 +1,18 @@
+[
+  {
+    "id": "demo-vacante-1",
+    "puesto": "Asesor(a) de piso",
+    "area": "Ventas",
+    "tipo": "Tiempo completo",
+    "descripcion": "Contenido de ejemplo. Las marcas de la plaza y administración publican aquí sus vacantes reales desde el panel de la Fase 2.",
+    "demo": true
+  },
+  {
+    "id": "demo-vacante-2",
+    "puesto": "Encargado(a) de tienda",
+    "area": "Operación",
+    "tipo": "Tiempo completo",
+    "descripcion": "Contenido de ejemplo. Las marcas de la plaza y administración publican aquí sus vacantes reales desde el panel de la Fase 2.",
+    "demo": true
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "sotano",
+    "nombre": "Sótano",
+    "plano": "/mapa/sotano.png",
+    "ancho_ref": 1306,
+    "alto_ref": 960,
+    "orden": 0
+  },
+  {
+    "id": "gc-piso",
+    "nombre": "Primer piso",
+    "plano": "/mapa/primer-piso.svg",
+    "plano_raster": "/mapa/primer-piso.png",
+    "ancho_ref": 1306,
+    "alto_ref": 960,
+    "orden": 1
+  }
+]

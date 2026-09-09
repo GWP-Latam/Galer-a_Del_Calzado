@@ -1,0 +1,25 @@
+{
+  "nombre": "Galería del Calzado",
+  "direccion": "Av. México #3225, Guadalajara, Jal., C.P. 44690, México",
+  "geo": {
+    "lat": 20.687417,
+    "lng": -103.392361
+  },
+  "telefono": "+52 33 3647 6422",
+  "horarios": [
+    {
+      "dias": "Lunes a sábado",
+      "horario": "11:00 a.m. a 8:30 p.m."
+    },
+    {
+      "dias": "Domingo",
+      "horario": "11:00 a.m. a 8:00 p.m."
+    }
+  ],
+  "redes": {
+    "facebook": "https://www.facebook.com/GdelCalzado",
+    "instagram": "https://www.instagram.com/galeriadelcalzado",
+    "tiktok": "https://www.tiktok.com/@galeria_del_calzado"
+  },
+  "aviso_privacidad": "/aviso-de-privacidad"
+}
