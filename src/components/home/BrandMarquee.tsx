@@ -16,7 +16,7 @@ function Row({ marcas, reverse }: { marcas: Marca[]; reverse?: boolean }) {
             className="flex h-32 w-48 shrink-0 items-center justify-center p-6"
           >
             <div className="h-full w-full opacity-70 transition-opacity duration-300 hover:opacity-100">
-              <BrandLogo marca={marca} />
+              <BrandLogo marca={marca} eager />
             </div>
           </Link>
         ))}
@@ -26,7 +26,11 @@ function Row({ marcas, reverse }: { marcas: Marca[]; reverse?: boolean }) {
 }
 
 export function BrandMarquee() {
-  const conLogo = getMarcas().filter((m) => !m.logo_generico);
+  // Un logo solo aparece aquí si la marca tiene logo real Y sigue ocupando
+  // un local (marca.locales no vacío) — así, si administración libera el
+  // local de una marca, desaparece de la marquesina sin que nadie tenga
+  // que borrar el archivo del logo a mano.
+  const conLogo = getMarcas().filter((m) => !m.logo_generico && m.locales.length > 0);
   const mitad = Math.ceil(conLogo.length / 2);
   const fila1 = conLogo.slice(0, mitad);
   const fila2 = conLogo.slice(mitad);

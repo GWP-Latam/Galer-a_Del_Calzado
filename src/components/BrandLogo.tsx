@@ -9,7 +9,18 @@ import type { Marca } from "@/lib/content/types";
  * image — drop the real file at the path in `marca.logo` and it appears
  * automatically, no code change needed.
  */
-export function BrandLogo({ marca, className }: { marca: Marca; className?: string }) {
+export function BrandLogo({
+  marca,
+  className,
+  eager,
+}: {
+  marca: Marca;
+  className?: string;
+  /** Skips lazy-loading and Next's on-demand image transform — for small,
+   * already-optimized logos shown all at once (e.g. the home marquee),
+   * where deferring the fetch just shows up as pop-in. */
+  eager?: boolean;
+}) {
   if (marca.logo_generico || !marca.logo) {
     const initials = marca.nombre
       .split(/\s+/)
@@ -37,6 +48,8 @@ export function BrandLogo({ marca, className }: { marca: Marca; className?: stri
         alt={`Logotipo de ${marca.nombre}`}
         fill
         sizes="200px"
+        priority={eager}
+        unoptimized={eager}
         className="object-contain"
       />
     </div>

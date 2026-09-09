@@ -612,8 +612,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/la-poupee.png",
-    "logo_generico": false,
+    "logo": null,
+    "logo_generico": true,
     "locales": [
       "26"
     ],

@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react";
 import { Logo } from "./Logo";
 import { NavLink } from "./NavLink";
 import { SearchTrigger } from "./SearchTrigger";
@@ -21,15 +22,19 @@ export function Header({ plaza }: { plaza: Plaza }) {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur-sm">
-      <div className="mx-auto flex h-[76px] w-full max-w-[var(--container-max)] flex-nowrap items-center justify-between gap-4 overflow-hidden px-[var(--container-pad)]">
+      {/* Wider cap than the site's editorial --container-max (1440px): the
+          header is UI chrome, not reading content, and with an icon-only
+          search + icon-only phone (not a labeled search box or full phone
+          number) the 7 nav items now fit comfortably from xl (1280px) up. */}
+      <div className="mx-auto flex h-[76px] w-full max-w-[1680px] flex-nowrap items-center justify-between gap-4 overflow-hidden px-[var(--container-pad)]">
         <div className="shrink-0">
           <Logo />
         </div>
 
-        {/* Below xl there simply isn't room for 7 nav items + search + phone
-            without wrapping (that's exactly what broke before), so the
-            hamburger menu owns everything until xl. */}
-        <nav aria-label="Navegación principal" className="hidden min-w-0 items-center gap-6 xl:flex">
+        {/* overflow-hidden here is a last-resort safety net, not the fix
+            itself — the real fix is keeping search/phone icon-only so this
+            fits well before the viewport gets uncomfortably narrow. */}
+        <nav aria-label="Navegación principal" className="hidden min-w-0 items-center gap-5 overflow-hidden xl:flex">
           {NAV_ITEMS.map((item) => (
             <NavLink key={item.href} href={item.href}>
               {item.label}
@@ -37,13 +42,14 @@ export function Header({ plaza }: { plaza: Plaza }) {
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-3">
-          <SearchTrigger className="hidden xl:flex" />
+        <div className="flex shrink-0 items-center gap-2">
+          <SearchTrigger className="hidden xl:flex" iconOnly />
           <a
             href={`tel:${plaza.telefono.replace(/\s+/g, "")}`}
-            className="hidden shrink-0 whitespace-nowrap text-[13px] font-medium text-ink-soft hover:text-ink 2xl:inline"
+            aria-label={`Llamar a Galería del Calzado, ${plaza.telefono}`}
+            className="hidden shrink-0 items-center justify-center rounded-sm border border-line p-2 text-ink-soft transition-colors hover:border-ink hover:text-ink xl:flex"
           >
-            {plaza.telefono}
+            <Phone className="h-4 w-4" strokeWidth={1.75} />
           </a>
           <MobileNav navItems={NAV_ITEMS} />
         </div>
