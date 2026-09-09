@@ -13,8 +13,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/andrea.png",
+    "logo_generico": false,
     "locales": [
       "31"
     ],
@@ -32,8 +32,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/antoneli.png",
+    "logo_generico": false,
     "locales": [
       "39"
     ],
@@ -53,7 +53,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-arcade-1.png",
+    "logo": "/logos/arcade.png",
     "logo_generico": false,
     "locales": [
       "14"
@@ -72,8 +72,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/arro.png",
+    "logo_generico": false,
     "locales": [
       "35",
       "43"
@@ -95,7 +95,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-bambola-1.png",
+    "logo": "/logos/bambola.png",
     "logo_generico": false,
     "locales": [
       "26A"
@@ -117,7 +117,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-brantano-1.png",
+    "logo": "/logos/brantano.png",
     "logo_generico": false,
     "locales": [
       "12"
@@ -158,7 +158,7 @@
     "instagram": "caraysandals",
     "facebook": "caraysandals",
     "fotos": [],
-    "logo": "/logos/Marca-Caray.png",
+    "logo": "/logos/caray-sandals.png",
     "logo_generico": false,
     "locales": [
       "61"
@@ -177,7 +177,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-catalina-vargas.png",
+    "logo": "/logos/catalina-vargas.png",
     "logo_generico": false,
     "locales": [
       "48",
@@ -200,8 +200,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/charly.png",
+    "logo_generico": false,
     "locales": [
       "7"
     ],
@@ -219,8 +219,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/christian-divat.png",
+    "logo_generico": false,
     "locales": [
       "3"
     ],
@@ -238,8 +238,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/cklass-outlet.png",
+    "logo_generico": false,
     "locales": [
       "36"
     ],
@@ -280,8 +280,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/coqueta-y-audaz.png",
+    "logo_generico": false,
     "locales": [
       "46"
     ],
@@ -303,7 +303,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-diego-torreblanca-1.png",
+    "logo": "/logos/diego-torreblanca.png",
     "logo_generico": false,
     "locales": [
       "4",
@@ -326,7 +326,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-dione-1.png",
+    "logo": "/logos/dione.png",
     "logo_generico": false,
     "locales": [
       "60"
@@ -348,8 +348,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-duetto-1.png",
-    "logo_generico": false,
+    "logo": null,
+    "logo_generico": true,
     "locales": [
       "33"
     ],
@@ -370,7 +370,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/Marca-Dunlop.png",
+    "logo": "/logos/dunlop.png",
     "logo_generico": false,
     "locales": [
       "1",
@@ -390,8 +390,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/duque-di-galeano.png",
+    "logo_generico": false,
     "locales": [
       "52"
     ],
@@ -409,7 +409,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-el-desvan-de-catherine-1.png",
+    "logo": "/logos/el-desvan-de-catherine.png",
     "logo_generico": false,
     "locales": [
       "45"
@@ -428,7 +428,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-enzo-carrara-1.png",
+    "logo": "/logos/enzo-carrara.png",
     "logo_generico": false,
     "locales": [
       "23"
@@ -450,7 +450,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-flexi-1.png",
+    "logo": "/logos/flexi.png",
     "logo_generico": false,
     "locales": [
       "13"
@@ -469,8 +469,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/francis.png",
+    "logo_generico": false,
     "locales": [
       "20"
     ],
@@ -491,8 +491,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-francis-1.png",
-    "logo_generico": false,
+    "logo": null,
+    "logo_generico": true,
     "locales": [
       "55",
       "40",
@@ -515,7 +515,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-gillio-1.png",
+    "logo": "/logos/gillio.png",
     "logo_generico": false,
     "locales": [
       "32"
@@ -536,7 +536,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-granvia.png",
+    "logo": "/logos/gran-via-outlet.png",
     "logo_generico": false,
     "locales": [
       "18"
@@ -612,8 +612,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/la-poupee.png",
+    "logo_generico": false,
     "locales": [
       "26"
     ],
@@ -653,8 +653,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/lanvin.png",
+    "logo_generico": false,
     "locales": [
       "9"
     ],
@@ -676,8 +676,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/life-feet.png",
+    "logo_generico": false,
     "locales": [
       "25"
     ],
@@ -698,7 +698,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-lob-1.png",
+    "logo": "/logos/lob-footwear.png",
     "logo_generico": false,
     "locales": [
       "19A"
@@ -717,7 +717,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-mabo-1.png",
+    "logo": "/logos/mabo.png",
     "logo_generico": false,
     "locales": [
       "41"
@@ -736,8 +736,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/maria-piel.png",
+    "logo_generico": false,
     "locales": [
       "8"
     ],
@@ -755,8 +755,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/maroli.png",
+    "logo_generico": false,
     "locales": [
       "29"
     ],
@@ -774,8 +774,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/mia.png",
+    "logo_generico": false,
     "locales": [
       "27A"
     ],
@@ -795,7 +795,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-moderof-1.png",
+    "logo": "/logos/moderof.png",
     "logo_generico": false,
     "locales": [
       "56A"
@@ -814,7 +814,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-muro-1.png",
+    "logo": "/logos/muro.png",
     "logo_generico": false,
     "locales": [
       "57"
@@ -837,7 +837,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-nine-west-1.png",
+    "logo": "/logos/nine-west.png",
     "logo_generico": false,
     "locales": [
       "16"
@@ -856,7 +856,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-plazapar.png",
+    "logo": "/logos/plazapar.png",
     "logo_generico": false,
     "locales": [
       "37",
@@ -877,8 +877,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/quirelli.png",
+    "logo_generico": false,
     "locales": [
       "53"
     ],
@@ -896,8 +896,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/restres.png",
+    "logo_generico": false,
     "locales": [
       "19B"
     ],
@@ -917,7 +917,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-scarpe.png",
+    "logo": "/logos/scarpe.png",
     "logo_generico": false,
     "locales": [
       "63",
@@ -940,7 +940,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-senties-1.png",
+    "logo": "/logos/senties.png",
     "logo_generico": false,
     "locales": [
       "62"
@@ -962,8 +962,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/sketcher.png",
+    "logo_generico": false,
     "locales": [
       "22"
     ],
@@ -1003,8 +1003,8 @@
     "instagram": "thefactorygdl",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/the-factory.png",
+    "logo_generico": false,
     "locales": [
       "11"
     ],
@@ -1025,8 +1025,8 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/viveka.png",
+    "logo_generico": false,
     "locales": [
       "24"
     ],
@@ -1046,7 +1046,7 @@
     "instagram": "voyante_gdl",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-voyante-1.png",
+    "logo": "/logos/voyante.png",
     "logo_generico": false,
     "locales": [
       "58"
@@ -1086,7 +1086,7 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": "/logos/marca-zataselection.png",
+    "logo": "/logos/zata-selection.png",
     "logo_generico": false,
     "locales": [
       "10"

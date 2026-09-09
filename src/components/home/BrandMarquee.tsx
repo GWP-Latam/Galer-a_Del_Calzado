@@ -15,10 +15,7 @@ function Row({ marcas, reverse }: { marcas: Marca[]; reverse?: boolean }) {
             href={`/directorio/${marca.slug}`}
             className="flex h-32 w-48 shrink-0 items-center justify-center p-6"
           >
-            {/* Placeholder monochrome treatment until locatarios deliver
-                single-color vector logos (plan punto 5.2) — grayscale keeps
-                the marquee visually unified in the meantime. */}
-            <div className="h-full w-full opacity-70 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0">
+            <div className="h-full w-full opacity-70 transition-opacity duration-300 hover:opacity-100">
               <BrandLogo marca={marca} />
             </div>
           </Link>
