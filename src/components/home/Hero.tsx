@@ -8,10 +8,10 @@ export function Hero({ plaza }: { plaza: Plaza }) {
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${plaza.geo.lat},${plaza.geo.lng}`;
 
   return (
-    <section className="relative flex min-h-[640px] items-end overflow-hidden md:min-h-[720px]">
+    <section className="relative flex min-h-[640px] items-center overflow-hidden md:min-h-[720px]">
       <HeroMedia />
 
-      <Container className="relative z-10 pb-16 pt-40 text-paper md:pb-24">
+      <Container className="relative z-10 py-16 text-paper md:py-24">
         <p className="text-xs font-medium uppercase tracking-[0.22em] text-paper/75">
           Guadalajara · Av. México 3225
         </p>

@@ -1,19 +1,18 @@
 /**
- * Placeholder geometric rendering of the 2022 rebrand monogram (a squared "G").
- * Replace the path below with the official vector once the brand manual
- * arrives (plan punto 5.3) — everything that renders <Monogram /> keeps
- * working unchanged.
+ * Official monogram vector (delivered by the client). `strokeWidth` is kept
+ * in the prop type only so existing call sites don't need to change — the
+ * shape is filled, not stroked, so it has no effect.
  */
-export function Monogram({ className, strokeWidth = 3 }: { className?: string; strokeWidth?: number }) {
+export function Monogram({ className }: { className?: string; strokeWidth?: number }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
-      <path
-        d="M17 7 L17 3 L3 3 L3 21 L21 21 L21 12 L13 12"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={strokeWidth}
-        strokeLinecap="square"
-        strokeLinejoin="miter"
+    <svg viewBox="0 0 131.98 241.3" className={className} aria-hidden="true" focusable="false">
+      <polygon
+        fill="currentColor"
+        points="131.98 241.3 0 241.3 0 0 131.98 0 131.98 99.61 119.09 99.61 119.09 7.84 12.89 7.84 12.89 233.47 119.09 233.47 119.09 127.65 65.99 127.65 65.99 119.83 131.98 119.83 131.98 241.3"
+      />
+      <polygon
+        fill="currentColor"
+        points="99.07 207.1 32.91 207.1 32.91 34.21 99.07 34.21 99.07 99.8 86.18 99.8 86.18 42.04 45.8 42.04 45.8 199.26 86.18 199.26 86.18 146.81 99.07 146.81 99.07 207.1"
       />
     </svg>
   );
