@@ -1,13 +1,17 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
-import { Search, X, ArrowRight, List, Map as MapIcon } from "lucide-react";
+import Fuse from "fuse.js";
+import { AnimatePresence, motion } from "motion/react";
+import { Search, X, ArrowRight, List, Map as MapIcon, Home } from "lucide-react";
 import { clsx } from "clsx";
-import { InteractiveMap } from "./InteractiveMap";
+import { InteractiveMap, type InteractiveMapHandle } from "./InteractiveMap";
 import { BrandListItem } from "./BrandListItem";
 import { BrandLogo } from "@/components/BrandLogo";
 import type { Local, Marca, Nivel } from "@/lib/content/types";
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function DirectorioExplorer({
   marcas,
@@ -19,30 +23,67 @@ export function DirectorioExplorer({
   niveles: Nivel[];
 }) {
   const [query, setQuery] = useState("");
+  const [categoria, setCategoria] = useState<string | "todas">("todas");
   const [nivelId, setNivelId] = useState<string | undefined>(
     niveles[niveles.length - 1]?.id ?? niveles[0]?.id,
   );
   const [selectedSlug, setSelectedSlug] = useState<string | null>(null);
   const [infoLocal, setInfoLocal] = useState<Local | null>(null);
   const [mobileView, setMobileView] = useState<"lista" | "mapa">("mapa");
+  const [pendingFly, setPendingFly] = useState<string[] | null>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const mapRef = useRef<InteractiveMapHandle>(null);
 
   const nivel = niveles.find((n) => n.id === nivelId) ?? niveles[0];
 
+  const categorias = useMemo(() => {
+    const set = new Set<string>();
+    marcas.forEach((m) => m.categorias_producto.forEach((c) => set.add(c)));
+    return Array.from(set).sort((a, b) => a.localeCompare(b, "es"));
+  }, [marcas]);
+
+  const marcasPorCategoria = useMemo(
+    () => (categoria === "todas" ? marcas : marcas.filter((m) => m.categorias_producto.includes(categoria))),
+    [marcas, categoria],
+  );
+
+  const fuse = useMemo(
+    () => new Fuse(marcasPorCategoria, { keys: ["nombre"], threshold: 0.35, ignoreLocation: true }),
+    [marcasPorCategoria],
+  );
+
   const filteredMarcas = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return marcas;
-    return marcas.filter((m) => m.nombre.toLowerCase().includes(q));
-  }, [marcas, query]);
+    const q = query.trim();
+    if (!q) return marcasPorCategoria;
+    return fuse.search(q).map((r) => r.item);
+  }, [marcasPorCategoria, fuse, query]);
 
   const localesDelNivel = useMemo(() => locales.filter((l) => l.nivel === nivel?.id), [locales, nivel]);
 
+  // Vuela a la forma del local (o locales, para marcas con varias
+  // sucursales) una vez que el mapa del nivel correcto ya está montado —
+  // si hubo que cambiar de piso, esperamos al siguiente frame.
+  useEffect(() => {
+    if (!pendingFly) return;
+    // useEffect ya corre después de que React aplicó el DOM del nivel
+    // nuevo (si hubo cambio de piso) — no hace falta esperar un frame más.
+    mapRef.current?.flyTo(pendingFly);
+    // "pendingFly" es un disparador de una acción imperativa (volar la
+    // cámara), no estado derivado — limpiarlo aquí es correcto aunque el
+    // linter prefiera evitar setState dentro de efectos en general.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setPendingFly(null);
+  }, [pendingFly, nivelId]);
+
   function selectMarca(marca: Marca) {
     setSelectedSlug(marca.slug);
-    const suLocal = locales.find((l) => l.marca_slug === marca.slug);
-    if (suLocal) {
-      if (suLocal.nivel !== nivelId) setNivelId(suLocal.nivel);
-      setInfoLocal(suLocal);
+    const susLocales = locales.filter((l) => l.marca_slug === marca.slug);
+    if (susLocales.length > 0) {
+      if (!susLocales.some((l) => l.nivel === nivelId)) setNivelId(susLocales[0].nivel);
+      setInfoLocal(susLocales[0]);
+      setPendingFly(susLocales.map((l) => l.id_interno));
+    } else {
+      setInfoLocal(null);
     }
     setMobileView("mapa");
   }
@@ -58,6 +99,7 @@ export function DirectorioExplorer({
   }
 
   const infoMarca = infoLocal?.marca_slug ? marcas.find((m) => m.slug === infoLocal.marca_slug) : undefined;
+  const infoDisponible = infoLocal?.estado === "disponible";
 
   return (
     <div className="flex flex-col gap-6">
@@ -77,6 +119,34 @@ export function DirectorioExplorer({
           </button>
         )}
       </div>
+
+      {categorias.length > 1 && (
+        <div className="-mt-2 flex gap-2 overflow-x-auto pb-1">
+          <button
+            type="button"
+            onClick={() => setCategoria("todas")}
+            className={clsx(
+              "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
+              categoria === "todas" ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink",
+            )}
+          >
+            Todas
+          </button>
+          {categorias.map((c) => (
+            <button
+              key={c}
+              type="button"
+              onClick={() => setCategoria(c)}
+              className={clsx(
+                "shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors",
+                categoria === c ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink",
+              )}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Mobile view switcher */}
       <div className="flex rounded-sm border border-line lg:hidden">
@@ -109,18 +179,27 @@ export function DirectorioExplorer({
             {filteredMarcas.length} {filteredMarcas.length === 1 ? "marca" : "marcas"}
           </p>
 
-          <div className="flex max-h-[70vh] flex-col gap-2 overflow-y-auto pr-1 lg:max-h-[640px]">
-            {filteredMarcas.map((marca) => (
-              <div key={marca.slug} ref={(el) => { itemRefs.current[marca.slug] = el; }}>
-                <BrandListItem marca={marca} active={marca.slug === selectedSlug} onSelect={() => selectMarca(marca)} />
-              </div>
-            ))}
-            {filteredMarcas.length === 0 && (
-              <p className="py-10 text-center text-sm text-ink-soft">
-                No encontramos marcas con &ldquo;{query}&rdquo;.
-              </p>
-            )}
-          </div>
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.div
+              key={`${categoria}-${query}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="flex max-h-[70vh] flex-col gap-2 overflow-y-auto pr-1 lg:max-h-[640px]"
+            >
+              {filteredMarcas.map((marca) => (
+                <div key={marca.slug} ref={(el) => { itemRefs.current[marca.slug] = el; }}>
+                  <BrandListItem marca={marca} active={marca.slug === selectedSlug} onSelect={() => selectMarca(marca)} />
+                </div>
+              ))}
+              {filteredMarcas.length === 0 && (
+                <p className="py-10 text-center text-sm text-ink-soft">
+                  No encontramos marcas con &ldquo;{query}&rdquo;.
+                </p>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Map column */}
@@ -154,40 +233,119 @@ export function DirectorioExplorer({
             </div>
           </div>
 
-          <div className="h-[420px] sm:h-[520px] lg:h-[640px]">
-            {nivel && (
-              <InteractiveMap nivel={nivel} locales={localesDelNivel} selectedSlug={selectedSlug} onSelectLocal={selectLocal} />
-            )}
+          <div className="relative h-[420px] sm:h-[520px] lg:h-[640px]">
+            <AnimatePresence initial={false}>
+              {nivel && (
+                <motion.div
+                  key={nivel.id}
+                  className="absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, ease: EASE }}
+                >
+                  <InteractiveMap
+                    ref={mapRef}
+                    nivel={nivel}
+                    locales={localesDelNivel}
+                    selectedSlug={selectedSlug}
+                    onSelectLocal={selectLocal}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
+          {/* Desktop: tarjeta de info inline bajo el mapa */}
           {infoLocal && (
-            <div className="flex items-center gap-4 rounded-md border border-line bg-stone-50 p-4">
-              {infoMarca ? (
-                <>
-                  <div className="h-12 w-12 shrink-0 overflow-hidden rounded-sm border border-line bg-paper p-1">
-                    <BrandLogo marca={infoMarca} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate">{infoMarca.nombre}</p>
-                    <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
-                  </div>
-                  <Link
-                    href={`/directorio/${infoMarca.slug}`}
-                    className="inline-flex shrink-0 items-center gap-1.5 rounded-sm bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-ink-soft"
-                  >
-                    Ver ficha <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-                  </Link>
-                </>
-              ) : (
-                <div className="min-w-0 flex-1">
-                  <p className="truncate">{infoLocal.amenidad_nombre}</p>
-                  <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
-                </div>
-              )}
+            <div className="hidden items-center gap-4 rounded-md border border-line bg-stone-50 p-4 lg:flex">
+              <InfoLocalContenido infoLocal={infoLocal} infoMarca={infoMarca} infoDisponible={infoDisponible} />
             </div>
           )}
         </div>
       </div>
+
+      {/* Móvil: bottom sheet fija, con swipe-down para cerrar */}
+      <AnimatePresence>
+        {infoLocal && mobileView === "mapa" && (
+          <motion.div
+            key="bottom-sheet"
+            className="fixed inset-x-0 bottom-0 z-40 rounded-t-xl border-t border-line bg-paper p-4 pb-[max(1rem,env(safe-area-inset-bottom))] shadow-md lg:hidden"
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{ duration: 0.3, ease: EASE }}
+            drag="y"
+            dragConstraints={{ top: 0, bottom: 0 }}
+            dragElastic={{ top: 0, bottom: 0.5 }}
+            onDragEnd={(_, info) => {
+              if (info.offset.y > 80) setInfoLocal(null);
+            }}
+          >
+            <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-line" />
+            <div className="flex items-center gap-4">
+              <InfoLocalContenido infoLocal={infoLocal} infoMarca={infoMarca} infoDisponible={infoDisponible} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function InfoLocalContenido({
+  infoLocal,
+  infoMarca,
+  infoDisponible,
+}: {
+  infoLocal: Local;
+  infoMarca?: Marca;
+  infoDisponible: boolean;
+}) {
+  if (infoDisponible) {
+    return (
+      <>
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-sm border border-[var(--state-available-ink)]/30 bg-[var(--state-available-bg)]">
+          <Home className="h-5 w-5 text-[var(--state-available-ink)]" strokeWidth={1.75} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-[var(--state-available-ink)]">Local disponible</p>
+          <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
+        </div>
+        <Link
+          href="/oportunidades/locales"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-sm bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-ink-soft"
+        >
+          Renta este local <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+        </Link>
+      </>
+    );
+  }
+
+  if (infoMarca) {
+    return (
+      <>
+        <div className="h-12 w-12 shrink-0 overflow-hidden rounded-sm border border-line bg-paper p-1">
+          <BrandLogo marca={infoMarca} />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="truncate">{infoMarca.nombre}</p>
+          <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
+        </div>
+        <Link
+          href={`/directorio/${infoMarca.slug}`}
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-sm bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-ink-soft"
+        >
+          Ver ficha <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+        </Link>
+      </>
+    );
+  }
+
+  return (
+    <div className="min-w-0 flex-1">
+      <p className="truncate">{infoLocal.amenidad_nombre}</p>
+      <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
     </div>
   );
 }

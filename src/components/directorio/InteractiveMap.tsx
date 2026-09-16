@@ -1,16 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { TransformWrapper, TransformComponent, useControls } from "react-zoom-pan-pinch";
+import {
+  TransformWrapper,
+  TransformComponent,
+  useControls,
+  type ReactZoomPanPinchRef,
+} from "react-zoom-pan-pinch";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 import { ZoomIn, ZoomOut, Maximize2 } from "lucide-react";
 import { clsx } from "clsx";
 import { BrandLogo } from "@/components/BrandLogo";
+import { getAmenidadIcon } from "@/lib/amenidad-icons";
 import { getMarcaBySlug } from "@/lib/content/repository";
 import type { Local, Nivel } from "@/lib/content/types";
 
-// Past this zoom level, pins swap their local number for the brand's logo.
+// Past this zoom level, labels swap their local number for the brand's logo.
 const LOGO_ZOOM_THRESHOLD = 2.2;
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+export interface InteractiveMapHandle {
+  /** Vuela y encuadra uno o varios locales (marcas con varias sucursales
+   * quedan todas dentro del encuadre). No-op si el local no tiene
+   * geometría trazada todavía. */
+  flyTo: (idsInternos: string[]) => void;
+}
+
+function polyId(idInterno: string) {
+  return `local-poly-${idInterno}`;
+}
+
+function centroidOf(local: Local): { x: number; y: number } {
+  if (!local.geometria || local.geometria.length === 0) return { x: local.x, y: local.y };
+  const xs = local.geometria.map((p) => p[0]);
+  const ys = local.geometria.map((p) => p[1]);
+  return { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 };
+}
 
 function MapControls() {
   const { zoomIn, zoomOut, resetTransform } = useControls();
@@ -29,36 +55,125 @@ function MapControls() {
   );
 }
 
-function Pin({
+function LocalShape({
+  local,
+  nivel,
+  isSelected,
+  index,
+  playEntrance,
+  onSelect,
+}: {
+  local: Local;
+  nivel: Nivel;
+  isSelected: boolean;
+  index: number;
+  playEntrance: boolean;
+  onSelect?: (local: Local) => void;
+}) {
+  const reduced = useReducedMotion();
+  const isAmenidad = Boolean(local.amenidad_nombre);
+  const isAvailable = local.estado === "disponible";
+  const puntos = local.geometria!;
+  const puntosAbs = puntos.map(([x, y]) => `${x * nivel.ancho_ref},${y * nivel.alto_ref}`).join(" ");
+
+  const fill = isSelected
+    ? "rgba(150, 116, 42, 0.22)"
+    : isAvailable
+      ? "rgba(150, 116, 42, 0.1)"
+      : "rgba(19, 17, 16, 0.03)";
+  const stroke = isSelected ? "#96742a" : isAvailable ? "#96742a" : "rgba(19, 17, 16, 0.18)";
+
+  const label = local.marca_slug
+    ? getMarcaBySlug(local.marca_slug)?.nombre
+    : local.amenidad_nombre ?? `Local ${local.numero}`;
+
+  return (
+    <motion.polygon
+      id={polyId(local.id_interno)}
+      points={puntosAbs}
+      fill={fill}
+      stroke={stroke}
+      strokeWidth={isSelected ? 3 : isAmenidad ? 1.5 : 1}
+      strokeDasharray={isAmenidad && !isSelected ? "4 3" : undefined}
+      role={onSelect ? "button" : undefined}
+      tabIndex={onSelect ? 0 : undefined}
+      aria-label={onSelect ? label : undefined}
+      style={{ cursor: onSelect ? "pointer" : "default", outline: "none" }}
+      className="transition-[fill,stroke] duration-150 hover:!fill-[rgba(19,17,16,0.07)] focus-visible:!fill-[rgba(150,116,42,0.2)]"
+      onClick={() => onSelect?.(local)}
+      onKeyDown={(e) => {
+        const esActivacion =
+          e.key === "Enter" || e.key === " " || e.code === "Enter" || e.code === "Space";
+        if (onSelect && esActivacion) {
+          e.preventDefault();
+          onSelect(local);
+        }
+      }}
+      initial={playEntrance && !reduced ? { opacity: 0 } : false}
+      animate={{
+        opacity: 1,
+        pathLength: isSelected && !reduced ? [0, 1] : undefined,
+      }}
+      transition={{
+        opacity: { duration: 0.4, delay: playEntrance && !reduced ? index * 0.012 : 0, ease: EASE },
+        pathLength: { duration: 0.6, ease: EASE },
+      }}
+    />
+  );
+}
+
+function Etiqueta({
   local,
   isSelected,
   scale,
+  index,
+  playEntrance,
   onSelectLocal,
 }: {
   local: Local;
   isSelected: boolean;
   scale: number;
+  index: number;
+  playEntrance: boolean;
   onSelectLocal?: (local: Local) => void;
 }) {
+  const reduced = useReducedMotion();
   const isAmenidad = Boolean(local.amenidad_nombre);
   const isAvailable = local.estado === "disponible";
   const marca = local.marca_slug ? getMarcaBySlug(local.marca_slug) : undefined;
   const showLogo = scale >= LOGO_ZOOM_THRESHOLD && marca && !marca.logo_generico;
   const counterScale = 1 / scale;
+  const { x, y } = centroidOf(local);
+  const AmenidadIcon = getAmenidadIcon(local.amenidad_nombre);
+  // getAmenidadIcon siempre devuelve un componente fijo de lucide-react
+  // (nunca uno creado ad hoc); el linter no puede verlo porque la función
+  // vive en otro módulo, de ahí la excepción.
+  // eslint-disable-next-line react-hooks/static-components
+  const iconoAmenidad = <AmenidadIcon className="h-2.5 w-2.5" strokeWidth={2} />;
 
   const label = marca?.nombre ?? local.amenidad_nombre ?? `Local ${local.numero}`;
 
+  const dropVariants: Variants = {
+    hidden: { opacity: 0, y: reduced ? 0 : -10 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div
-      className="group absolute -translate-x-1/2 -translate-y-1/2"
-      style={{ left: `${local.x * 100}%`, top: `${local.y * 100}%` }}
+    <motion.div
+      className="group pointer-events-none absolute -translate-x-1/2 -translate-y-1/2"
+      style={{ left: `${x * 100}%`, top: `${y * 100}%` }}
+      initial={playEntrance ? "hidden" : false}
+      animate="visible"
+      variants={dropVariants}
+      transition={{ duration: 0.35, delay: playEntrance ? 0.15 + index * 0.012 : 0, ease: EASE }}
     >
       <button
         type="button"
+        tabIndex={-1}
+        aria-hidden="true"
         onClick={() => onSelectLocal?.(local)}
-        aria-label={label}
         className={clsx(
-          "relative flex items-center justify-center rounded-full border font-medium leading-none transition-transform hover:z-20 hover:scale-125",
+          "pointer-events-auto relative flex items-center justify-center rounded-full border font-medium leading-none transition-transform hover:z-20 hover:scale-125",
           showLogo ? "h-7 w-7 bg-paper p-0.5 shadow-sm" : "h-[18px] w-[18px] text-[8px]",
           isSelected && "z-20 ring-2 ring-accent ring-offset-1",
           !showLogo && isAmenidad && "border-ink-soft/50 bg-paper text-ink-soft",
@@ -66,7 +181,7 @@ function Pin({
           !showLogo && !isAmenidad && !isAvailable && "border-paper bg-ink text-paper",
         )}
       >
-        {showLogo ? <BrandLogo marca={marca!} /> : isAmenidad ? "" : local.numero}
+        {showLogo ? <BrandLogo marca={marca!} /> : isAmenidad ? iconoAmenidad : local.numero}
       </button>
 
       {/* Desktop hover card — counter-scaled so it reads at a constant size
@@ -83,20 +198,17 @@ function Pin({
           )}
           <div className="text-left">
             <p className="text-xs font-medium leading-tight text-ink">{label}</p>
-            <p className="text-[10px] leading-tight text-ink-soft">Local {local.numero}</p>
+            <p className="text-[10px] leading-tight text-ink-soft">
+              {isAvailable ? "Local disponible" : `Local ${local.numero}`}
+            </p>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
-export function InteractiveMap({
-  nivel,
-  locales,
-  selectedSlug,
-  onSelectLocal,
-}: {
+export const InteractiveMap = forwardRef<InteractiveMapHandle, {
   nivel: Nivel;
   locales: Local[];
   selectedSlug: string | null;
@@ -104,13 +216,30 @@ export function InteractiveMap({
    * brand's ficha) — functions can't cross the server/client boundary, so
    * the no-op lives here instead of being passed in from a server page. */
   onSelectLocal?: (local: Local) => void;
-}) {
+}>(function InteractiveMap({ nivel, locales, selectedSlug, onSelectLocal }, ref) {
   const planoSrc = nivel.plano ?? nivel.plano_raster!;
   const [scale, setScale] = useState(1);
+  const wrapperRef = useRef<ReactZoomPanPinchRef | null>(null);
+
+  useImperativeHandle(ref, () => ({
+    flyTo(idsInternos: string[]) {
+      const ctx = wrapperRef.current;
+      if (!ctx) return;
+      const nodes = idsInternos
+        .map((id) => document.getElementById(polyId(id)))
+        .filter((n): n is HTMLElement => n !== null);
+      if (nodes.length === 0) return;
+      ctx.zoomToElement(nodes.length === 1 ? nodes[0] : nodes, { maxScale: 3.5, minScale: 1.4 }, 600, "easeOut");
+    },
+  }), []);
+
+  const localesConGeometria = useMemo(() => locales.filter((l) => l.geometria), [locales]);
 
   return (
     <div className="relative h-full w-full overflow-hidden rounded-md border border-line bg-stone-50">
       <TransformWrapper
+        ref={wrapperRef}
+        key={nivel.id}
         minScale={1}
         maxScale={6}
         centerOnInit
@@ -134,12 +263,33 @@ export function InteractiveMap({
               className="object-contain"
               priority
             />
-            {locales.map((local) => (
-              <Pin
+
+            <svg
+              viewBox={`0 0 ${nivel.ancho_ref} ${nivel.alto_ref}`}
+              className="absolute inset-0 h-full w-full"
+              preserveAspectRatio="none"
+            >
+              {localesConGeometria.map((local, i) => (
+                <LocalShape
+                  key={local.id_interno}
+                  local={local}
+                  nivel={nivel}
+                  isSelected={local.marca_slug === selectedSlug && selectedSlug !== null}
+                  index={i}
+                  playEntrance
+                  onSelect={onSelectLocal}
+                />
+              ))}
+            </svg>
+
+            {locales.map((local, i) => (
+              <Etiqueta
                 key={local.id_interno}
                 local={local}
-                isSelected={local.marca_slug === selectedSlug}
+                isSelected={local.marca_slug === selectedSlug && selectedSlug !== null}
                 scale={scale}
+                index={i}
+                playEntrance
                 onSelectLocal={onSelectLocal}
               />
             ))}
@@ -148,4 +298,4 @@ export function InteractiveMap({
       </TransformWrapper>
     </div>
   );
-}
+});

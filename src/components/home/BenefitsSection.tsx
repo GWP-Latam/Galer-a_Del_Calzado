@@ -1,16 +1,7 @@
-import * as Icons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { getAmenidades, getBeneficios } from "@/lib/content/repository";
-
-function iconFor(name: string): LucideIcon {
-  const pascal = name
-    .split("-")
-    .map((w) => w[0].toUpperCase() + w.slice(1))
-    .join("");
-  return (Icons as unknown as Record<string, LucideIcon>)[pascal] ?? Icons.MapPin;
-}
+import { iconForName as iconFor } from "@/lib/amenidad-icons";
 
 export function BenefitsSection() {
   const beneficios = getBeneficios();
