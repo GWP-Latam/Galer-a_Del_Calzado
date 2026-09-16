@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "validar-datos": "node scripts/validar-datos.mjs"
+    "validar-datos": "node scripts/validar-datos.mjs",
+    "generar-geometria": "node scripts/generar-geometria-inicial.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

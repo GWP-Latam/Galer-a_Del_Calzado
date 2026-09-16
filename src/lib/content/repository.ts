@@ -7,6 +7,7 @@
 import plazaData from "@/data/plaza.json";
 import nivelesData from "@/data/niveles.json";
 import localesData from "@/data/locales.json";
+import localesGeometriaData from "@/data/locales-geometria.json";
 import marcasData from "@/data/marcas.json";
 import amenidadesData from "@/data/amenidades.json";
 import beneficiosData from "@/data/beneficios.json";
@@ -31,8 +32,11 @@ import type {
   Plaza,
   Promocion,
   PromocionCategoria,
+  PuntoNormalizado,
   Vacante,
 } from "./types";
+
+type LocalesGeometria = Record<string, { puntos: PuntoNormalizado[] }>;
 
 export function getPlaza(): Plaza {
   return plazaData as Plaza;
@@ -47,7 +51,11 @@ export function getNivelById(id: string): Nivel | undefined {
 }
 
 export function getLocales(): Local[] {
-  return localesData as Local[];
+  const geometria = localesGeometriaData as unknown as LocalesGeometria;
+  return (localesData as Local[]).map((local) => {
+    const g = geometria[local.id_interno];
+    return g ? { ...local, geometria: g.puntos } : local;
+  });
 }
 
 export function getLocalesPorMarca(slug: string): Local[] {

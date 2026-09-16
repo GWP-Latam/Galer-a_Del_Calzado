@@ -40,6 +40,9 @@ export interface Nivel {
 
 export type LocalEstado = "ocupado" | "disponible";
 
+/** Coordenada normalizada 0–1 sobre el frame de referencia del nivel. */
+export type PuntoNormalizado = [number, number];
+
 export interface Local {
   id_interno: string;
   numero: string;
@@ -50,6 +53,15 @@ export interface Local {
   estado: LocalEstado;
   marca_slug: string | null;
   amenidad_nombre: string | null;
+  /**
+   * Polígono del local sobre el plano, en coordenadas normalizadas 0–1
+   * (mismo convenio que x/y). Viene de src/data/locales-geometria.json,
+   * fusionado por getLocales() — ver Fase 2/3 del plan de implementación.
+   * Opcional: todo local tiene una semilla rectangular generada
+   * automáticamente, pero puede faltar si se agregó un local nuevo antes
+   * de correr `npm run generar-geometria`.
+   */
+  geometria?: PuntoNormalizado[];
 }
 
 export interface Marca {
