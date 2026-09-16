@@ -16,8 +16,6 @@ import { getAmenidadIcon } from "@/lib/amenidad-icons";
 import { getMarcaBySlug } from "@/lib/content/repository";
 import type { Local, Nivel } from "@/lib/content/types";
 
-// Past this zoom level, labels swap their local number for the brand's logo.
-const LOGO_ZOOM_THRESHOLD = 2.2;
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 export interface InteractiveMapHandle {
@@ -141,7 +139,13 @@ function Etiqueta({
   const isAmenidad = Boolean(local.amenidad_nombre);
   const isAvailable = local.estado === "disponible";
   const marca = local.marca_slug ? getMarcaBySlug(local.marca_slug) : undefined;
-  const showLogo = scale >= LOGO_ZOOM_THRESHOLD && marca && !marca.logo_generico;
+  // El logo solo se muestra para el local seleccionado (y con logo real):
+  // así nunca hay más de un puñado de logos visibles al mismo tiempo, sin
+  // importar cuántos locales haya pegados unos a otros ni el zoom.
+  const showLogo = isSelected && marca && !marca.logo_generico;
+  // Contra-escalamos TODA la etiqueta (no solo el tooltip) para que el
+  // punto se vea del mismo tamaño sin importar el zoom del mapa — a mayor
+  // zoom crece el polígono del local, no el marcador encima.
   const counterScale = 1 / scale;
   const { x, y } = centroidOf(local);
   const AmenidadIcon = getAmenidadIcon(local.amenidad_nombre);
@@ -167,40 +171,40 @@ function Etiqueta({
       variants={dropVariants}
       transition={{ duration: 0.35, delay: playEntrance ? 0.15 + index * 0.012 : 0, ease: EASE }}
     >
-      <button
-        type="button"
-        tabIndex={-1}
-        aria-hidden="true"
-        onClick={() => onSelectLocal?.(local)}
-        className={clsx(
-          "pointer-events-auto relative flex items-center justify-center rounded-full border font-medium leading-none transition-transform hover:z-20 hover:scale-125",
-          showLogo ? "h-7 w-7 bg-paper p-0.5 shadow-sm" : "h-[18px] w-[18px] text-[8px]",
-          isSelected && "z-20 ring-2 ring-accent ring-offset-1",
-          !showLogo && isAmenidad && "border-ink-soft/50 bg-paper text-ink-soft",
-          !showLogo && !isAmenidad && isAvailable && "border-[var(--state-available-ink)]/50 bg-[var(--state-available-bg)] text-[var(--state-available-ink)]",
-          !showLogo && !isAmenidad && !isAvailable && "border-paper bg-ink text-paper",
-        )}
-      >
-        {showLogo ? <BrandLogo marca={marca!} /> : isAmenidad ? iconoAmenidad : local.numero}
-      </button>
-
-      {/* Desktop hover card — counter-scaled so it reads at a constant size
-          regardless of how far the map is zoomed in. */}
-      <div
-        className="pointer-events-none absolute bottom-full left-1/2 z-30 hidden -translate-x-1/2 pb-2 group-hover:md:block"
-        style={{ transform: `scale(${counterScale})`, transformOrigin: "bottom center" }}
-      >
-        <div className="flex items-center gap-2 whitespace-nowrap rounded-sm border border-line bg-paper px-3 py-2 shadow-md">
-          {marca && (
-            <div className="h-6 w-10 shrink-0">
-              <BrandLogo marca={marca} />
-            </div>
+      <div style={{ transform: `scale(${counterScale})`, transformOrigin: "center" }}>
+        <button
+          type="button"
+          tabIndex={-1}
+          aria-hidden="true"
+          onClick={() => onSelectLocal?.(local)}
+          className={clsx(
+            "pointer-events-auto relative flex items-center justify-center rounded-full border font-medium leading-none transition-transform hover:z-20 hover:scale-125",
+            showLogo ? "h-10 w-10 bg-paper p-1 shadow-md" : "h-4 w-4 text-[7px]",
+            isSelected && "z-20 ring-2 ring-accent ring-offset-1",
+            !showLogo && isAmenidad && "border-ink-soft/60 bg-paper text-ink-soft",
+            !showLogo && !isAmenidad && isAvailable && "border-[var(--state-available-ink)]/60 bg-[var(--state-available-bg)] text-[var(--state-available-ink)]",
+            !showLogo && !isAmenidad && !isAvailable && "border-paper bg-ink text-paper",
           )}
-          <div className="text-left">
-            <p className="text-xs font-medium leading-tight text-ink">{label}</p>
-            <p className="text-[10px] leading-tight text-ink-soft">
-              {isAvailable ? "Local disponible" : `Local ${local.numero}`}
-            </p>
+        >
+          {showLogo ? <BrandLogo marca={marca!} /> : isAmenidad ? iconoAmenidad : local.numero}
+        </button>
+
+        {/* Tarjeta al pasar el cursor — vive en el mismo contenedor
+            contra-escalado que el punto, así que siempre se ve del mismo
+            tamaño y alineada justo encima de él. */}
+        <div className="pointer-events-none absolute bottom-full left-1/2 z-30 hidden -translate-x-1/2 pb-2 group-hover:md:block">
+          <div className="flex items-center gap-2 whitespace-nowrap rounded-sm border border-line bg-paper px-3 py-2 shadow-md">
+            {marca && (
+              <div className="h-6 w-10 shrink-0">
+                <BrandLogo marca={marca} />
+              </div>
+            )}
+            <div className="text-left">
+              <p className="text-xs font-medium leading-tight text-ink">{label}</p>
+              <p className="text-[10px] leading-tight text-ink-soft">
+                {isAvailable ? "Local disponible" : `Local ${local.numero}`}
+              </p>
+            </div>
           </div>
         </div>
       </div>
