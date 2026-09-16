@@ -3,15 +3,19 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import Fuse from "fuse.js";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Search, X, ArrowRight, List, Map as MapIcon, Home } from "lucide-react";
 import { clsx } from "clsx";
 import { InteractiveMap, type InteractiveMapHandle } from "./InteractiveMap";
 import { BrandListItem } from "./BrandListItem";
 import { BrandLogo } from "@/components/BrandLogo";
+import { Monogram } from "@/components/Monogram";
 import type { Local, Marca, Nivel } from "@/lib/content/types";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
+
+// Solo se reproduce una vez por sesión de navegador.
+const INTRO_SESSION_KEY = "galeria-directorio-intro-vista";
 
 export function DirectorioExplorer({
   marcas,
@@ -33,6 +37,43 @@ export function DirectorioExplorer({
   const [pendingFly, setPendingFly] = useState<string[] | null>(null);
   const itemRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const mapRef = useRef<InteractiveMapHandle>(null);
+  const reduced = useReducedMotion();
+
+  // Entrada cinemática: solo la primera vez que se visita /directorio en
+  // esta pestaña. "introKey" fuerza el remount del contenedor del mapa
+  // para que su animación initial→animate se reproduzca de verdad (motion
+  // no la repite si solo cambia una prop en un elemento ya montado).
+  const [introKey, setIntroKey] = useState(0);
+  const [showIntroOverlay, setShowIntroOverlay] = useState(false);
+
+  // Decide si toca reproducir la intro. Separado del efecto que la apaga
+  // (abajo) a propósito: en desarrollo React monta cada efecto dos veces
+  // (mount → cleanup → mount) para detectar código no idempotente. Si el
+  // "ya se vio" y el "apágala en 1.3s" vivieran en el mismo efecto, el
+  // cleanup de la primera pasada cancelaría el timeout y la segunda
+  // pasada, al ver sessionStorage ya marcado, no volvería a programarlo —
+  // la intro se quedaría pegada en pantalla para siempre.
+  useEffect(() => {
+    if (reduced) return;
+    try {
+      if (sessionStorage.getItem(INTRO_SESSION_KEY)) return;
+      sessionStorage.setItem(INTRO_SESSION_KEY, "1");
+    } catch {
+      return; // sin sessionStorage no hay forma de saber si ya se vio — se omite
+    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIntroKey(1);
+    setShowIntroOverlay(true);
+  }, [reduced]);
+
+  // Apaga la intro sola a los 1.3s. Al depender de showIntroOverlay (no de
+  // sessionStorage), el doble-montaje de React siempre deja un timeout
+  // vivo que sí dispara.
+  useEffect(() => {
+    if (!showIntroOverlay) return;
+    const t = setTimeout(() => setShowIntroOverlay(false), 1300);
+    return () => clearTimeout(t);
+  }, [showIntroOverlay]);
 
   const nivel = niveles.find((n) => n.id === nivelId) ?? niveles[0];
 
@@ -234,23 +275,54 @@ export function DirectorioExplorer({
           </div>
 
           <div className="relative h-[420px] sm:h-[520px] lg:h-[640px]">
-            <AnimatePresence initial={false}>
-              {nivel && (
+            {/* Entrada cinemática: el mapa arranca alejado y borroso y
+                "desciende" a su encuadre normal — key={introKey} fuerza el
+                remount para que initial→animate se reproduzca de verdad. */}
+            <motion.div
+              key={introKey}
+              className="absolute inset-0"
+              initial={introKey === 1 ? { scale: 1.12, opacity: 0, filter: "blur(6px)" } : false}
+              animate={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1.1, ease: EASE }}
+            >
+              <AnimatePresence initial={false}>
+                {nivel && (
+                  <motion.div
+                    key={nivel.id}
+                    className="absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, ease: EASE }}
+                  >
+                    <InteractiveMap
+                      ref={mapRef}
+                      nivel={nivel}
+                      locales={localesDelNivel}
+                      selectedSlug={selectedSlug}
+                      onSelectLocal={selectLocal}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+
+            <AnimatePresence>
+              {showIntroOverlay && (
                 <motion.div
-                  key={nivel.id}
-                  className="absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  className="absolute inset-0 z-30 flex cursor-pointer items-center justify-center rounded-md bg-paper"
+                  initial={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25, ease: EASE }}
+                  transition={{ duration: 0.45 }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label="Saltar animación de bienvenida al mapa"
+                  onClick={() => setShowIntroOverlay(false)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") setShowIntroOverlay(false);
+                  }}
                 >
-                  <InteractiveMap
-                    ref={mapRef}
-                    nivel={nivel}
-                    locales={localesDelNivel}
-                    selectedSlug={selectedSlug}
-                    onSelectLocal={selectLocal}
-                  />
+                  <Monogram className="h-16 w-16 text-ink/10" />
                 </motion.div>
               )}
             </AnimatePresence>
