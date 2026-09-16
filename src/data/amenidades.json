@@ -20,36 +20,15 @@
     "revisar": false
   },
   {
-    "nombre": "Cuple/Bsupply/Colors",
-    "tipo": "servicio",
-    "icono": "shopping-bag",
-    "local": "34, 34A, 34B",
-    "nivel": "gc-piso",
-    "telefonos": [
-      "333 647 65 00",
-      "331 957 69 76"
-    ],
-    "revisar": true
-  },
-  {
     "nombre": "Administración",
     "tipo": "instalacion",
     "icono": "building-2",
-    "local": "L-2, Lob 1, 02",
+    "local": "Lobby 1 (cerca de locales 01-02)",
     "nivel": "sotano",
     "telefonos": [
       "33 3647 6422"
     ],
-    "revisar": false
-  },
-  {
-    "nombre": "Distrito Beauty",
-    "tipo": "servicio",
-    "icono": "sparkles",
-    "local": "L-2, Lob 2, 07",
-    "nivel": "sotano",
-    "telefonos": [],
-    "revisar": false
+    "revisar": true
   },
   {
     "nombre": "WC Damas",

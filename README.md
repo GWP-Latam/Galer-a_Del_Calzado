@@ -35,14 +35,20 @@ src/
 
 ## De dónde salen los datos
 
-`src/data/*.json` se genera con `python ../scripts/build_seed.py`, que lee
-`../data/mapdata_clean.json` (el mapa interactivo del sitio anterior) y reutiliza el parseo ya
-hecho en `../scripts/build_excel.py`. Para regenerar los datos tras un ajuste:
+`src/data/*.json` se generó originalmente con `python ../scripts/build_seed.py`, que lee
+`../data/mapdata_clean.json` (el mapa interactivo del sitio anterior). **Esto ya no aplica**:
+desde septiembre de 2026 estos archivos se mantienen a mano contra el padrón de locatarios
+vigente que entrega el cliente (ver `docs/PLAN-IMPLEMENTACION.md`, Fase 0). **No vuelvas a
+correr `build_seed.py`** — sobrescribiría las reasignaciones, altas y bajas ya aplicadas.
+
+Después de cualquier edición manual de `locales.json`, `marcas.json` o `amenidades.json`, corre:
 
 ```bash
-cd ..
-python scripts/build_seed.py
+npm run validar-datos
 ```
+
+Verifica relaciones cruzadas (marca ↔ local, duplicados, estados) y falla si algo quedó
+inconsistente. Es obligatorio antes de commitear cambios a esos archivos.
 
 Esto **no** toca imágenes ni el resto de `public/` — esos archivos se copiaron una sola vez desde
 `../imagenes/` y se procesaron con `../scripts/crop_logo_cards.py` (recorta el texto de contacto

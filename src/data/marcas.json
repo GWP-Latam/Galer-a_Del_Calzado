@@ -16,7 +16,7 @@
     "logo": "/logos/andrea.png",
     "logo_generico": false,
     "locales": [
-      "31"
+      "54"
     ],
     "revisar": false
   },
@@ -125,25 +125,6 @@
     "revisar": false
   },
   {
-    "slug": "capa-de-ozono",
-    "nombre": "Capa de Ozono",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": null,
-    "logo_generico": true,
-    "locales": [
-      "28"
-    ],
-    "revisar": false
-  },
-  {
     "slug": "caray-sandals",
     "nombre": "Caray Sandals",
     "descripcion": "",
@@ -222,7 +203,8 @@
     "logo": "/logos/christian-divat.png",
     "logo_generico": false,
     "locales": [
-      "3"
+      "3",
+      "19"
     ],
     "revisar": false
   },
@@ -379,25 +361,6 @@
     "revisar": false
   },
   {
-    "slug": "duque-di-galeano",
-    "nombre": "Duque Di Galeano",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": "/logos/duque-di-galeano.png",
-    "logo_generico": false,
-    "locales": [
-      "52"
-    ],
-    "revisar": false
-  },
-  {
     "slug": "el-desvan-de-catherine",
     "nombre": "El Desvan de Catherine",
     "descripcion": "",
@@ -462,25 +425,6 @@
     "nombre": "Francis",
     "descripcion": "",
     "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": "/logos/francis.png",
-    "logo_generico": false,
-    "locales": [
-      "20"
-    ],
-    "revisar": false
-  },
-  {
-    "slug": "francis-deluxe",
-    "nombre": "Francis Deluxe",
-    "descripcion": "",
-    "categorias_producto": [],
     "telefonos": [
       "333 647 74 21",
       "333 642 17 31"
@@ -491,12 +435,13 @@
     "instagram": "",
     "facebook": "",
     "fotos": [],
-    "logo": null,
-    "logo_generico": true,
+    "logo": "/logos/francis.png",
+    "logo_generico": false,
     "locales": [
-      "55",
+      "20",
       "40",
-      "42"
+      "42",
+      "55"
     ],
     "revisar": false
   },
@@ -544,25 +489,6 @@
     "revisar": false
   },
   {
-    "slug": "kactus",
-    "nombre": "Kactus",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": null,
-    "logo_generico": true,
-    "locales": [
-      "54"
-    ],
-    "revisar": false
-  },
-  {
     "slug": "karsten",
     "nombre": "Karsten",
     "descripcion": "",
@@ -582,25 +508,6 @@
     "revisar": false
   },
   {
-    "slug": "kleiman-store",
-    "nombre": "Kleiman Store",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": null,
-    "logo_generico": true,
-    "locales": [
-      "01"
-    ],
-    "revisar": false
-  },
-  {
     "slug": "la-poupee",
     "nombre": "La Poupee",
     "descripcion": "",
@@ -616,25 +523,6 @@
     "logo_generico": true,
     "locales": [
       "26"
-    ],
-    "revisar": false
-  },
-  {
-    "slug": "lady-paulina",
-    "nombre": "Lady Paulina",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": null,
-    "logo_generico": true,
-    "locales": [
-      "21"
     ],
     "revisar": false
   },
@@ -680,28 +568,6 @@
     "logo_generico": false,
     "locales": [
       "25"
-    ],
-    "revisar": false
-  },
-  {
-    "slug": "lob-footwear",
-    "nombre": "LOB Footwear",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [
-      "333 122 15 91",
-      "331 895 67 35"
-    ],
-    "correo": "footwear.galeriasc@lobfw.com.mx",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": "/logos/lob-footwear.png",
-    "logo_generico": false,
-    "locales": [
-      "19A"
     ],
     "revisar": false
   },
@@ -921,7 +787,7 @@
     "logo_generico": false,
     "locales": [
       "63",
-      "L-2, Lob 1, 04"
+      "01"
     ],
     "revisar": false
   },
@@ -965,6 +831,7 @@
     "logo": "/logos/sketcher.png",
     "logo_generico": false,
     "locales": [
+      "21",
       "22"
     ],
     "revisar": false
@@ -1054,25 +921,6 @@
     "revisar": false
   },
   {
-    "slug": "zapateria-luna",
-    "nombre": "Zapatería Luna",
-    "descripcion": "",
-    "categorias_producto": [],
-    "telefonos": [],
-    "correo": "",
-    "web": "",
-    "tienda_en_linea": "",
-    "instagram": "",
-    "facebook": "",
-    "fotos": [],
-    "logo": null,
-    "logo_generico": true,
-    "locales": [
-      "19"
-    ],
-    "revisar": false
-  },
-  {
     "slug": "zata-selection",
     "nombre": "Zata Selection",
     "descripcion": "",
@@ -1092,5 +940,175 @@
       "10"
     ],
     "revisar": false
+  },
+  {
+    "slug": "paralid",
+    "nombre": "Paralid",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "2"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "icon",
+    "nombre": "Icon",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "15"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "the-west-sun",
+    "nombre": "The West Sun",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "31",
+      "50"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "danoise",
+    "nombre": "Danoise",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "31A"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "beauty-suply",
+    "nombre": "Beauty Suply",
+    "descripcion": "",
+    "categorias_producto": [
+      "Belleza"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "34"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "koala",
+    "nombre": "Koala",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "49"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "cklass",
+    "nombre": "Cklass",
+    "descripcion": "",
+    "categorias_producto": [
+      "Calzado"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "52"
+    ],
+    "revisar": true
+  },
+  {
+    "slug": "distrito-beauty",
+    "nombre": "Distrito Beauty",
+    "descripcion": "",
+    "categorias_producto": [
+      "Belleza"
+    ],
+    "telefonos": [],
+    "correo": "",
+    "web": "",
+    "tienda_en_linea": "",
+    "instagram": "",
+    "facebook": "",
+    "fotos": [],
+    "logo": null,
+    "logo_generico": true,
+    "locales": [
+      "02",
+      "04"
+    ],
+    "revisar": true
   }
 ]

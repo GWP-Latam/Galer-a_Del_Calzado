@@ -56,7 +56,7 @@
     "x": 0.4362,
     "y": 0.2757,
     "estado": "ocupado",
-    "marca_slug": "andrea",
+    "marca_slug": "the-west-sun",
     "amenidad_nombre": null
   },
   {
@@ -221,12 +221,12 @@
   },
   {
     "id_interno": "localdisponible-15",
-    "numero": "15 Disponible",
+    "numero": "15",
     "nivel": "gc-piso",
     "x": 0.803,
     "y": 0.7956,
-    "estado": "disponible",
-    "marca_slug": null,
+    "estado": "ocupado",
+    "marca_slug": "icon",
     "amenidad_nombre": null
   },
   {
@@ -296,7 +296,7 @@
     "x": 0.4456,
     "y": 0.8083,
     "estado": "ocupado",
-    "marca_slug": "francis-deluxe",
+    "marca_slug": "francis",
     "amenidad_nombre": null
   },
   {
@@ -321,22 +321,22 @@
   },
   {
     "id_interno": "localdisponible-50",
-    "numero": "50 disponible",
+    "numero": "50",
     "nivel": "gc-piso",
     "x": 0.3114,
     "y": 0.8407,
-    "estado": "disponible",
-    "marca_slug": null,
+    "estado": "ocupado",
+    "marca_slug": "the-west-sun",
     "amenidad_nombre": null
   },
   {
     "id_interno": "localdisponible-49",
-    "numero": "49 disponible",
+    "numero": "49",
     "nivel": "gc-piso",
     "x": 0.2254,
     "y": 0.7978,
-    "estado": "disponible",
-    "marca_slug": null,
+    "estado": "ocupado",
+    "marca_slug": "koala",
     "amenidad_nombre": null
   },
   {
@@ -396,7 +396,7 @@
     "x": 0.2388,
     "y": 0.423,
     "estado": "ocupado",
-    "marca_slug": "francis-deluxe",
+    "marca_slug": "francis",
     "amenidad_nombre": null
   },
   {
@@ -411,13 +411,13 @@
   },
   {
     "id_interno": "cuple-bsupply-colors",
-    "numero": "34, 34A, 34B",
+    "numero": "34",
     "nivel": "gc-piso",
     "x": 0.3433,
     "y": 0.4472,
     "estado": "ocupado",
-    "marca_slug": null,
-    "amenidad_nombre": "Cuple/Bsupply/Colors"
+    "marca_slug": "beauty-suply",
+    "amenidad_nombre": null
   },
   {
     "id_interno": "gillio",
@@ -445,8 +445,8 @@
     "nivel": "gc-piso",
     "x": 0.4872,
     "y": 0.4906,
-    "estado": "ocupado",
-    "marca_slug": "capa-de-ozono",
+    "estado": "disponible",
+    "marca_slug": null,
     "amenidad_nombre": null
   },
   {
@@ -506,7 +506,7 @@
     "x": 0.6553,
     "y": 0.5131,
     "estado": "ocupado",
-    "marca_slug": "lady-paulina",
+    "marca_slug": "sketcher",
     "amenidad_nombre": null
   },
   {
@@ -536,7 +536,7 @@
     "x": 0.6579,
     "y": 0.6691,
     "estado": "ocupado",
-    "marca_slug": "zapateria-luna",
+    "marca_slug": "christian-divat",
     "amenidad_nombre": null
   },
   {
@@ -545,8 +545,8 @@
     "nivel": "gc-piso",
     "x": 0.6196,
     "y": 0.6656,
-    "estado": "ocupado",
-    "marca_slug": "lob-footwear",
+    "estado": "disponible",
+    "marca_slug": null,
     "amenidad_nombre": null
   },
   {
@@ -606,7 +606,7 @@
     "x": 0.3942,
     "y": 0.6188,
     "estado": "ocupado",
-    "marca_slug": "kactus",
+    "marca_slug": "andrea",
     "amenidad_nombre": null
   },
   {
@@ -616,7 +616,7 @@
     "x": 0.3522,
     "y": 0.6933,
     "estado": "ocupado",
-    "marca_slug": "duque-di-galeano",
+    "marca_slug": "cklass",
     "amenidad_nombre": null
   },
   {
@@ -646,7 +646,7 @@
     "x": 0.3242,
     "y": 0.5096,
     "estado": "ocupado",
-    "marca_slug": "francis-deluxe",
+    "marca_slug": "francis",
     "amenidad_nombre": null
   },
   {
@@ -666,38 +666,28 @@
     "x": 0.6846,
     "y": 0.8753,
     "estado": "ocupado",
-    "marca_slug": "kleiman-store",
-    "amenidad_nombre": null
-  },
-  {
-    "id_interno": "administracion",
-    "numero": "L-2, Lob 1, 02",
-    "nivel": "sotano",
-    "x": 0.6808,
-    "y": 0.9516,
-    "estado": "ocupado",
-    "marca_slug": null,
-    "amenidad_nombre": "Administración"
-  },
-  {
-    "id_interno": "scarpe-l2",
-    "numero": "L-2, Lob 1, 04",
-    "nivel": "sotano",
-    "x": 0.6023,
-    "y": 0.8667,
-    "estado": "ocupado",
     "marca_slug": "scarpe",
     "amenidad_nombre": null
   },
   {
-    "id_interno": "distrito beauty",
-    "numero": "L-2, Lob 2, 07",
+    "id_interno": "administracion",
+    "numero": "02",
     "nivel": "sotano",
-    "x": 0.2299,
-    "y": 0.2393,
+    "x": 0.6808,
+    "y": 0.9516,
     "estado": "ocupado",
-    "marca_slug": null,
-    "amenidad_nombre": "Distrito Beauty"
+    "marca_slug": "distrito-beauty",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "scarpe-l2",
+    "numero": "04",
+    "nivel": "sotano",
+    "x": 0.6023,
+    "y": 0.8667,
+    "estado": "ocupado",
+    "marca_slug": "distrito-beauty",
+    "amenidad_nombre": null
   },
   {
     "id_interno": "damas",
@@ -718,5 +708,25 @@
     "estado": "ocupado",
     "marca_slug": null,
     "amenidad_nombre": "WC Caballeros"
+  },
+  {
+    "id_interno": "paralid",
+    "numero": "2",
+    "nivel": "gc-piso",
+    "x": 0.6502,
+    "y": 0.2505,
+    "estado": "ocupado",
+    "marca_slug": "paralid",
+    "amenidad_nombre": null
+  },
+  {
+    "id_interno": "danoise",
+    "numero": "31A",
+    "nivel": "gc-piso",
+    "x": 0.4158,
+    "y": 0.3814,
+    "estado": "ocupado",
+    "marca_slug": "danoise",
+    "amenidad_nombre": null
   }
 ]
