@@ -186,3 +186,13 @@ export interface EspacioPublicitario {
   descripcion: string;
   demo: boolean;
 }
+
+export interface Resena {
+  id: string;
+  fuente: "google" | "manual";
+  autor_nombre: string;
+  autor_foto_url: string | null;
+  calificacion: number;
+  texto: string;
+  fecha_resena: string | null;
+}

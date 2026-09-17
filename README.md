@@ -92,3 +92,29 @@ SUPABASE_SERVICE_ROLE_KEY=
 
 El repo `backend-GDC` queda como historial de referencia; una vez validado este panel en
 producción, puede archivarse.
+
+## Reseñas de Google (`/admin/resenas`)
+
+Sección de reseñas en el home (`src/components/home/ReviewsSection.tsx`), curada desde
+`/admin/resenas`. Combina dos fuentes en la misma tabla `resenas` (Supabase):
+
+- **Google Places API (New)**: trae hasta 5 reseñas por lugar — es el máximo que esa API
+  devuelve, no algo que podamos ampliar. Requiere `GOOGLE_PLACES_API_KEY` (proyecto de Google
+  Cloud con la Places API "New" habilitada y facturación activa) y `GOOGLE_PLACE_ID`. Sin estas
+  variables, el botón "Sincronizar con Google" queda deshabilitado — el resto del panel funciona
+  igual.
+- **Carga manual**: el equipo de la plaza copia reseñas reales tal cual desde Google Maps para
+  tener más de 5. No se scrapea Google Maps automáticamente — viola sus Términos de Servicio.
+
+Desde `/admin/resenas` se elige cuáles de todas estas se muestran en el home y en qué orden
+(nunca se edita el texto de una reseña ajena, solo se selecciona/oculta). La migración
+correspondiente es `supabase/migrations/0003_resenas.sql`; **todavía no se aplicó** al proyecto
+real de Supabase — hay que correrla (`supabase db push` o el MCP de Supabase) y luego regenerar
+`src/lib/types/database.ts` con `generate_typescript_types`.
+
+```
+# Opcionales
+GOOGLE_PLACES_API_KEY=
+GOOGLE_PLACE_ID=
+NEXT_PUBLIC_GOOGLE_REVIEWS_URL=
+```

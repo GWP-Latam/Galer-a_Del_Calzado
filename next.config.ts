@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       // URLs públicas del Storage de Supabase (fotos que sube el panel /admin).
       { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
+      // Foto de perfil del autor en reseñas sincronizadas desde Google Places.
+      { protocol: "https", hostname: "*.googleusercontent.com" },
     ],
   },
   async redirects() {

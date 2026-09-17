@@ -11,6 +11,7 @@ import {
   Mail,
   MessageSquare,
   CalendarDays,
+  Star,
   LogOut,
 } from "lucide-react";
 import { requireProfile } from "@/lib/auth";
@@ -66,6 +67,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
                 Contenido
               </p>
               <NavLink href="/admin/amenidades" label="Amenidades" icon={Coffee} />
+              <NavLink href="/admin/resenas" label="Reseñas" icon={Star} />
               <NavLink href="/admin/newsletter" label="Newsletter" icon={Mail} />
               <NavLink href="/admin/mensajes" label="Mensajes" icon={MessageSquare} />
             </>
