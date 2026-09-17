@@ -413,8 +413,8 @@
     "id_interno": "cuple-bsupply-colors",
     "numero": "34",
     "nivel": "gc-piso",
-    "x": 0.3216,
-    "y": 0.3802,
+    "x": 0.3433,
+    "y": 0.4472,
     "estado": "ocupado",
     "marca_slug": "beauty-suply",
     "amenidad_nombre": null
@@ -713,8 +713,8 @@
     "id_interno": "paralid",
     "numero": "2",
     "nivel": "gc-piso",
-    "x": 0.6502,
-    "y": 0.2505,
+    "x": 0.6339,
+    "y": 0.2456,
     "estado": "ocupado",
     "marca_slug": "paralid",
     "amenidad_nombre": null
@@ -723,8 +723,8 @@
     "id_interno": "danoise",
     "numero": "31A",
     "nivel": "gc-piso",
-    "x": 0.47,
-    "y": 0.25,
+    "x": 0.4667,
+    "y": 0.2233,
     "estado": "ocupado",
     "marca_slug": "danoise",
     "amenidad_nombre": null
