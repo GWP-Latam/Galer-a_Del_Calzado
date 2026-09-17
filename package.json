@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "validar-datos": "node scripts/validar-datos.mjs",
-    "generar-geometria": "node scripts/generar-geometria-inicial.mjs"
+    "generar-geometria": "node scripts/generar-geometria-inicial.mjs",
+    "vectorizar-locales": "node scripts/vectorizar-locales.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.4",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
