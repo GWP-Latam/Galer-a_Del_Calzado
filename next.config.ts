@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      // URLs públicas del Storage de Supabase (fotos que sube el panel /admin).
+      { protocol: "https", hostname: "*.supabase.co", pathname: "/storage/v1/object/public/**" },
+    ],
+  },
   async redirects() {
     return [
       { source: "/inicio", destination: "/", permanent: true },

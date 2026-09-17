@@ -69,6 +69,26 @@ que algunos logotipos traían incrustado). Cuando lleguen los logotipos vectoriz
 
 ## Fase 2 (fuera de este alcance)
 
-Panel de administración sobre Supabase, scrollytelling en Nosotros, Temporada/Eventos/FAQ
-alimentados por base de datos, formularios conectados, y el plano del sótano en SVG con locales
-clickeables (hoy solo existe en PNG).
+Scrollytelling en Nosotros, Temporada/FAQ alimentados por base de datos, formularios conectados,
+y el plano del sótano en SVG con locales clickeables (hoy solo existe en PNG).
+
+## Panel de administración (`/admin`)
+
+El panel vivía en un repo aparte (`backend-GDC`) y se fusionó aquí: mismo despliegue, mismo
+`layout.tsx` raíz (usa `SiteChrome` para no heredar el header/footer del sitio público),
+autenticación por Supabase con `src/proxy.ts` (matcher `/admin/:path*`, no toca el resto del
+sitio). Rutas en `src/app/admin/`, cliente/tipos de Supabase en `src/lib/supabase/` y
+`src/lib/types/database.ts`, componentes propios del panel en `src/components/admin/ui/` (no
+comparten los primitivos de UI del sitio público).
+
+Variables de entorno (`.env.local`, no se commitea — copiarlas del proyecto de Supabase en
+Project Settings → API):
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+```
+
+El repo `backend-GDC` queda como historial de referencia; una vez validado este panel en
+producción, puede archivarse.

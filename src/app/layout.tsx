@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Instrument_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { SiteChrome } from "@/components/SiteChrome";
 import { getPlaza } from "@/lib/content/repository";
 import "./globals.css";
 
@@ -56,11 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Saltar al contenido
         </a>
-        <Header plaza={plaza} />
-        <main id="contenido" className="flex-1">
-          {children}
-        </main>
-        <Footer plaza={plaza} />
+        <SiteChrome plaza={plaza}>{children}</SiteChrome>
         <Analytics />
       </body>
     </html>
