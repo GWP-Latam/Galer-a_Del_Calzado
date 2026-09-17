@@ -2,6 +2,7 @@ import { ArrowRight, MapPinned } from "lucide-react";
 import { HeroMedia } from "./HeroMedia";
 import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { TextReveal } from "@/components/motion/TextReveal";
 import type { Plaza } from "@/lib/content/types";
 
 export function Hero({ plaza }: { plaza: Plaza }) {
@@ -15,9 +16,12 @@ export function Hero({ plaza }: { plaza: Plaza }) {
         <p className="text-xs font-medium uppercase tracking-[0.22em] text-paper/75">
           Guadalajara · Av. México 3225
         </p>
-        <h1 className="mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] md:text-6xl">
-          Todo el calzado de Guadalajara, bajo un mismo techo.
-        </h1>
+        <TextReveal
+          as="h1"
+          className="mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] md:text-6xl"
+        >
+          Todo el calzado de Guadalajara,<br />bajo un mismo techo.
+        </TextReveal>
         <p className="mt-5 max-w-lg text-base text-paper/85 md:text-lg">
           Más de cincuenta marcas de zapatos, tenis, sandalias y botas para toda la familia, a un
           costado de Av. México.

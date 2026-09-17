@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Monogram } from "@/components/Monogram";
+import { Parallax } from "@/components/motion/Parallax";
 
 /**
  * The only video asset recovered from the old site is a promotional motion
@@ -20,10 +21,12 @@ export function HeroMedia() {
         sizes="100vw"
         className="object-cover opacity-[0.07] mix-blend-screen"
       />
-      <Monogram
-        className="absolute -bottom-24 -right-24 h-[560px] w-[560px] text-paper/[0.05] md:h-[720px] md:w-[720px]"
-        strokeWidth={1.2}
-      />
+      <Parallax
+        offset={30}
+        className="absolute -bottom-24 -right-24 h-[560px] w-[560px] md:h-[720px] md:w-[720px]"
+      >
+        <Monogram className="h-full w-full text-paper/[0.05]" strokeWidth={1.2} />
+      </Parallax>
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/90" />
     </div>
   );
