@@ -1,12 +1,6 @@
 // Generado desde el proyecto real de Supabase (myxdlumhkjwejtuuxyfb) con
 // generate_typescript_types. No editar a mano — si el esquema cambia, se
 // vuelve a generar y se reemplaza este archivo completo.
-//
-// EXCEPCIÓN TEMPORAL: la tabla `resenas` (supabase/migrations/0003_resenas.sql)
-// se agregó a mano aquí porque esa migración todavía no se aplicó al proyecto
-// real. En cuanto se aplique (`supabase db push` o el MCP de Supabase),
-// vuelve a correr generate_typescript_types y reemplaza todo el archivo —
-// este parche desaparece solo.
 
 export type Json =
   | string
@@ -157,6 +151,41 @@ export type Database = {
           slug?: string
         }
         Relationships: []
+      }
+      codigos_acceso: {
+        Row: {
+          codigo: string
+          created_at: string
+          id: string
+          marca_id: string
+          usado: boolean
+          usado_en: string | null
+        }
+        Insert: {
+          codigo: string
+          created_at?: string
+          id?: string
+          marca_id: string
+          usado?: boolean
+          usado_en?: string | null
+        }
+        Update: {
+          codigo?: string
+          created_at?: string
+          id?: string
+          marca_id?: string
+          usado?: boolean
+          usado_en?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "codigos_acceso_marca_id_fkey"
+            columns: ["marca_id"]
+            isOneToOne: false
+            referencedRelation: "marcas"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       espacios_publicitarios: {
         Row: {
@@ -366,6 +395,7 @@ export type Database = {
           created_at: string
           descripcion: string
           facebook: string
+          giro: string
           id: string
           instagram: string
           logo_generico: boolean
@@ -385,6 +415,7 @@ export type Database = {
           created_at?: string
           descripcion?: string
           facebook?: string
+          giro?: string
           id?: string
           instagram?: string
           logo_generico?: boolean
@@ -404,6 +435,7 @@ export type Database = {
           created_at?: string
           descripcion?: string
           facebook?: string
+          giro?: string
           id?: string
           instagram?: string
           logo_generico?: boolean
@@ -912,6 +944,7 @@ export const Constants = {
         "casual",
       ],
       promocion_estado: ["pendiente", "aprobada", "rechazada"],
+      resena_fuente: ["google", "manual"],
       user_role: ["super_admin", "locatario"],
     },
   },
