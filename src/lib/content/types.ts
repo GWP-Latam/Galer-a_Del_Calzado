@@ -159,34 +159,6 @@ export interface Evento {
   demo?: boolean;
 }
 
-export interface LocalRenta {
-  id: string;
-  titulo: string;
-  m2: number;
-  nivel: string;
-  servicios: string[];
-  descripcion: string;
-  demo: boolean;
-}
-
-export interface Vacante {
-  id: string;
-  puesto: string;
-  area: string;
-  tipo: string;
-  descripcion: string;
-  demo: boolean;
-}
-
-export interface EspacioPublicitario {
-  id: string;
-  titulo: string;
-  ubicacion: string;
-  dimensiones: string;
-  descripcion: string;
-  demo: boolean;
-}
-
 export interface Resena {
   id: string;
   fuente: "google" | "manual";

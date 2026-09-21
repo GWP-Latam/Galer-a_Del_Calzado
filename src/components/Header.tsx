@@ -11,7 +11,6 @@ import type { Plaza } from "@/lib/content/types";
 export const NAV_ITEMS = [
   { label: "Nosotros", href: "/nosotros" },
   { label: "Directorio", href: "/directorio" },
-  { label: "Oportunidades", href: "/oportunidades" },
   { label: "Promociones", href: "/promociones" },
   { label: "Eventos", href: "/eventos" },
   { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },

@@ -14,26 +14,20 @@ import beneficiosData from "@/data/beneficios.json";
 import categoriasCalzadoData from "@/data/categorias-calzado.json";
 import promocionesData from "@/data/promociones.json";
 import campanaData from "@/data/campana.json";
-import localesRentaData from "@/data/locales-renta.json";
-import vacantesData from "@/data/vacantes.json";
-import espaciosPublicitariosData from "@/data/espacios-publicitarios.json";
 import eventosData from "@/data/eventos.json";
 import type {
   Amenidad,
   Beneficio,
   Campana,
   CategoriaCalzado,
-  EspacioPublicitario,
   Evento,
   Local,
-  LocalRenta,
   Marca,
   Nivel,
   Plaza,
   Promocion,
   PromocionCategoria,
   PuntoNormalizado,
-  Vacante,
 } from "./types";
 
 type LocalesGeometria = Record<string, { puntos: PuntoNormalizado[] }>;
@@ -104,18 +98,6 @@ export function getPromocionesPorCategoria(categoria: PromocionCategoria): Promo
 
 export function getCampana(): Campana {
   return campanaData as Campana;
-}
-
-export function getLocalesRenta(): LocalRenta[] {
-  return localesRentaData as LocalRenta[];
-}
-
-export function getVacantes(): Vacante[] {
-  return vacantesData as Vacante[];
-}
-
-export function getEspaciosPublicitarios(): EspacioPublicitario[] {
-  return espaciosPublicitariosData as EspacioPublicitario[];
 }
 
 export function getEventos(): Evento[] {

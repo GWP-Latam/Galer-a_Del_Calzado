@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { MapPinned, Phone, Clock } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Section";
-import { Field, TextAreaField } from "@/components/ui/Field";
+import { Field, SelectField, TextAreaField } from "@/components/ui/Field";
 import { PlaceholderForm } from "@/components/PlaceholderForm";
 import { getPlaza } from "@/lib/content/repository";
 
@@ -11,7 +11,17 @@ export const metadata: Metadata = {
   description: "Dirección, teléfono, horario y formulario de contacto de Galería del Calzado.",
 };
 
-export default function ContactoPage() {
+const RAZONES_CONTACTO = [
+  { value: "contacto", label: "Información general" },
+  { value: "renta", label: "Renta de locales" },
+  { value: "empleo", label: "Bolsa de trabajo" },
+  { value: "publicidad", label: "Espacios publicitarios" },
+] as const;
+
+export default async function ContactoPage(props: PageProps<"/contacto">) {
+  const { razon } = await props.searchParams;
+  const razonInicial = RAZONES_CONTACTO.some((r) => r.value === razon) ? razon : undefined;
+
   const plaza = getPlaza();
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${plaza.geo.lat},${plaza.geo.lng}`;
 
@@ -62,6 +72,16 @@ export default function ContactoPage() {
         </div>
 
         <PlaceholderForm fallbackPhone={plaza.telefono}>
+          <SelectField id="razon" label="Razón de contacto" defaultValue={razonInicial} required>
+            <option value="" disabled hidden>
+              Selecciona una opción
+            </option>
+            {RAZONES_CONTACTO.map((r) => (
+              <option key={r.value} value={r.value}>
+                {r.label}
+              </option>
+            ))}
+          </SelectField>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <Field id="nombre" label="Nombre" type="text" placeholder="Tu nombre" required />
             <Field id="correo" label="Correo" type="email" placeholder="tu@correo.com" required />

@@ -10,7 +10,6 @@ export interface SearchItem {
 const STATIC_PAGES: SearchItem[] = [
   { type: "pagina", label: "Directorio de marcas", href: "/directorio" },
   { type: "pagina", label: "Nosotros", sublabel: "Historia de la plaza", href: "/nosotros" },
-  { type: "pagina", label: "Oportunidades", sublabel: "Renta de locales y bolsa de trabajo", href: "/oportunidades" },
   { type: "pagina", label: "Promociones", sublabel: "Promociones vigentes", href: "/promociones" },
   { type: "pagina", label: "Eventos", href: "/eventos" },
   { type: "pagina", label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },

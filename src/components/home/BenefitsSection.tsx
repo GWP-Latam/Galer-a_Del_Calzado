@@ -6,10 +6,9 @@ import { iconForName as iconFor } from "@/lib/amenidad-icons";
 export function BenefitsSection() {
   const beneficios = getBeneficios();
   const amenidades = getAmenidades().filter((a) => !a.revisar);
-  // "servicio" tenants (café, salón, banco) are real traffic drivers on their
-  // own — Galería del Calzado is highly specialized, but not a one-note
-  // destination. Give them their own prominent row instead of burying them
-  // in the small text list below.
+  // "servicio" tenants (cafe, salon, bank) are real traffic drivers on their
+  // own — worth a prominent row instead of burying them in the small text
+  // list below.
   const servicios = amenidades.filter((a) => a.tipo === "servicio");
   const instalaciones = amenidades.filter((a) => a.tipo === "instalacion");
 
@@ -18,7 +17,7 @@ export function BenefitsSection() {
       <Reveal>
         <Eyebrow className="!text-paper/60">Pensado para tu visita</Eyebrow>
         <h2 className="mt-2 max-w-xl text-3xl text-paper md:text-4xl">
-          Especializados en calzado, no limitados a él
+          Expertos en calzado, con mucho más para ofrecerte
         </h2>
         <p className="mt-3 max-w-lg text-paper/70">
           Entre pasillo y pasillo también hay café, banco y belleza — motivos de sobra para

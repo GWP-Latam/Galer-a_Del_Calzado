@@ -10,8 +10,7 @@
   {
     "id": "gc-piso",
     "nombre": "Primer piso",
-    "plano": "/mapa/primer-piso.svg",
-    "plano_raster": "/mapa/primer-piso.png",
+    "plano": "/mapa/primer-piso.png",
     "ancho_ref": 1306,
     "alto_ref": 960,
     "orden": 1

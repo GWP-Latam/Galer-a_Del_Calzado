@@ -1,17 +1,21 @@
 import { Section } from "@/components/ui/Section";
 import { Counter } from "@/components/motion/Counter";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { getLocales, getMarcas, getNiveles } from "@/lib/content/repository";
+import { getLocales } from "@/lib/content/repository";
+
+// La plaza abrió como recinto especializado en calzado en 1987 (ver
+// src/app/nosotros/page.tsx) — este número hay que subirlo a mano cada año.
+const ANIOS_DESDE_APERTURA = new Date().getFullYear() - 1987;
 
 /**
- * Los números se calculan del repositorio, nunca a mano — si mañana hay
- * 60 marcas o un nivel más, esta sección no necesita tocarse.
+ * "Marcas" y "años" son cifras de mercadeo (decisión del cliente, no el
+ * conteo literal de src/data) — solo "locales" se calcula del repositorio.
  */
 export function StatsSection() {
   const stats = [
-    { value: getMarcas().length, label: "marcas de calzado" },
+    { value: 500, label: "marcas de calzado" },
     { value: getLocales().length, label: "locales en la plaza" },
-    { value: getNiveles().length, label: "niveles para recorrer" },
+    { value: ANIOS_DESDE_APERTURA, label: "años siendo el corazón del calzado en Guadalajara" },
   ];
 
   return (

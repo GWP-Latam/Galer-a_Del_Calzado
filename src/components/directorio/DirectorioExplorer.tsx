@@ -385,7 +385,7 @@ function InfoLocalContenido({
           <p className="text-xs text-ink-soft">Local {infoLocal.numero}</p>
         </div>
         <Link
-          href="/oportunidades/locales"
+          href="/contacto?razon=renta"
           className="inline-flex shrink-0 items-center gap-1.5 rounded-sm bg-ink px-4 py-2 text-sm font-medium text-paper hover:bg-ink-soft"
         >
           Renta este local <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
