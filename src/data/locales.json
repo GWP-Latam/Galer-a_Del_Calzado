@@ -666,7 +666,7 @@
     "x": 0.6846,
     "y": 0.8753,
     "estado": "ocupado",
-    "marca_slug": "scarpe",
+    "marca_slug": "distrito-beauty",
     "amenidad_nombre": null
   },
   {
@@ -676,8 +676,8 @@
     "x": 0.6808,
     "y": 0.9516,
     "estado": "ocupado",
-    "marca_slug": "distrito-beauty",
-    "amenidad_nombre": null
+    "marca_slug": null,
+    "amenidad_nombre": "Administración"
   },
   {
     "id_interno": "scarpe-l2",
@@ -686,7 +686,7 @@
     "x": 0.6023,
     "y": 0.8667,
     "estado": "ocupado",
-    "marca_slug": "distrito-beauty",
+    "marca_slug": "scarpe",
     "amenidad_nombre": null
   },
   {
