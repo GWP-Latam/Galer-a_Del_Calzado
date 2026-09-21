@@ -2,19 +2,19 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { clsx } from "clsx";
-import type { Local, Marca, Nivel, PuntoNormalizado } from "@/lib/content/types";
+import type { Local, LocalEstado, Marca, Nivel, PuntoNormalizado } from "@/lib/content/types";
 
 // Mismas constantes que scripts/generar-geometria-inicial.mjs — el botón
 // "Rectángulo desde pin" debe producir exactamente la misma semilla.
 const HALF_W = 0.018;
 const HALF_H = 0.024;
 
-const DRAFT_KEY = "galeria-mapa-editor-draft-v1";
+const DRAFT_KEY = "galeria-mapa-editor-draft-v2";
 
 type Geometria = Record<string, PuntoNormalizado[]>;
+type Draft = { locales: Local[]; geometria: Geometria };
 
-function seedRectangulo(local: Local): PuntoNormalizado[] {
-  const { x, y } = local;
+function seedRectangulo(x: number, y: number): PuntoNormalizado[] {
   return [
     [round(x - HALF_W), round(y - HALF_H)],
     [round(x + HALF_W), round(y - HALF_H)],
@@ -27,27 +27,43 @@ function round(n: number) {
   return Math.round(n * 10000) / 10000;
 }
 
-function loadDraft(): Geometria | null {
+function nuevoIdInterno() {
+  return `nuevo-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function loadDraft(): Draft | null {
   try {
     const raw = localStorage.getItem(DRAFT_KEY);
-    return raw ? (JSON.parse(raw) as Geometria) : null;
+    return raw ? (JSON.parse(raw) as Draft) : null;
   } catch {
     return null;
   }
 }
 
-function saveDraft(geometria: Geometria) {
+function saveDraft(draft: Draft) {
   try {
-    localStorage.setItem(DRAFT_KEY, JSON.stringify(geometria));
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
   } catch {
     // localStorage puede fallar (modo privado, cuota) — el trazado sigue
     // funcionando en memoria durante la sesión, solo no persiste.
   }
 }
 
+async function copiarAlPortapapeles(texto: string) {
+  try {
+    await navigator.clipboard.writeText(texto);
+    return true;
+  } catch {
+    // Sin permiso de portapapeles: lo mostramos en un prompt como último
+    // recurso para poder copiarlo a mano.
+    window.prompt("Copia el JSON manualmente:", texto);
+    return false;
+  }
+}
+
 export function MapaEditorClient({
   niveles,
-  locales,
+  locales: localesIniciales,
   marcas,
 }: {
   niveles: Nivel[];
@@ -55,34 +71,40 @@ export function MapaEditorClient({
   marcas: Marca[];
 }) {
   const [nivelId, setNivelId] = useState(niveles[niveles.length - 1]?.id ?? niveles[0]?.id);
+  const [locales, setLocales] = useState<Local[]>(localesIniciales);
   const [geometria, setGeometria] = useState<Geometria>({});
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedVertex, setSelectedVertex] = useState<number | null>(null);
-  const [copiado, setCopiado] = useState(false);
+  const [modoAgregar, setModoAgregar] = useState(false);
+  const [copiado, setCopiado] = useState<"locales" | "geometria" | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const dragRef = useRef<{ id: string; index: number } | null>(null);
 
   const marcaPorSlug = useMemo(() => new Map(marcas.map((m) => [m.slug, m])), [marcas]);
   const nivel = niveles.find((n) => n.id === nivelId) ?? niveles[0];
 
-  // Estado inicial: geometría semilla de cada local (ya viene fusionada
-  // por getLocales()), con el borrador de localStorage encima si existe.
+  // Estado inicial: locales + geometría seed que ya trae getLocales(), con
+  // el borrador de localStorage encima si existe (permite seguir editando
+  // tras un refresh sin perder locales agregados/quitados).
   useEffect(() => {
     const inicial: Geometria = {};
-    for (const l of locales) {
+    for (const l of localesIniciales) {
       if (l.geometria) inicial[l.id_interno] = l.geometria;
     }
-    // Lee localStorage (solo existe en cliente) una vez al montar; no hay
-    // forma de calcular este estado inicial en el primer render sin él.
     const draft = loadDraft();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setGeometria(draft ? { ...inicial, ...draft } : inicial);
+    if (draft) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLocales(draft.locales);
+      setGeometria({ ...inicial, ...draft.geometria });
+    } else {
+      setGeometria(inicial);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (Object.keys(geometria).length > 0) saveDraft(geometria);
-  }, [geometria]);
+    saveDraft({ locales, geometria });
+  }, [locales, geometria]);
 
   const localesDelNivel = useMemo(
     () => locales.filter((l) => l.nivel === nivelId).sort((a, b) => a.numero.localeCompare(b.numero, "es")),
@@ -108,6 +130,45 @@ export function MapaEditorClient({
     setGeometria((prev) => ({ ...prev, [id]: nuevos }));
   }
 
+  function actualizarLocal(id: string, cambios: Partial<Local>) {
+    setLocales((prev) => prev.map((l) => (l.id_interno === id ? { ...l, ...cambios } : l)));
+  }
+
+  function agregarLocal(x: number, y: number) {
+    const id = nuevoIdInterno();
+    const nuevo: Local = {
+      id_interno: id,
+      numero: "",
+      nivel: nivelId,
+      x: round(x),
+      y: round(y),
+      estado: "disponible",
+      marca_slug: null,
+      amenidad_nombre: null,
+    };
+    setLocales((prev) => [...prev, nuevo]);
+    setGeometria((prev) => ({ ...prev, [id]: seedRectangulo(x, y) }));
+    setSelectedId(id);
+    setSelectedVertex(null);
+    setModoAgregar(false);
+  }
+
+  function eliminarLocal(id: string) {
+    const local = locales.find((l) => l.id_interno === id);
+    const etiqueta = local?.marca_slug ?? local?.amenidad_nombre ?? `local ${local?.numero || "sin número"}`;
+    if (!window.confirm(`¿Quitar "${etiqueta}" del mapa? Esto no se puede deshacer aquí.`)) return;
+    setLocales((prev) => prev.filter((l) => l.id_interno !== id));
+    setGeometria((prev) => {
+      const resto = { ...prev };
+      delete resto[id];
+      return resto;
+    });
+    if (selectedId === id) {
+      setSelectedId(null);
+      setSelectedVertex(null);
+    }
+  }
+
   function onPointerDownVertice(e: React.PointerEvent, index: number) {
     if (!selectedId) return;
     e.stopPropagation();
@@ -131,6 +192,14 @@ export function MapaEditorClient({
     dragRef.current = null;
   }
 
+  function onClickSvg(e: React.MouseEvent<SVGSVGElement>) {
+    if (!modoAgregar) return;
+    if (e.target !== svgRef.current) return; // clic en un polígono/vértice existente, no en el fondo
+    const p = toSvgPoint(e.clientX, e.clientY);
+    if (!p) return;
+    agregarLocal(clamp01(p.x), clamp01(p.y));
+  }
+
   function agregarVerticeEnArista(index: number) {
     if (!selectedId || !puntos) return;
     const a = puntos[index];
@@ -142,25 +211,41 @@ export function MapaEditorClient({
 
   function resetRectangulo() {
     if (!selectedId || !localSeleccionado) return;
-    actualizarPuntos(selectedId, seedRectangulo(localSeleccionado));
+    actualizarPuntos(selectedId, seedRectangulo(localSeleccionado.x, localSeleccionado.y));
     setSelectedVertex(null);
   }
 
-  async function copiarJson() {
+  async function copiarLocalesJson() {
+    // Mismo orden de campos que ya trae src/data/locales.json.
+    const salida = locales.map((l) => ({
+      id_interno: l.id_interno,
+      numero: l.numero,
+      nivel: l.nivel,
+      x: l.x,
+      y: l.y,
+      estado: l.estado,
+      marca_slug: l.marca_slug,
+      amenidad_nombre: l.amenidad_nombre,
+    }));
+    const ok = await copiarAlPortapapeles(JSON.stringify(salida, null, 2) + "\n");
+    if (ok) {
+      setCopiado("locales");
+      setTimeout(() => setCopiado(null), 2000);
+    }
+  }
+
+  async function copiarGeometriaJson() {
+    const idsVigentes = new Set(locales.map((l) => l.id_interno));
     const ordenado = Object.fromEntries(
       Object.keys(geometria)
+        .filter((id) => idsVigentes.has(id))
         .sort()
         .map((id) => [id, { puntos: geometria[id] }]),
     );
-    const texto = JSON.stringify(ordenado, null, 2) + "\n";
-    try {
-      await navigator.clipboard.writeText(texto);
-      setCopiado(true);
-      setTimeout(() => setCopiado(false), 2000);
-    } catch {
-      // Sin permiso de portapapeles: mostramos el JSON en un prompt como
-      // último recurso para que se pueda copiar a mano.
-      window.prompt("Copia el JSON manualmente:", texto);
+    const ok = await copiarAlPortapapeles(JSON.stringify(ordenado, null, 2) + "\n");
+    if (ok) {
+      setCopiado("geometria");
+      setTimeout(() => setCopiado(null), 2000);
     }
   }
 
@@ -192,7 +277,7 @@ export function MapaEditorClient({
             <button
               key={n.id}
               type="button"
-              onClick={() => { setNivelId(n.id); setSelectedId(null); setSelectedVertex(null); }}
+              onClick={() => { setNivelId(n.id); setSelectedId(null); setSelectedVertex(null); setModoAgregar(false); }}
               className={clsx(
                 "rounded-sm px-3 py-1.5 text-sm font-medium",
                 n.id === nivelId ? "bg-ink text-paper" : "border border-line text-ink-soft",
@@ -203,10 +288,27 @@ export function MapaEditorClient({
           ))}
           <button
             type="button"
-            onClick={copiarJson}
-            className="ml-4 rounded-sm bg-accent px-4 py-1.5 text-sm font-medium text-[var(--accent-ink)]"
+            onClick={() => setModoAgregar((v) => !v)}
+            className={clsx(
+              "ml-4 rounded-sm border px-4 py-1.5 text-sm font-medium",
+              modoAgregar ? "border-accent bg-accent text-[var(--accent-ink)]" : "border-line text-ink-soft hover:bg-stone-50",
+            )}
           >
-            {copiado ? "Copiado ✓" : "Copiar JSON completo"}
+            {modoAgregar ? "Clic en el plano para colocar…" : "+ Agregar local"}
+          </button>
+          <button
+            type="button"
+            onClick={copiarLocalesJson}
+            className="rounded-sm border border-line px-4 py-1.5 text-sm font-medium hover:bg-stone-50"
+          >
+            {copiado === "locales" ? "Copiado ✓" : "Copiar locales.json"}
+          </button>
+          <button
+            type="button"
+            onClick={copiarGeometriaJson}
+            className="rounded-sm bg-accent px-4 py-1.5 text-sm font-medium text-[var(--accent-ink)]"
+          >
+            {copiado === "geometria" ? "Copiado ✓" : "Copiar locales-geometria.json"}
           </button>
         </div>
       </div>
@@ -215,12 +317,12 @@ export function MapaEditorClient({
         <aside className="w-56 shrink-0 overflow-y-auto border-r border-line bg-paper p-2">
           {localesDelNivel.map((l) => {
             const marca = l.marca_slug ? marcaPorSlug.get(l.marca_slug) : undefined;
-            const label = marca?.nombre ?? l.amenidad_nombre ?? `Local ${l.numero}`;
+            const label = marca?.nombre ?? l.amenidad_nombre ?? (l.numero ? `Local ${l.numero}` : "Sin datos");
             return (
               <button
                 key={l.id_interno}
                 type="button"
-                onClick={() => { setSelectedId(l.id_interno); setSelectedVertex(null); }}
+                onClick={() => { setSelectedId(l.id_interno); setSelectedVertex(null); setModoAgregar(false); }}
                 className={clsx(
                   "flex w-full flex-col rounded-sm px-3 py-2 text-left text-sm",
                   l.id_interno === selectedId ? "bg-ink text-paper" : "hover:bg-stone-100",
@@ -228,7 +330,7 @@ export function MapaEditorClient({
               >
                 <span className="truncate">{label}</span>
                 <span className={clsx("text-xs", l.id_interno === selectedId ? "text-paper/70" : "text-ink-soft")}>
-                  Local {l.numero} · {geometria[l.id_interno]?.length ?? 0} pts
+                  Local {l.numero || "—"} · {geometria[l.id_interno]?.length ?? 0} pts
                 </span>
               </button>
             );
@@ -237,7 +339,10 @@ export function MapaEditorClient({
 
         <main className="relative min-w-[420px] flex-1 overflow-auto p-6">
           <div
-            className="relative mx-auto min-w-[380px] max-w-4xl bg-white"
+            className={clsx(
+              "relative mx-auto min-w-[380px] max-w-4xl bg-white",
+              modoAgregar && "cursor-copy",
+            )}
             style={{ aspectRatio: `${nivel.ancho_ref} / ${nivel.alto_ref}` }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- herramienta interna, no next/image */}
@@ -248,6 +353,7 @@ export function MapaEditorClient({
               className="absolute inset-0 h-full w-full"
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}
+              onClick={onClickSvg}
             >
               {localesDelNivel.map((l) => {
                 const pts = geometria[l.id_interno];
@@ -258,7 +364,7 @@ export function MapaEditorClient({
                   <polygon
                     key={l.id_interno}
                     points={puntosAbs}
-                    onClick={() => { setSelectedId(l.id_interno); setSelectedVertex(null); }}
+                    onClick={(e) => { e.stopPropagation(); setSelectedId(l.id_interno); setSelectedVertex(null); }}
                     style={{ cursor: "pointer" }}
                     fill={esSeleccionado ? "rgba(150, 116, 42, 0.25)" : "rgba(19, 17, 16, 0.04)"}
                     stroke={esSeleccionado ? "#96742a" : "rgba(19, 17, 16, 0.3)"}
@@ -303,17 +409,72 @@ export function MapaEditorClient({
           </div>
         </main>
 
-        <aside className="w-64 shrink-0 overflow-y-auto border-l border-line bg-paper p-4">
+        <aside className="w-72 shrink-0 overflow-y-auto border-l border-line bg-paper p-4">
           {localSeleccionado ? (
             <div className="flex flex-col gap-4">
-              <div>
-                <p className="text-sm font-medium">
-                  {localSeleccionado.marca_slug
-                    ? marcaPorSlug.get(localSeleccionado.marca_slug)?.nombre
-                    : localSeleccionado.amenidad_nombre ?? "Sin asignar"}
-                </p>
-                <p className="text-xs text-ink-soft">Local {localSeleccionado.numero} · {nivel.nombre}</p>
+              <div className="flex flex-col gap-3 border-b border-line pb-4">
+                <label className="flex flex-col gap-1 text-xs font-medium text-ink-soft">
+                  Número
+                  <input
+                    type="text"
+                    value={localSeleccionado.numero}
+                    onChange={(e) => actualizarLocal(localSeleccionado.id_interno, { numero: e.target.value })}
+                    className="rounded-sm border border-line px-2 py-1.5 text-sm text-ink"
+                    placeholder="Ej. 04, Isla-3"
+                  />
+                </label>
+
+                <label className="flex flex-col gap-1 text-xs font-medium text-ink-soft">
+                  Marca (deja vacío para amenidad/disponible)
+                  <select
+                    value={localSeleccionado.marca_slug ?? ""}
+                    onChange={(e) =>
+                      actualizarLocal(localSeleccionado.id_interno, {
+                        marca_slug: e.target.value || null,
+                        amenidad_nombre: e.target.value ? null : localSeleccionado.amenidad_nombre,
+                      })
+                    }
+                    className="rounded-sm border border-line bg-paper px-2 py-1.5 text-sm text-ink"
+                  >
+                    <option value="">— Sin marca —</option>
+                    {marcas.map((m) => (
+                      <option key={m.slug} value={m.slug}>{m.nombre}</option>
+                    ))}
+                  </select>
+                </label>
+
+                {!localSeleccionado.marca_slug && (
+                  <label className="flex flex-col gap-1 text-xs font-medium text-ink-soft">
+                    Nombre de amenidad (si aplica)
+                    <input
+                      type="text"
+                      value={localSeleccionado.amenidad_nombre ?? ""}
+                      onChange={(e) =>
+                        actualizarLocal(localSeleccionado.id_interno, { amenidad_nombre: e.target.value || null })
+                      }
+                      className="rounded-sm border border-line px-2 py-1.5 text-sm text-ink"
+                      placeholder="Ej. Administración, Isla de accesorios"
+                    />
+                  </label>
+                )}
+
+                <label className="flex flex-col gap-1 text-xs font-medium text-ink-soft">
+                  Estado
+                  <select
+                    value={localSeleccionado.estado}
+                    onChange={(e) =>
+                      actualizarLocal(localSeleccionado.id_interno, { estado: e.target.value as LocalEstado })
+                    }
+                    className="rounded-sm border border-line bg-paper px-2 py-1.5 text-sm text-ink"
+                  >
+                    <option value="ocupado">Ocupado</option>
+                    <option value="disponible">Disponible</option>
+                  </select>
+                </label>
+
+                <p className="text-xs text-ink-soft">Local {localSeleccionado.numero || "—"} · {nivel.nombre}</p>
               </div>
+
               <button
                 type="button"
                 onClick={resetRectangulo}
@@ -321,13 +482,27 @@ export function MapaEditorClient({
               >
                 Rectángulo desde pin
               </button>
+
+              <button
+                type="button"
+                onClick={() => eliminarLocal(localSeleccionado.id_interno)}
+                className="rounded-sm border border-red-200 px-3 py-2 text-sm text-red-700 hover:bg-red-50"
+              >
+                Quitar este local del mapa
+              </button>
+
               <div className="text-xs text-ink-soft">
                 <p className="mb-1 font-medium text-ink">Cómo editar</p>
                 <ul className="list-disc space-y-1 pl-4">
                   <li>Arrastra un vértice (círculo oscuro) para moverlo.</li>
                   <li>Clic en un punto dorado a media arista para agregar un vértice ahí.</li>
                   <li>Selecciona un vértice y presiona Backspace/Delete para quitarlo (mínimo 3).</li>
-                  <li>El trabajo se guarda solo en este navegador — usa &ldquo;Copiar JSON completo&rdquo; y pégalo en <code>src/data/locales-geometria.json</code> para guardarlo en el repo.</li>
+                  <li>&ldquo;+ Agregar local&rdquo; y luego clic en el plano coloca un local nuevo (isla, local vacío, lo que sea) ahí mismo — edítalo con los campos de arriba.</li>
+                  <li>
+                    El trabajo se guarda solo en este navegador — usa los botones &ldquo;Copiar&rdquo; y pega cada uno
+                    en <code>src/data/locales.json</code> y <code>src/data/locales-geometria.json</code> para
+                    guardarlo en el repo.
+                  </li>
                 </ul>
               </div>
               {puntos && (
@@ -340,7 +515,10 @@ export function MapaEditorClient({
               )}
             </div>
           ) : (
-            <p className="text-sm text-ink-soft">Selecciona un local de la lista o haz clic en su forma en el plano.</p>
+            <p className="text-sm text-ink-soft">
+              Selecciona un local de la lista, haz clic en su forma en el plano, o usa &ldquo;+ Agregar local&rdquo;
+              para crear uno nuevo.
+            </p>
           )}
         </aside>
       </div>
