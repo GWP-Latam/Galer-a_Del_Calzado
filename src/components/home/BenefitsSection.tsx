@@ -1,7 +1,16 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { getAmenidades, getBeneficios } from "@/lib/content/repository";
 import { iconForName as iconFor } from "@/lib/amenidad-icons";
+
+// Fotos reales de fachada para los servicios más visibles de la plaza.
+const FOTOS: Record<string, string> = {
+  "Steria Coffee": "/mapa/Marcas/steria_coffee.png",
+  "Banco Santander": "/mapa/Marcas/santander.png",
+  "Distrito Beauty": "/mapa/Marcas/Distrito beauty.png",
+};
 
 export function BenefitsSection() {
   const beneficios = getBeneficios();
@@ -11,6 +20,14 @@ export function BenefitsSection() {
   // list below.
   const servicios = amenidades.filter((a) => a.tipo === "servicio");
   const instalaciones = amenidades.filter((a) => a.tipo === "instalacion");
+
+  // Distrito Beauty es una marca (no una amenidad), pero el texto de esta
+  // sección la menciona explícitamente ("...café, banco y belleza") — se
+  // agrega a mano a la fila destacada, con enlace a su ficha del directorio.
+  const destacados: { nombre: string; sub: string; icono: string; href?: string }[] = [
+    ...servicios.map((s) => ({ nombre: s.nombre, sub: `Local ${s.local}`, icono: s.icono })),
+    { nombre: "Distrito Beauty", sub: "Local 01, Sótano", icono: "sparkles", href: "/directorio/distrito-beauty" },
+  ];
 
   return (
     <Section tone="ink">
@@ -26,29 +43,45 @@ export function BenefitsSection() {
       </Reveal>
 
       {/* sm:grid-cols-3 fijo dejaba una celda vacía junto al último cuando
-          solo hay 2 servicios (hoy: Steria Coffee + Banco Santander) — el
-          número de columnas sigue al número real de items, hasta 3. */}
+          solo hay 2-3 destacados — el número de columnas sigue al número
+          real de items, hasta 3. */}
       <div
         className="mt-8"
-        style={{ "--sm-cols": Math.min(servicios.length, 3) } as React.CSSProperties}
+        style={{ "--sm-cols": Math.min(destacados.length, 3) } as React.CSSProperties}
       >
         <Stagger
-          className="grid grid-cols-1 gap-px overflow-hidden rounded-md bg-paper/10 sm:grid-cols-[repeat(var(--sm-cols),minmax(0,1fr))]"
+          className="grid grid-cols-1 gap-4 sm:grid-cols-[repeat(var(--sm-cols),minmax(0,1fr))]"
           stagger={0.06}
         >
-        {servicios.map((s) => {
-          const Icon = iconFor(s.icono);
-          return (
-            <StaggerItem key={s.nombre}>
-              <div className="flex h-full items-center gap-4 bg-ink px-6 py-6">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
-                  <Icon className="h-6 w-6" strokeWidth={1.5} />
+        {destacados.map((d) => {
+          const Icon = iconFor(d.icono);
+          const foto = FOTOS[d.nombre];
+          const contenido = (
+            <div className="group relative flex h-40 items-end overflow-hidden rounded-md bg-ink-soft">
+              {foto ? (
+                <Image
+                  src={foto}
+                  alt=""
+                  fill
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
+              <div className="relative flex items-center gap-3 px-5 py-4">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/20 text-accent">
+                  <Icon className="h-4.5 w-4.5" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <p className="font-display text-lg text-paper">{s.nombre}</p>
-                  <p className="text-xs text-paper/60">Local {s.local}</p>
+                  <p className="font-display text-lg text-paper">{d.nombre}</p>
+                  <p className="text-xs text-paper/70">{d.sub}</p>
                 </div>
               </div>
+            </div>
+          );
+          return (
+            <StaggerItem key={d.nombre}>
+              {d.href ? <Link href={d.href}>{contenido}</Link> : contenido}
             </StaggerItem>
           );
         })}
