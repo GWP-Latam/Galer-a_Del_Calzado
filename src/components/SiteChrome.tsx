@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { AuthErrorBanner } from "@/components/AuthErrorBanner";
 import type { Plaza } from "@/lib/content/types";
 
 /**
@@ -20,6 +21,7 @@ export function SiteChrome({ plaza, children }: { plaza: Plaza; children: React.
 
   return (
     <>
+      <AuthErrorBanner />
       <Header plaza={plaza} />
       <main id="contenido" className="flex-1">
         {children}
