@@ -44,8 +44,8 @@ export function LocalAsignado({
       </div>
 
       {localesDisponibles.length > 0 && (
-        <div className="mt-4 flex items-end gap-2 border-t border-zinc-100 pt-4">
-          <div className="w-48">
+        <div className="mt-4 flex flex-col gap-2 border-t border-zinc-100 pt-4 sm:flex-row sm:items-end">
+          <div className="w-full sm:w-48">
             <SelectField
               id="nuevo-local"
               label="Asignar otro local"

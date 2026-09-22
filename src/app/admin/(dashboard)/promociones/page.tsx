@@ -94,7 +94,7 @@ function PromoRow({
 }) {
   const tone = promo.estado;
   return (
-    <div className="flex items-center gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+    <div className="flex flex-wrap items-center gap-4 rounded-lg border border-zinc-200 bg-white p-4">
       {promo.imagen_url ? (
         <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-md bg-zinc-100">
           <Image src={promo.imagen_url} alt="" fill sizes="80px" className="object-cover" />
@@ -102,7 +102,7 @@ function PromoRow({
       ) : (
         <div className="h-14 w-20 shrink-0 rounded-md bg-zinc-100" />
       )}
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 basis-40">
         <div className="flex items-center gap-2">
           <p className="truncate text-sm font-medium text-zinc-900">{promo.titulo}</p>
           {promo.destacada && <Star className="h-3.5 w-3.5 shrink-0 fill-amber-400 text-amber-400" />}
@@ -112,8 +112,10 @@ function PromoRow({
           {promo.vigente_desde} a {promo.vigente_hasta}
         </p>
       </div>
-      <Badge tone={tone}>{promo.estado}</Badge>
-      {actions}
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge tone={tone}>{promo.estado}</Badge>
+        {actions}
+      </div>
     </div>
   );
 }

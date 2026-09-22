@@ -29,7 +29,7 @@ export function ResetPasswordButton({ userId }: { userId: string }) {
   }
 
   return (
-    <form action={formAction} className="flex items-end gap-1.5">
+    <form action={formAction} className="flex flex-wrap items-end gap-1.5">
       <input type="hidden" name="user_id" value={userId} />
       <div className="w-36">
         <PasswordField

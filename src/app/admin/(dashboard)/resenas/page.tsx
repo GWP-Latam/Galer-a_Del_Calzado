@@ -161,32 +161,34 @@ export default async function ResenasPage() {
 
       <div className="mt-6 flex flex-col gap-3">
         {resenas.map((r) => (
-          <div key={r.id} className="flex items-start gap-4 rounded-lg border border-zinc-200 bg-white p-4">
-            {r.autor_foto_url ? (
-              <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-zinc-100">
-                <Image src={r.autor_foto_url} alt="" fill sizes="36px" className="object-cover" />
+          <div key={r.id} className="flex flex-wrap items-start gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+            <div className="flex min-w-0 flex-1 basis-60 items-start gap-3">
+              {r.autor_foto_url ? (
+                <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-zinc-100">
+                  <Image src={r.autor_foto_url} alt="" fill sizes="36px" className="object-cover" />
+                </div>
+              ) : (
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-medium text-zinc-500">
+                  {r.autor_nombre.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-sm font-medium text-zinc-900">{r.autor_nombre}</p>
+                  <div className="flex items-center gap-0.5 text-amber-500">
+                    {Array.from({ length: r.calificacion }).map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5" fill="currentColor" strokeWidth={0} />
+                    ))}
+                  </div>
+                  <Badge tone={r.fuente === "google" ? "aprobada" : "default"}>
+                    {r.fuente === "google" ? "Google" : "Manual"}
+                  </Badge>
+                  {r.fecha_resena && <span className="text-xs text-zinc-400">{r.fecha_resena}</span>}
+                </div>
+                <p className="mt-1 text-sm text-zinc-600">{r.texto}</p>
               </div>
-            ) : (
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-medium text-zinc-500">
-                {r.autor_nombre.charAt(0).toUpperCase()}
-              </div>
-            )}
-            <div className="flex shrink-0 items-center gap-0.5 pt-0.5 text-amber-500">
-              {Array.from({ length: r.calificacion }).map((_, i) => (
-                <Star key={i} className="h-3.5 w-3.5" fill="currentColor" strokeWidth={0} />
-              ))}
             </div>
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <p className="text-sm font-medium text-zinc-900">{r.autor_nombre}</p>
-                <Badge tone={r.fuente === "google" ? "aprobada" : "default"}>
-                  {r.fuente === "google" ? "Google" : "Manual"}
-                </Badge>
-                {r.fecha_resena && <span className="text-xs text-zinc-400">{r.fecha_resena}</span>}
-              </div>
-              <p className="mt-1 text-sm text-zinc-600">{r.texto}</p>
-            </div>
-            <div className="flex shrink-0 items-center gap-1.5">
+            <div className="flex flex-wrap items-center gap-1.5">
               {r.destacada && (
                 <>
                   <form action={mover.bind(null, r.id, "arriba")}>

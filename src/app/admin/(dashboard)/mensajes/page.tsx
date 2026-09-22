@@ -36,14 +36,14 @@ export default async function MensajesPage() {
       <div className="mt-6 flex flex-col gap-3">
         {(mensajes ?? []).map((m) => (
           <div key={m.id} className="rounded-lg border border-zinc-200 bg-white p-4">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-start justify-between gap-3">
+              <div className="min-w-0 flex-1 basis-52">
+                <div className="flex flex-wrap items-center gap-2">
                   <p className="text-sm font-medium text-zinc-900">{m.nombre}</p>
                   <Badge>{ORIGEN_LABEL[m.origen] ?? m.origen}</Badge>
                   {!m.leido && <Badge tone="pendiente">Nuevo</Badge>}
                 </div>
-                <p className="text-xs text-zinc-500">
+                <p className="mt-1 break-words text-xs text-zinc-500">
                   {m.correo} {m.telefono && `· ${m.telefono}`} ·{" "}
                   {new Date(m.created_at).toLocaleString("es-MX")}
                 </p>

@@ -70,7 +70,7 @@ export function NuevaPromocionAdminForm({
       <Field id="titulo" label="Título" required />
       <TextAreaField id="descripcion" label="Descripción" required />
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <Field id="vigente_desde" label="Vigente desde" type="date" required />
         <Field id="vigente_hasta" label="Vigente hasta" type="date" required hint="Máximo 6 meses después del inicio." />
       </div>

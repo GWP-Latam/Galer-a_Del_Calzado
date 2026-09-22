@@ -66,7 +66,7 @@ export default async function EventosPage() {
         <p className="text-sm font-medium text-zinc-900">Publicar un evento</p>
         <Field id="titulo" label="Título" required />
         <TextAreaField id="descripcion" label="Descripción" rows={3} />
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Field id="fecha_inicio" label="Fecha de inicio" type="date" required />
           <Field id="fecha_fin" label="Fecha de fin (déjalo vacío si es de un solo día)" type="date" />
         </div>
@@ -75,20 +75,22 @@ export default async function EventosPage() {
 
       <div className="mt-6 flex flex-col gap-3">
         {(eventos ?? []).map((e) => (
-          <div key={e.id} className="flex items-center gap-4 rounded-lg border border-zinc-200 bg-white p-4">
-            <div className="min-w-0 flex-1">
+          <div key={e.id} className="flex flex-wrap items-center gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+            <div className="min-w-0 flex-1 basis-40">
               <p className="text-sm font-medium text-zinc-900">{e.titulo}</p>
               <p className="text-xs text-zinc-500">
                 {e.fecha_inicio === e.fecha_fin ? e.fecha_inicio : `${e.fecha_inicio} → ${e.fecha_fin}`}
               </p>
             </div>
-            <Badge tone={e.activo ? "aprobada" : "default"}>{e.activo ? "Activo" : "Oculto"}</Badge>
-            <form action={toggleActivo.bind(null, e.id, e.activo)}>
-              <Button type="submit" variant="secondary">{e.activo ? "Ocultar" : "Publicar"}</Button>
-            </form>
-            <form action={eliminar.bind(null, e.id)}>
-              <Button type="submit" variant="ghost">Eliminar</Button>
-            </form>
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge tone={e.activo ? "aprobada" : "default"}>{e.activo ? "Activo" : "Oculto"}</Badge>
+              <form action={toggleActivo.bind(null, e.id, e.activo)}>
+                <Button type="submit" variant="secondary">{e.activo ? "Ocultar" : "Publicar"}</Button>
+              </form>
+              <form action={eliminar.bind(null, e.id)}>
+                <Button type="submit" variant="ghost">Eliminar</Button>
+              </form>
+            </div>
           </div>
         ))}
         {(eventos ?? []).length === 0 && <p className="text-sm text-zinc-400">No hay eventos publicados.</p>}

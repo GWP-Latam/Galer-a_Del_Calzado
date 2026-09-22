@@ -27,7 +27,7 @@ export function FotosManager({ fotos }: { fotos: FotoLocal[] }) {
 
   return (
     <div className="rounded-lg border border-zinc-200 bg-white p-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-sm font-medium text-zinc-900">Fotos de tu local</p>
         <label className="cursor-pointer">
           <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleUpload} disabled={pending} />
@@ -46,7 +46,7 @@ export function FotosManager({ fotos }: { fotos: FotoLocal[] }) {
             <Button
               type="button"
               variant="danger"
-              className="absolute right-1.5 top-1.5 !p-1.5 opacity-0 group-hover:opacity-100"
+              className="absolute right-1.5 top-1.5 !p-1.5 opacity-100 md:opacity-0 md:group-hover:opacity-100"
               onClick={() => startTransition(() => deleteFotoLocal(foto.id, foto.imagen_url))}
               aria-label="Eliminar foto"
             >
