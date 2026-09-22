@@ -18,13 +18,17 @@ const GOOGLE_REVIEWS_URL =
 export async function LocationSection({ plaza }: { plaza: Plaza }) {
   const resenas = await getResenasDestacadas();
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${plaza.geo.lat},${plaza.geo.lng}`;
-  const embedSrc = `https://www.google.com/maps?q=${encodeURIComponent(plaza.direccion)}&output=embed`;
+  // lat/lng + zoom en vez de la dirección en texto: un query de texto deja
+  // que Google decida qué tan cerca mostrar el mapa (a veces se aleja hasta
+  // la colonia entera); con coordenadas + z fijamos un acercamiento a nivel
+  // de cuadra, consistente siempre.
+  const embedSrc = `https://www.google.com/maps?q=${plaza.geo.lat},${plaza.geo.lng}&z=17&output=embed`;
 
   return (
     <Section tone="paper">
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-        <Reveal direction="none">
-          <div className="aspect-[4/3] overflow-hidden rounded-md border border-line lg:aspect-auto lg:h-[calc(100%-3.5rem)]">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16 lg:items-stretch">
+        <Reveal direction="none" className="flex flex-col">
+          <div className="h-[360px] min-h-[360px] overflow-hidden rounded-md border border-line sm:h-[420px] lg:h-auto lg:min-h-[420px] lg:flex-1">
             <iframe
               title="Ubicación de Galería del Calzado en el mapa"
               src={embedSrc}
@@ -46,7 +50,7 @@ export async function LocationSection({ plaza }: { plaza: Plaza }) {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="flex flex-col lg:justify-center">
           <Eyebrow>Ven a conocernos</Eyebrow>
           <h2 className="mt-2 text-3xl md:text-4xl">Te estamos esperando</h2>
           <p className="mt-3 max-w-md text-ink-soft">
