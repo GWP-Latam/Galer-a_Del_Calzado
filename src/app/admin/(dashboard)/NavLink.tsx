@@ -1,13 +1,13 @@
 "use client";
 
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { clsx } from "clsx";
-import type { LucideIcon } from "lucide-react";
 
-export function NavLink({ href, label, icon: Icon }: { href: string; label: string; icon: LucideIcon }) {
+export function NavLink({ href, label, icon }: { href: string; label: string; icon: ReactNode }) {
   const pathname = usePathname();
-  const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const active = href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
 
   return (
     <Link
@@ -17,7 +17,7 @@ export function NavLink({ href, label, icon: Icon }: { href: string; label: stri
         active ? "bg-zinc-900 text-white" : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900",
       )}
     >
-      <Icon className="h-4 w-4 shrink-0" strokeWidth={1.75} />
+      {icon}
       {label}
     </Link>
   );

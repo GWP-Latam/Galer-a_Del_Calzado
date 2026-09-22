@@ -27,10 +27,10 @@ export default async function DashboardHome() {
     ]);
 
   const cards = [
-    { label: "Promociones por revisar", value: pendientes ?? 0, href: "/promociones" },
-    { label: "Marcas registradas", value: marcas ?? 0, href: "/marcas" },
-    { label: "Mensajes sin leer", value: mensajesSinLeer ?? 0, href: "/mensajes" },
-    { label: "Suscriptores al newsletter", value: suscriptores ?? 0, href: "/newsletter" },
+    { label: "Promociones por revisar", value: pendientes ?? 0, href: "/admin/promociones" },
+    { label: "Marcas registradas", value: marcas ?? 0, href: "/admin/marcas" },
+    { label: "Mensajes sin leer", value: mensajesSinLeer ?? 0, href: "/admin/mensajes" },
+    { label: "Suscriptores al newsletter", value: suscriptores ?? 0, href: "/admin/newsletter" },
   ];
 
   return (

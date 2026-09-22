@@ -19,6 +19,11 @@ import { createClient } from "@/lib/supabase/server";
 import { NavLink } from "./NavLink";
 import { signOut } from "./actions";
 
+// Los componentes de lucide-react (forwardRef) no se pueden pasar como prop
+// de un Server Component a NavLink (Client Component) — hay que renderizar
+// el <Icono/> aquí mismo y pasar el elemento ya armado.
+const ICON = "h-4 w-4 shrink-0";
+
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const profile = await requireProfile();
   const isSuperAdmin = profile.role === "super_admin";
@@ -52,29 +57,29 @@ export default async function DashboardLayout({ children }: { children: React.Re
         <nav className="mt-6 flex flex-1 flex-col gap-1">
           {isSuperAdmin ? (
             <>
-              <NavLink href="/admin" label="Inicio" icon={LayoutDashboard} />
-              <NavLink href="/admin/promociones" label="Promociones" icon={Sparkles} />
-              <NavLink href="/admin/marcas" label="Marcas y cuentas" icon={Store} />
-              <NavLink href="/admin/campana" label="Campaña del home" icon={Megaphone} />
-              <NavLink href="/admin/eventos" label="Eventos" icon={CalendarDays} />
+              <NavLink href="/admin" label="Inicio" icon={<LayoutDashboard className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/promociones" label="Promociones" icon={<Sparkles className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/marcas" label="Marcas y cuentas" icon={<Store className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/campana" label="Campaña del home" icon={<Megaphone className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/eventos" label="Eventos" icon={<CalendarDays className={ICON} strokeWidth={1.75} />} />
               <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
                 Oportunidades
               </p>
-              <NavLink href="/admin/oportunidades/locales" label="Locales en renta" icon={Building2} />
-              <NavLink href="/admin/oportunidades/vacantes" label="Vacantes" icon={Briefcase} />
-              <NavLink href="/admin/oportunidades/publicidad" label="Espacios publicitarios" icon={Megaphone} />
+              <NavLink href="/admin/oportunidades/locales" label="Locales en renta" icon={<Building2 className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/oportunidades/vacantes" label="Vacantes" icon={<Briefcase className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/oportunidades/publicidad" label="Espacios publicitarios" icon={<Megaphone className={ICON} strokeWidth={1.75} />} />
               <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
                 Contenido
               </p>
-              <NavLink href="/admin/amenidades" label="Amenidades" icon={Coffee} />
-              <NavLink href="/admin/resenas" label="Reseñas" icon={Star} />
-              <NavLink href="/admin/newsletter" label="Newsletter" icon={Mail} />
-              <NavLink href="/admin/mensajes" label="Mensajes" icon={MessageSquare} />
+              <NavLink href="/admin/amenidades" label="Amenidades" icon={<Coffee className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/resenas" label="Reseñas" icon={<Star className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/newsletter" label="Newsletter" icon={<Mail className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/mensajes" label="Mensajes" icon={<MessageSquare className={ICON} strokeWidth={1.75} />} />
             </>
           ) : (
             <>
-              <NavLink href="/admin/mi-local" label="Mi local" icon={ImageIcon} />
-              <NavLink href="/admin/promociones" label="Mis promociones" icon={Sparkles} />
+              <NavLink href="/admin/mi-local" label="Mi local" icon={<ImageIcon className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/promociones" label="Mis promociones" icon={<Sparkles className={ICON} strokeWidth={1.75} />} />
             </>
           )}
         </nav>

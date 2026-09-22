@@ -2,7 +2,7 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 const ADMIN_PREFIX = "/admin";
-const ADMIN_PUBLIC_PATHS = ["/admin/login"];
+const ADMIN_PUBLIC_PATHS = ["/admin/login", "/admin/olvide-password", "/admin/auth/callback"];
 
 /**
  * Runs before every request, but only gates /admin/**: keeps the Supabase
