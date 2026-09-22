@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Section, Eyebrow } from "@/components/ui/Section";
+import { Reveal } from "@/components/motion/Reveal";
 import { BrandLogo } from "@/components/BrandLogo";
 import { getMarcas } from "@/lib/content/repository";
 import type { Marca } from "@/lib/content/types";
@@ -37,11 +38,13 @@ export function BrandMarquee() {
 
   return (
     <Section tone="paper" className="!py-14 md:!py-16">
-      <Eyebrow className="mb-8 block text-center">Algunas de nuestras marcas</Eyebrow>
-      <div className="flex flex-col gap-2">
-        <Row marcas={fila1} />
-        <Row marcas={fila2} reverse />
-      </div>
+      <Reveal>
+        <Eyebrow className="mb-8 block text-center">Algunas de nuestras marcas</Eyebrow>
+        <div className="flex flex-col gap-2">
+          <Row marcas={fila1} />
+          <Row marcas={fila2} reverse />
+        </div>
+      </Reveal>
     </Section>
   );
 }

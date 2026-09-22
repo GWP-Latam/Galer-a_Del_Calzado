@@ -32,11 +32,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Galería del Calzado — Directorio de marcas en Guadalajara",
-    template: "%s — Galería del Calzado",
+    default: "Galería del Calzado — Prototipo de sitio web",
+    template: "%s — Galería del Calzado (Prototipo)",
   },
   description:
-    "Directorio de marcas, mapa interactivo, promociones y ubicación de Galería del Calzado, la plaza especializada en calzado en Av. México, Guadalajara.",
+    "Prototipo de sitio web de Galería del Calzado: directorio de marcas, mapa interactivo, promociones y ubicación de la plaza especializada en calzado en Av. México, Guadalajara.",
   openGraph: {
     type: "website",
     locale: "es_MX",

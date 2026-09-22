@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Section";
 import { Accordion } from "@/components/Accordion";
 import { LinkButton } from "@/components/ui/Button";
+import { Reveal } from "@/components/motion/Reveal";
 import { getPlaza } from "@/lib/content/repository";
 
 export const metadata: Metadata = {
@@ -43,7 +44,7 @@ export default function FAQPage() {
     {
       pregunta: "Tengo interés en rentar un local, ¿con quién hablo?",
       respuesta:
-        "Entra a la sección Oportunidades y llena el formulario de renta de locales; el equipo de administración de la plaza te contactará para una cotización formal.",
+        "Escríbenos desde Contacto eligiendo \"Renta de locales\" como razón; el equipo de administración de la plaza te contactará para una cotización formal.",
     },
     {
       pregunta: "¿Cómo llego a Galería del Calzado?",
@@ -53,14 +54,19 @@ export default function FAQPage() {
 
   return (
     <Container as="div" className="py-12 md:py-16">
-      <Eyebrow>Preguntas frecuentes</Eyebrow>
-      <h1 className="mt-2 max-w-2xl font-display text-3xl md:text-4xl">¿En qué te podemos ayudar?</h1>
+      <Reveal>
+        <Eyebrow>Preguntas frecuentes</Eyebrow>
+        <h1 className="mt-2 max-w-2xl font-display text-3xl md:text-4xl">¿En qué te podemos ayudar?</h1>
+      </Reveal>
 
-      <div className="mt-10 max-w-3xl">
+      <Reveal delay={0.1} className="mt-10 max-w-3xl">
         <Accordion items={items} />
-      </div>
+      </Reveal>
 
-      <div className="mt-14 flex flex-col items-start gap-4 rounded-md bg-stone-50 p-8 sm:flex-row sm:items-center sm:justify-between">
+      <Reveal
+        delay={0.1}
+        className="mt-14 flex flex-col items-start gap-4 rounded-md bg-stone-50 p-8 sm:flex-row sm:items-center sm:justify-between"
+      >
         <div>
           <p className="font-display text-xl">¿Ya resolviste tus dudas?</p>
           <p className="mt-1 text-sm text-ink-soft">Te esperamos en {plaza.direccion}.</p>
@@ -73,7 +79,7 @@ export default function FAQPage() {
         >
           Visitar Galería del Calzado
         </LinkButton>
-      </div>
+      </Reveal>
     </Container>
   );
 }

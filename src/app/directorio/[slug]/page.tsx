@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { BrandLogo } from "@/components/BrandLogo";
 import { BrandActions } from "@/components/directorio/BrandActions";
 import { InteractiveMap } from "@/components/directorio/InteractiveMap";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import {
   getLocales,
   getLocalesPorMarca,
@@ -71,7 +72,7 @@ export default async function MarcaPage(props: PageProps<"/directorio/[slug]">) 
         ← Volver al directorio
       </Link>
 
-      <div className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr]">
+      <Reveal className="mt-6 grid grid-cols-1 gap-10 lg:grid-cols-[280px_1fr]">
         <div className="h-40 w-40 overflow-hidden rounded-md border border-line bg-stone-50 p-4 lg:h-full lg:w-full">
           <BrandLogo marca={marca} />
         </div>
@@ -127,13 +128,15 @@ export default async function MarcaPage(props: PageProps<"/directorio/[slug]">) 
             )}
           </div>
         </div>
-      </div>
+      </Reveal>
 
       <section id="ubicacion-local" className="mt-16 scroll-mt-24">
-        <h2 className="text-2xl">Dónde encontrarla</h2>
-        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <Reveal>
+          <h2 className="text-2xl">Dónde encontrarla</h2>
+        </Reveal>
+        <Stagger className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
           {nivelesConLocal.map((nivel) => (
-            <div key={nivel!.id} className="h-[420px]">
+            <StaggerItem key={nivel!.id} className="h-[420px]">
               <p className="mb-2 text-sm font-medium text-ink-soft">{nivel!.nombre}</p>
               <div className="h-[380px]">
                 <InteractiveMap
@@ -142,28 +145,31 @@ export default async function MarcaPage(props: PageProps<"/directorio/[slug]">) 
                   selectedSlug={marca.slug}
                 />
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </section>
 
       {relacionadas.length > 0 && (
         <section className="mt-16">
-          <h2 className="text-2xl">Otras marcas</h2>
-          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <Reveal>
+            <h2 className="text-2xl">Otras marcas</h2>
+          </Reveal>
+          <Stagger className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
             {relacionadas.map((m) => (
-              <Link
-                key={m.slug}
-                href={`/directorio/${m.slug}`}
-                className="flex flex-col items-center gap-2 rounded-md border border-line p-4 text-center hover:border-ink"
-              >
-                <div className="h-16 w-16 overflow-hidden rounded-sm bg-stone-50 p-2">
-                  <BrandLogo marca={m} />
-                </div>
-                <span className="text-sm">{m.nombre}</span>
-              </Link>
+              <StaggerItem key={m.slug}>
+                <Link
+                  href={`/directorio/${m.slug}`}
+                  className="flex flex-col items-center gap-2 rounded-md border border-line p-4 text-center hover:border-ink"
+                >
+                  <div className="h-16 w-16 overflow-hidden rounded-sm bg-stone-50 p-2">
+                    <BrandLogo marca={m} />
+                  </div>
+                  <span className="text-sm">{m.nombre}</span>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </section>
       )}
     </Container>
