@@ -5,15 +5,20 @@ import { Eyebrow } from "@/components/ui/Section";
 import { LinkButton } from "@/components/ui/Button";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { PromoFilterGrid } from "@/components/promociones/PromoFilterGrid";
-import { getMarcaBySlug, getPromocionesVigentes } from "@/lib/content/repository";
+import { getMarcaBySlug } from "@/lib/content/repository";
+import { getPromocionesVigentes } from "@/lib/content/repository.server";
 
 export const metadata: Metadata = {
   title: "Promociones",
   description: "Todas las promociones vigentes de las marcas de Galería del Calzado, por categoría.",
 };
 
-export default function PromocionesPage() {
-  const promociones = getPromocionesVigentes();
+// Se leen de Supabase, curadas desde /admin/promociones — una hora de ISR
+// alcanza para ver cambios sin volver la página 100% dinámica.
+export const revalidate = 3600;
+
+export default async function PromocionesPage() {
+  const promociones = await getPromocionesVigentes();
   const items = promociones.map((promo) => ({
     promo,
     marca: promo.marca_slug ? getMarcaBySlug(promo.marca_slug) : undefined,

@@ -25,7 +25,17 @@ export function BenefitsSection() {
         </p>
       </Reveal>
 
-      <Stagger className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-md bg-paper/10 sm:grid-cols-3" stagger={0.06}>
+      {/* sm:grid-cols-3 fijo dejaba una celda vacía junto al último cuando
+          solo hay 2 servicios (hoy: Steria Coffee + Banco Santander) — el
+          número de columnas sigue al número real de items, hasta 3. */}
+      <div
+        className="mt-8"
+        style={{ "--sm-cols": Math.min(servicios.length, 3) } as React.CSSProperties}
+      >
+        <Stagger
+          className="grid grid-cols-1 gap-px overflow-hidden rounded-md bg-paper/10 sm:grid-cols-[repeat(var(--sm-cols),minmax(0,1fr))]"
+          stagger={0.06}
+        >
         {servicios.map((s) => {
           const Icon = iconFor(s.icono);
           return (
@@ -42,7 +52,8 @@ export function BenefitsSection() {
             </StaggerItem>
           );
         })}
-      </Stagger>
+        </Stagger>
+      </div>
 
       <Reveal delay={0.1}>
         <p className="mt-12 mb-4 text-xs font-medium uppercase tracking-[0.14em] text-paper/50">

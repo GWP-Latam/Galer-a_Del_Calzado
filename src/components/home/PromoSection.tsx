@@ -3,10 +3,11 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { LinkButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { PromoCarousel } from "./PromoCarousel";
-import { getMarcaBySlug, getPromocionesVigentes } from "@/lib/content/repository";
+import { getMarcaBySlug } from "@/lib/content/repository";
+import { getPromocionesVigentes } from "@/lib/content/repository.server";
 
-export function PromoSection() {
-  const promociones = getPromocionesVigentes();
+export async function PromoSection() {
+  const promociones = await getPromocionesVigentes();
   const items = promociones.map((promo) => ({
     promo,
     marca: promo.marca_slug ? getMarcaBySlug(promo.marca_slug) : undefined,

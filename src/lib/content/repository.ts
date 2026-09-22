@@ -12,7 +12,6 @@ import marcasData from "@/data/marcas.json";
 import amenidadesData from "@/data/amenidades.json";
 import beneficiosData from "@/data/beneficios.json";
 import categoriasCalzadoData from "@/data/categorias-calzado.json";
-import promocionesData from "@/data/promociones.json";
 import campanaData from "@/data/campana.json";
 import eventosData from "@/data/eventos.json";
 import type {
@@ -25,8 +24,6 @@ import type {
   Marca,
   Nivel,
   Plaza,
-  Promocion,
-  PromocionCategoria,
   PuntoNormalizado,
 } from "./types";
 
@@ -80,20 +77,6 @@ export function getBeneficios(): Beneficio[] {
 
 export function getCategoriasCalzado(): CategoriaCalzado[] {
   return categoriasCalzadoData as CategoriaCalzado[];
-}
-
-export function getPromociones(): Promocion[] {
-  return promocionesData as Promocion[];
-}
-
-export function getPromocionesVigentes(): Promocion[] {
-  // Fase 1: all seeded demo promotions are considered "vigentes" for preview
-  // purposes. Fase 2 filters by vigente_desde/vigente_hasta against today.
-  return getPromociones();
-}
-
-export function getPromocionesPorCategoria(categoria: PromocionCategoria): Promocion[] {
-  return getPromocionesVigentes().filter((p) => p.categorias.includes(categoria));
 }
 
 export function getCampana(): Campana {
