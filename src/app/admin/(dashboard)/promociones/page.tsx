@@ -4,6 +4,7 @@ import { requireProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/admin/ui/Badge";
 import { NuevaPromocionForm } from "./NuevaPromocionForm";
+import { NuevaPromocionAdminForm } from "./NuevaPromocionAdminForm";
 import { LocatarioPromoActions, SuperAdminPromoActions } from "./PromoActions";
 import type { Marca, Promocion } from "@/lib/types/database";
 
@@ -12,10 +13,10 @@ export default async function PromocionesPage() {
   const supabase = await createClient();
 
   if (profile.role === "super_admin") {
-    const { data: promos } = await supabase
-      .from("promociones")
-      .select("*, marcas(nombre)")
-      .order("created_at", { ascending: false });
+    const [{ data: promos }, { data: marcas }] = await Promise.all([
+      supabase.from("promociones").select("*, marcas(nombre)").order("created_at", { ascending: false }),
+      supabase.from("marcas").select("id, nombre").order("nombre"),
+    ]);
 
     const pendientes = (promos ?? []).filter((p) => p.estado === "pendiente");
     const revisadas = (promos ?? []).filter((p) => p.estado !== "pendiente");
@@ -23,9 +24,13 @@ export default async function PromocionesPage() {
     return (
       <div>
         <h1 className="text-2xl font-semibold text-zinc-900">Promociones</h1>
-        <p className="mt-1 text-sm text-zinc-500">Revisa y aprueba lo que suben los locatarios.</p>
+        <p className="mt-1 text-sm text-zinc-500">Sube las tuyas o revisa y aprueba lo que suben los locatarios.</p>
 
         <section className="mt-6">
+          <NuevaPromocionAdminForm marcas={marcas ?? []} />
+        </section>
+
+        <section className="mt-10">
           <h2 className="text-sm font-semibold text-zinc-700">Por revisar ({pendientes.length})</h2>
           <div className="mt-3 flex flex-col gap-3">
             {pendientes.map((p) => (

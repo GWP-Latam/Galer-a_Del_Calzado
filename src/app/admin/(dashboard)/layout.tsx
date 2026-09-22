@@ -4,10 +4,7 @@ import {
   Sparkles,
   Store,
   Image as ImageIcon,
-  Building2,
-  Briefcase,
   Megaphone,
-  Coffee,
   Mail,
   MessageSquare,
   CalendarDays,
@@ -63,15 +60,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
               <NavLink href="/admin/campana" label="Campaña del home" icon={<Megaphone className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/eventos" label="Eventos" icon={<CalendarDays className={ICON} strokeWidth={1.75} />} />
               <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
-                Oportunidades
-              </p>
-              <NavLink href="/admin/oportunidades/locales" label="Locales en renta" icon={<Building2 className={ICON} strokeWidth={1.75} />} />
-              <NavLink href="/admin/oportunidades/vacantes" label="Vacantes" icon={<Briefcase className={ICON} strokeWidth={1.75} />} />
-              <NavLink href="/admin/oportunidades/publicidad" label="Espacios publicitarios" icon={<Megaphone className={ICON} strokeWidth={1.75} />} />
-              <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
                 Contenido
               </p>
-              <NavLink href="/admin/amenidades" label="Amenidades" icon={<Coffee className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/resenas" label="Reseñas" icon={<Star className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/newsletter" label="Newsletter" icon={<Mail className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/mensajes" label="Mensajes" icon={<MessageSquare className={ICON} strokeWidth={1.75} />} />
