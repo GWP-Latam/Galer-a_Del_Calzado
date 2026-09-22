@@ -1,4 +1,5 @@
 import { revalidatePath } from "next/cache";
+import Image from "next/image";
 import { Star, ArrowUp, ArrowDown, Trash2 } from "lucide-react";
 import { requireSuperAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -14,14 +15,27 @@ async function agregarManual(formData: FormData) {
   "use server";
   await requireSuperAdmin();
   const supabase = await createClient();
+
+  let fotoUrl: string | null = null;
+  const foto = formData.get("foto") as File | null;
+  if (foto && foto.size > 0) {
+    const path = `resenas/${Date.now()}-${foto.name}`;
+    const { error: uploadError } = await supabase.storage.from("sitio").upload(path, foto);
+    if (!uploadError) {
+      fotoUrl = supabase.storage.from("sitio").getPublicUrl(path).data.publicUrl;
+    }
+  }
+
   await supabase.from("resenas").insert({
     fuente: "manual",
     autor_nombre: String(formData.get("autor_nombre") ?? ""),
+    autor_foto_url: fotoUrl,
     calificacion: Number(formData.get("calificacion") ?? 5),
     texto: String(formData.get("texto") ?? ""),
     fecha_resena: String(formData.get("fecha_resena") || "") || null,
   });
   revalidatePath("/admin/resenas");
+  revalidatePath("/");
 }
 
 async function alternarDestacada(id: string, destacada: boolean) {
@@ -125,7 +139,7 @@ export default async function ResenasPage() {
         <p className="text-sm font-medium text-zinc-900">Agregar reseña a mano</p>
         <p className="text-xs text-zinc-500">
           Cópiala tal cual aparece en Google Maps — nombre del autor y texto exactos, sin
-          modificarla.
+          modificarla. La foto es opcional (una captura del avatar de Google sirve).
         </p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <Field id="autor_nombre" label="Nombre del autor" required />
@@ -138,6 +152,7 @@ export default async function ResenasPage() {
           </SelectField>
           <Field id="fecha_resena" label="Fecha (opcional)" type="date" />
         </div>
+        <Field id="foto" label="Foto del autor (opcional)" type="file" accept="image/*" />
         <TextAreaField id="texto" label="Texto de la reseña" rows={3} required />
         <Button type="submit" className="self-start">
           Agregar
@@ -147,6 +162,15 @@ export default async function ResenasPage() {
       <div className="mt-6 flex flex-col gap-3">
         {resenas.map((r) => (
           <div key={r.id} className="flex items-start gap-4 rounded-lg border border-zinc-200 bg-white p-4">
+            {r.autor_foto_url ? (
+              <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full bg-zinc-100">
+                <Image src={r.autor_foto_url} alt="" fill sizes="36px" className="object-cover" />
+              </div>
+            ) : (
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-medium text-zinc-500">
+                {r.autor_nombre.charAt(0).toUpperCase()}
+              </div>
+            )}
             <div className="flex shrink-0 items-center gap-0.5 pt-0.5 text-amber-500">
               {Array.from({ length: r.calificacion }).map((_, i) => (
                 <Star key={i} className="h-3.5 w-3.5" fill="currentColor" strokeWidth={0} />

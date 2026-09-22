@@ -5,7 +5,6 @@ import { CampaignAndEvents } from "@/components/home/CampaignAndEvents";
 import { PromoSection } from "@/components/home/PromoSection";
 import { StyleCategories } from "@/components/home/StyleCategories";
 import { BenefitsSection } from "@/components/home/BenefitsSection";
-import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { LocationSection } from "@/components/home/LocationSection";
 import { getPlaza } from "@/lib/content/repository";
 
@@ -26,7 +25,6 @@ export default function HomePage() {
       <PromoSection />
       <StyleCategories />
       <BenefitsSection />
-      <ReviewsSection />
       <LocationSection plaza={plaza} />
     </>
   );
