@@ -256,7 +256,14 @@ export const InteractiveMap = forwardRef<InteractiveMapHandle, {
           contentStyle={{ width: "100%", height: "100%" }}
         >
           <div
-            className="relative w-full"
+            // react-zoom-pan-pinch envuelve esto en un div `display:flex` con
+            // el stretch por defecto (align-items: stretch) — sin self-center
+            // ese flex estira este div a la altura del panel completo y el
+            // aspect-ratio de abajo queda sin efecto (ambos ejes ya "definidos"
+            // por fuera), desalineando el plano de fondo contra el overlay de
+            // los locales. /dev/mapa-editor no tiene este problema porque ahí
+            // no hay ningún TransformComponent de por medio.
+            className="relative w-full self-center"
             style={{ aspectRatio: `${nivel.ancho_ref} / ${nivel.alto_ref}` }}
           >
             <Image
