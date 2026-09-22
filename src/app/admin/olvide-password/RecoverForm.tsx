@@ -25,6 +25,11 @@ export function RecoverForm() {
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      <p className="rounded-md bg-zinc-50 p-3 text-xs text-zinc-500">
+        Esto es solo para cuentas con correo real (administración). Si eres locatario y entras con
+        un usuario, no tienes correo registrado — pídele a la administración de la plaza que te
+        restablezca la contraseña directamente.
+      </p>
       <Field id="email" label="Correo" type="email" autoComplete="email" required />
       {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
       <Button type="submit" disabled={pending} className="w-full">

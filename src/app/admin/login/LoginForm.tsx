@@ -20,7 +20,14 @@ export function LoginForm() {
       <input type="hidden" name="next" value={next} />
       {/* defaultValue en vez de dejar que el campo se resetee solo si el
           intento anterior falló — solo la contraseña debería borrarse. */}
-      <Field id="email" label="Correo" type="email" autoComplete="email" defaultValue={state?.email} required />
+      <Field
+        id="email"
+        label="Usuario o correo"
+        type="text"
+        autoComplete="username"
+        defaultValue={state?.email}
+        required
+      />
       <PasswordField id="password" label="Contraseña" autoComplete="current-password" required />
       {error && <p className="text-sm text-red-600">{error}</p>}
       <div className="flex items-center justify-between">

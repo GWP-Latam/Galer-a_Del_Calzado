@@ -96,7 +96,18 @@ export async function crearPromocionComoAdmin(_prevState: { error?: string; ok?:
   if (error) return { error: error.message };
 
   revalidatePath("/admin/promociones");
+  revalidatePath("/admin/marcas");
+  revalidatePath("/");
   return { ok: true };
+}
+
+export async function eliminarPromocionAdmin(id: string) {
+  await requireSuperAdmin();
+  const supabase = await createClient();
+  await supabase.from("promociones").delete().eq("id", id);
+  revalidatePath("/admin/promociones");
+  revalidatePath("/admin/marcas");
+  revalidatePath("/");
 }
 
 export async function marcarDestacada(id: string) {

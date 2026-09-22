@@ -16,8 +16,16 @@ const CATEGORIAS: { value: string; label: string }[] = [
   { value: "casual", label: "Casual" },
 ];
 
-export function NuevaPromocionAdminForm({ marcas }: { marcas: Pick<Marca, "id" | "nombre">[] }) {
-  const [abierto, setAbierto] = useState(false);
+export function NuevaPromocionAdminForm({
+  marcas,
+  marcaFija,
+}: {
+  marcas?: Pick<Marca, "id" | "nombre">[];
+  /** Cuando se usa dentro de la ficha de una marca, ya sabemos cuál es —
+   * se salta el selector y va directo al formulario. */
+  marcaFija?: { id: string; nombre: string };
+}) {
+  const [abierto, setAbierto] = useState(Boolean(marcaFija));
   const [state, formAction, pending] = useActionState(crearPromocionComoAdmin, undefined);
 
   if (!abierto) {
@@ -32,24 +40,32 @@ export function NuevaPromocionAdminForm({ marcas }: { marcas: Pick<Marca, "id" |
     <form action={formAction} className="flex flex-col gap-4 rounded-lg border border-zinc-200 bg-white p-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-zinc-900">Subir promoción directamente</p>
+          <p className="text-sm font-medium text-zinc-900">
+            {marcaFija ? `Nueva promoción para ${marcaFija.nombre}` : "Subir promoción directamente"}
+          </p>
           <p className="mt-1 text-xs text-zinc-500">
             Se publica ya aprobada — para cuando la plaza (no un locatario) sube una promoción propia.
           </p>
         </div>
-        <Button type="button" variant="ghost" aria-label="Cancelar" onClick={() => setAbierto(false)}>
-          <X className="h-4 w-4" strokeWidth={1.75} />
-        </Button>
+        {!marcaFija && (
+          <Button type="button" variant="ghost" aria-label="Cancelar" onClick={() => setAbierto(false)}>
+            <X className="h-4 w-4" strokeWidth={1.75} />
+          </Button>
+        )}
       </div>
 
-      <SelectField id="marca_id" label="Marca" required>
-        <option value="" disabled>
-          Selecciona una marca
-        </option>
-        {marcas.map((m) => (
-          <option key={m.id} value={m.id}>{m.nombre}</option>
-        ))}
-      </SelectField>
+      {marcaFija ? (
+        <input type="hidden" name="marca_id" value={marcaFija.id} />
+      ) : (
+        <SelectField id="marca_id" label="Marca" required>
+          <option value="" disabled>
+            Selecciona una marca
+          </option>
+          {(marcas ?? []).map((m) => (
+            <option key={m.id} value={m.id}>{m.nombre}</option>
+          ))}
+        </SelectField>
+      )}
 
       <Field id="titulo" label="Título" required />
       <TextAreaField id="descripcion" label="Descripción" required />

@@ -2,6 +2,22 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { Marca, Profile } from "@/lib/types/database";
 
+/**
+ * Las cuentas de locatario ya no dependen de que nos den un correo real —
+ * el super_admin les crea un usuario y contraseña directamente. Supabase
+ * Auth exige un email único como identificador, así que el "usuario" que
+ * el locatario escribe para entrar (p. ej. "flexi") se guarda por dentro
+ * como `${usuario}@${LOCATARIO_EMAIL_DOMAIN}`. ".internal" es un TLD
+ * reservado (RFC 6761) que nunca resuelve de verdad — nunca se le manda
+ * correo a esta dirección, es solo un identificador único.
+ */
+export const LOCATARIO_EMAIL_DOMAIN = "locatarios.galeriadelcalzado.internal";
+
+export function usuarioAEmail(usuarioOCorreo: string): string {
+  const valor = usuarioOCorreo.trim();
+  return valor.includes("@") ? valor : `${valor.toLowerCase()}@${LOCATARIO_EMAIL_DOMAIN}`;
+}
+
 /** Fetches the signed-in user's profile (role + marca_id). Redirects to
  * /login if there's no session — proxy.ts already does this for most
  * routes, but this is the safety net for anything it might miss. */

@@ -3,6 +3,7 @@ import {
   LayoutDashboard,
   Sparkles,
   Store,
+  KeyRound,
   Image as ImageIcon,
   Megaphone,
   Mail,
@@ -56,7 +57,8 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <>
               <NavLink href="/admin" label="Inicio" icon={<LayoutDashboard className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/promociones" label="Promociones" icon={<Sparkles className={ICON} strokeWidth={1.75} />} />
-              <NavLink href="/admin/marcas" label="Marcas y cuentas" icon={<Store className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/marcas" label="Marcas" icon={<Store className={ICON} strokeWidth={1.75} />} />
+              <NavLink href="/admin/cuentas" label="Cuentas" icon={<KeyRound className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/campana" label="Campaña del home" icon={<Megaphone className={ICON} strokeWidth={1.75} />} />
               <NavLink href="/admin/eventos" label="Eventos" icon={<CalendarDays className={ICON} strokeWidth={1.75} />} />
               <p className="mt-4 px-3 text-[11px] font-semibold uppercase tracking-wide text-zinc-400">
