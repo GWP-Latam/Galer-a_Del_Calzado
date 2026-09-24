@@ -4,17 +4,9 @@ import { useActionState, useState } from "react";
 import { Plus, X } from "lucide-react";
 import { Field, TextAreaField, CheckboxField, SelectField } from "@/components/admin/ui/Field";
 import { Button } from "@/components/admin/ui/Button";
+import { ClasificacionFields } from "./ClasificacionFields";
 import { crearPromocionComoAdmin } from "./actions";
 import type { Marca } from "@/lib/types/database";
-
-const CATEGORIAS: { value: string; label: string }[] = [
-  { value: "liquidacion", label: "Liquidación" },
-  { value: "descuentos", label: "Descuentos" },
-  { value: "rebajas", label: "Rebajas" },
-  { value: "deportivo", label: "Deportivo" },
-  { value: "lujo", label: "Lujo" },
-  { value: "casual", label: "Casual" },
-];
 
 export function NuevaPromocionAdminForm({
   marcas,
@@ -75,14 +67,7 @@ export function NuevaPromocionAdminForm({
         <Field id="vigente_hasta" label="Vigente hasta" type="date" required hint="Máximo 6 meses después del inicio." />
       </div>
 
-      <div>
-        <span className="text-xs font-medium text-zinc-600">Categorías</span>
-        <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">
-          {CATEGORIAS.map((c) => (
-            <CheckboxField key={c.value} id={`admin-cat-${c.value}`} name="categorias" value={c.value} label={c.label} />
-          ))}
-        </div>
-      </div>
+      <ClasificacionFields prefijo="admin" />
 
       <Field id="imagen" label="Fotografía de la promoción" type="file" accept="image/*" />
       <CheckboxField id="destacada" label="Destacarla en el inicio del sitio" />

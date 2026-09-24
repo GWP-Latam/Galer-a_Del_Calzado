@@ -7,10 +7,11 @@ import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { PromoFilterGrid } from "@/components/promociones/PromoFilterGrid";
 import { getMarcaBySlug } from "@/lib/content/repository";
 import { getPromocionesVigentes } from "@/lib/content/repository.server";
+import { diasRestantes } from "@/lib/promociones/clasificacion";
 
 export const metadata: Metadata = {
   title: "Promociones",
-  description: "Todas las promociones vigentes de las marcas de Galería del Calzado, por categoría.",
+  description: "Todas las promociones vigentes de las marcas de Galería del Calzado: descuentos, 2x1, liquidaciones y más.",
 };
 
 // Se leen de Supabase, curadas desde /admin/promociones — una hora de ISR
@@ -22,6 +23,7 @@ export default async function PromocionesPage() {
   const items = promociones.map((promo) => ({
     promo,
     marca: promo.marca_slug ? getMarcaBySlug(promo.marca_slug) : undefined,
+    diasRestantes: diasRestantes(promo.vigente_hasta),
   }));
 
   return (
@@ -30,7 +32,7 @@ export default async function PromocionesPage() {
         <Eyebrow>Promociones</Eyebrow>
         <h1 className="mt-2 max-w-2xl font-display text-3xl md:text-4xl">Todas las promociones de la plaza</h1>
         <p className="mt-4 max-w-xl text-ink-soft">
-          Lo que cada marca tiene activo en este momento, filtrado por categoría.
+          Lo que cada marca tiene activo en este momento. Filtra por tipo de oferta, para quién es o el calzado que buscas.
         </p>
 
         <div className="mt-10">

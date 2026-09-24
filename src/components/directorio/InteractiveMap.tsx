@@ -252,7 +252,8 @@ export const InteractiveMap = forwardRef<InteractiveMapHandle, {
       >
         <MapControls />
         <TransformComponent
-          wrapperStyle={{ width: "100%", height: "100%" }}
+          // containerType "size" habilita las unidades cqw/cqh del plano de abajo.
+          wrapperStyle={{ width: "100%", height: "100%", containerType: "size" }}
           contentStyle={{ width: "100%", height: "100%" }}
         >
           <div
@@ -263,8 +264,16 @@ export const InteractiveMap = forwardRef<InteractiveMapHandle, {
             // por fuera), desalineando el plano de fondo contra el overlay de
             // los locales. /dev/mapa-editor no tiene este problema porque ahí
             // no hay ningún TransformComponent de por medio.
-            className="relative w-full self-center"
-            style={{ aspectRatio: `${nivel.ancho_ref} / ${nivel.alto_ref}` }}
+            //
+            // El ancho es "contain": el que sea menor entre el ancho del panel
+            // y el alto del panel × proporción del plano. Con solo `w-full`,
+            // en un panel más ancho que alto el plano se salía por abajo y
+            // quedaba cortado.
+            className="relative self-center"
+            style={{
+              aspectRatio: `${nivel.ancho_ref} / ${nivel.alto_ref}`,
+              width: `min(100cqw, 100cqh * ${nivel.ancho_ref / nivel.alto_ref})`,
+            }}
           >
             <Image
               src={planoSrc}

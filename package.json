@@ -9,7 +9,8 @@
     "lint": "eslint",
     "validar-datos": "node scripts/validar-datos.mjs",
     "generar-geometria": "node scripts/generar-geometria-inicial.mjs",
-    "vectorizar-locales": "node scripts/vectorizar-locales.mjs"
+    "vectorizar-locales": "node scripts/vectorizar-locales.mjs",
+    "sincronizar-supabase": "node scripts/sincronizar-supabase.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

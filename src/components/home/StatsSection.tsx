@@ -1,31 +1,30 @@
 import { Section } from "@/components/ui/Section";
 import { Counter } from "@/components/motion/Counter";
 import { Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { getLocales } from "@/lib/content/repository";
+import { getCifrasMarcas } from "@/lib/content/repository";
 
 // La plaza abrió como recinto especializado en calzado en 1987 (ver
-// src/app/nosotros/page.tsx) — este número hay que subirlo a mano cada año.
+// src/app/nosotros/page.tsx).
 const ANIOS_DESDE_APERTURA = new Date().getFullYear() - 1987;
 
 /**
- * "Marcas" y "años" son cifras de mercadeo (decisión del cliente, no el
- * conteo literal de src/data) — solo "locales" se calcula del repositorio.
+ * Sin la cifra de "500+ marcas" (comentario del cliente, 23/09/26). El
+ * número de marcas es el conteo real del directorio (solo calzado), el mismo
+ * del que salen el "más de N" del hero, /nosotros y /directorio.
  */
 export function StatsSection() {
   const stats = [
-    { value: 500, label: "marcas de calzado" },
-    { value: getLocales().length, label: "locales en la plaza" },
+    { value: getCifrasMarcas().calzado, label: "marcas de calzado" },
     { value: ANIOS_DESDE_APERTURA, label: "años siendo el corazón del calzado en Guadalajara" },
   ];
 
   return (
     <Section tone="ink" className="!py-12 md:!py-16">
-      <Stagger className="grid grid-cols-1 gap-8 text-center sm:grid-cols-3" stagger={0.1}>
+      <Stagger className="grid grid-cols-1 gap-8 text-center sm:grid-cols-2" stagger={0.1}>
         {stats.map((s) => (
           <StaggerItem key={s.label}>
             <Counter
               value={s.value}
-              suffix="+"
               className="font-display text-5xl text-paper md:text-6xl"
             />
             <p className="mt-2 text-sm uppercase tracking-[0.14em] text-paper/60">{s.label}</p>

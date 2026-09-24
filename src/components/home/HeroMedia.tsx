@@ -1,16 +1,29 @@
 import Image from "next/image";
 import { Monogram } from "@/components/Monogram";
 import { Parallax } from "@/components/motion/Parallax";
+import { getHeroFotos } from "@/lib/content/repository";
+import { HeroSlideshow } from "./HeroSlideshow";
 
 /**
- * The only video asset recovered from the old site is a promotional motion
- * graphic (color blocks + its own headlines like "Renuévate"), not ambient
- * b-roll of the space — playing it behind our own hero copy reads as two
- * ads fighting each other. Until real facade/interior photography or ambient
- * footage exists (plan punto 8.3), the hero uses the brand's own greca
- * pattern as a quiet textured backdrop instead of borrowed stock footage.
+ * Con fotos en src/data/hero-fotos.json (pedido del cliente, 23/09/26:
+ * acompañar "Todo el calzado de Guadalajara" con fotografías de la galería)
+ * el fondo es un fundido entre ellas bajo un degradado oscuro que mantiene
+ * legible el texto. Sin fotos todavía, se queda el fondo de greca + monograma.
+ * El único video del sitio anterior es un motion graphic promocional con sus
+ * propios titulares, por eso no se usa aquí.
  */
 export function HeroMedia() {
+  const fotos = getHeroFotos();
+
+  if (fotos.length > 0) {
+    return (
+      <div className="absolute inset-0 overflow-hidden bg-ink">
+        <HeroSlideshow fotos={fotos} />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-ink/70" />
+      </div>
+    );
+  }
+
   return (
     <div className="absolute inset-0 overflow-hidden bg-ink">
       <Image

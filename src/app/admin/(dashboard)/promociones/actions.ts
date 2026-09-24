@@ -3,9 +3,29 @@
 import { revalidatePath } from "next/cache";
 import { requireOwnMarca, requireProfile, requireSuperAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
-import type { PromocionCategoria } from "@/lib/types/database";
+import { categoriasLegado, clasificacionDesdeFormulario, type Clasificacion } from "@/lib/promociones/clasificacion";
+import type { Database } from "@/lib/types/database";
 
 const SEIS_MESES_MS = 1000 * 60 * 60 * 24 * 30 * 6;
+
+type NuevaPromocion = Database["public"]["Tables"]["promociones"]["Insert"];
+
+/**
+ * Guarda los tres ejes de clasificación y, además, la columna vieja
+ * `categorias` equivalente. Si la migración 0004 aún no se aplicó (no existen
+ * tipo_oferta/publico/calzado), reintenta solo con `categorias` para que subir
+ * promociones no se rompa mientras tanto.
+ */
+async function insertarPromocion(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  clasificacion: Clasificacion,
+  fila: Omit<NuevaPromocion, "categorias" | "tipo_oferta" | "publico" | "calzado">,
+) {
+  const categorias = categoriasLegado(clasificacion);
+  const { error } = await supabase.from("promociones").insert({ ...fila, ...clasificacion, categorias });
+  if (error?.code !== "PGRST204") return error;
+  return (await supabase.from("promociones").insert({ ...fila, categorias })).error;
+}
 
 export async function crearPromocion(_prevState: { error?: string } | undefined, formData: FormData) {
   const { marca } = await requireOwnMarca();
@@ -13,9 +33,10 @@ export async function crearPromocion(_prevState: { error?: string } | undefined,
 
   const vigenteDesde = String(formData.get("vigente_desde"));
   const vigenteHasta = String(formData.get("vigente_hasta"));
-  const categorias = formData.getAll("categorias") as PromocionCategoria[];
+  const clasificacion = clasificacionDesdeFormulario(formData);
   const file = formData.get("imagen") as File | null;
 
+  if (!clasificacion.tipo_oferta) return { error: "Elige el tipo de oferta." };
   if (new Date(vigenteHasta) <= new Date(vigenteDesde)) {
     return { error: "La fecha final debe ser posterior a la fecha de inicio." };
   }
@@ -33,12 +54,11 @@ export async function crearPromocion(_prevState: { error?: string } | undefined,
 
   const { data: userData } = await supabase.auth.getUser();
 
-  const { error } = await supabase.from("promociones").insert({
+  const error = await insertarPromocion(supabase, clasificacion, {
     marca_id: marca.id,
     titulo: String(formData.get("titulo")),
     descripcion: String(formData.get("descripcion")),
     imagen_url: imagenUrl,
-    categorias,
     vigente_desde: vigenteDesde,
     vigente_hasta: vigenteHasta,
     estado: "pendiente",
@@ -59,10 +79,11 @@ export async function crearPromocionComoAdmin(_prevState: { error?: string; ok?:
   const marcaId = String(formData.get("marca_id") ?? "");
   const vigenteDesde = String(formData.get("vigente_desde"));
   const vigenteHasta = String(formData.get("vigente_hasta"));
-  const categorias = formData.getAll("categorias") as PromocionCategoria[];
+  const clasificacion = clasificacionDesdeFormulario(formData);
   const file = formData.get("imagen") as File | null;
 
   if (!marcaId) return { error: "Elige una marca." };
+  if (!clasificacion.tipo_oferta) return { error: "Elige el tipo de oferta." };
   if (new Date(vigenteHasta) <= new Date(vigenteDesde)) {
     return { error: "La fecha final debe ser posterior a la fecha de inicio." };
   }
@@ -78,12 +99,11 @@ export async function crearPromocionComoAdmin(_prevState: { error?: string; ok?:
     imagenUrl = supabase.storage.from("promociones").getPublicUrl(path).data.publicUrl;
   }
 
-  const { error } = await supabase.from("promociones").insert({
+  const error = await insertarPromocion(supabase, clasificacion, {
     marca_id: marcaId,
     titulo: String(formData.get("titulo")),
     descripcion: String(formData.get("descripcion")),
     imagen_url: imagenUrl,
-    categorias,
     vigente_desde: vigenteDesde,
     vigente_hasta: vigenteHasta,
     destacada: formData.get("destacada") === "on",

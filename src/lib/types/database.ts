@@ -587,6 +587,7 @@ export type Database = {
       promociones: {
         Row: {
           categorias: Database["public"]["Enums"]["promocion_categoria"][]
+          calzado: string[]
           created_at: string
           created_by: string | null
           descripcion: string
@@ -595,14 +596,17 @@ export type Database = {
           id: string
           imagen_url: string | null
           marca_id: string
+          publico: string[]
           reviewed_at: string | null
           reviewed_by: string | null
+          tipo_oferta: string | null
           titulo: string
           vigente_desde: string
           vigente_hasta: string
         }
         Insert: {
           categorias?: Database["public"]["Enums"]["promocion_categoria"][]
+          calzado?: string[]
           created_at?: string
           created_by?: string | null
           descripcion: string
@@ -611,14 +615,17 @@ export type Database = {
           id?: string
           imagen_url?: string | null
           marca_id: string
+          publico?: string[]
           reviewed_at?: string | null
           reviewed_by?: string | null
+          tipo_oferta?: string | null
           titulo: string
           vigente_desde: string
           vigente_hasta: string
         }
         Update: {
           categorias?: Database["public"]["Enums"]["promocion_categoria"][]
+          calzado?: string[]
           created_at?: string
           created_by?: string | null
           descripcion?: string
@@ -627,8 +634,10 @@ export type Database = {
           id?: string
           imagen_url?: string | null
           marca_id?: string
+          publico?: string[]
           reviewed_at?: string | null
           reviewed_by?: string | null
+          tipo_oferta?: string | null
           titulo?: string
           vigente_desde?: string
           vigente_hasta?: string

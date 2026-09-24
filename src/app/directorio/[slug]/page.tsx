@@ -134,11 +134,17 @@ export default async function MarcaPage(props: PageProps<"/directorio/[slug]">) 
         <Reveal>
           <h2 className="text-2xl">Dónde encontrarla</h2>
         </Reveal>
-        <Stagger className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+        <Stagger
+          className={
+            "mt-6 grid grid-cols-1 gap-6 " +
+            (nivelesConLocal.length > 1 ? "md:grid-cols-2" : "max-w-3xl")
+          }
+        >
           {nivelesConLocal.map((nivel) => (
-            <StaggerItem key={nivel!.id} className="h-[420px]">
+            <StaggerItem key={nivel!.id}>
               <p className="mb-2 text-sm font-medium text-ink-soft">{nivel!.nombre}</p>
-              <div className="h-[380px]">
+              {/* Mismo aspecto que el plano: se ve completo, sin franjas ni cortes. */}
+              <div style={{ aspectRatio: `${nivel!.ancho_ref} / ${nivel!.alto_ref}` }}>
                 <InteractiveMap
                   nivel={nivel!}
                   locales={todosLocales.filter((l) => l.nivel === nivel!.id)}

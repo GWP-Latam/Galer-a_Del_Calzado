@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { MapPin, Phone } from "lucide-react";
-import { InstagramIcon, FacebookIcon } from "./icons/SocialIcons";
+import { InstagramIcon, FacebookIcon, TikTokIcon } from "./icons/SocialIcons";
 import { Logo } from "./Logo";
 import { Container } from "./ui/Container";
 import { NAV_ITEMS } from "./Header";
@@ -17,15 +17,20 @@ export function Footer({ plaza }: { plaza: Plaza }) {
           <p className="max-w-sm text-sm leading-relaxed text-paper/65">
             El centro especializado en calzado de Guadalajara: {plaza.direccion.split(",")[0]}.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {plaza.redes.instagram && (
-              <a href={plaza.redes.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-paper/70 hover:text-paper">
-                <InstagramIcon className="h-5 w-5" />
+              <a href={plaza.redes.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/25 text-paper/75 transition-colors hover:border-paper hover:text-paper">
+                <InstagramIcon className="h-[18px] w-[18px]" />
               </a>
             )}
             {plaza.redes.facebook && (
-              <a href={plaza.redes.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-paper/70 hover:text-paper">
-                <FacebookIcon className="h-5 w-5" />
+              <a href={plaza.redes.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/25 text-paper/75 transition-colors hover:border-paper hover:text-paper">
+                <FacebookIcon className="h-[18px] w-[18px]" />
+              </a>
+            )}
+            {plaza.redes.tiktok && (
+              <a href={plaza.redes.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok" className="flex h-10 w-10 items-center justify-center rounded-full border border-paper/25 text-paper/75 transition-colors hover:border-paper hover:text-paper">
+                <TikTokIcon className="h-[18px] w-[18px]" />
               </a>
             )}
           </div>

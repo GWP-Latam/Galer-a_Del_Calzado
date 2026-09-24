@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { DirectorioExplorer } from "@/components/directorio/DirectorioExplorer";
-import { getLocales, getMarcas, getNiveles } from "@/lib/content/repository";
+import { getCifrasMarcas, getLocales, getMarcas, getNiveles } from "@/lib/content/repository";
 
 export const metadata: Metadata = {
   title: "Directorio de marcas",
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 export default function DirectorioPage() {
   const marcas = getMarcas();
+  const cifras = getCifrasMarcas();
   const locales = getLocales();
   const niveles = getNiveles();
 
@@ -24,8 +25,10 @@ export default function DirectorioPage() {
           Todo lo que buscas, en un solo lugar
         </h1>
         <p className="mt-4 max-w-2xl text-ink-soft">
-          {marcas.length} marcas de calzado en el mapa interactivo de la plaza. Busca por nombre o
-          explora el plano; cualquiera de los dos te lleva a la ficha completa del local.
+          {cifras.calzado} marcas de calzado
+          {cifras.otras > 0 && ` y ${cifras.otras} de ${cifras.giros.join(" y ")}`} en el
+          mapa interactivo de la plaza. Busca por nombre o explora el plano; cualquiera de los dos te
+          lleva a la ficha completa del local.
         </p>
       </Reveal>
 

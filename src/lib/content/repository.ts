@@ -14,12 +14,14 @@ import beneficiosData from "@/data/beneficios.json";
 import categoriasCalzadoData from "@/data/categorias-calzado.json";
 import campanaData from "@/data/campana.json";
 import eventosData from "@/data/eventos.json";
+import heroFotosData from "@/data/hero-fotos.json";
 import type {
   Amenidad,
   Beneficio,
   Campana,
   CategoriaCalzado,
   Evento,
+  FotoGaleria,
   Local,
   Marca,
   Nivel,
@@ -57,6 +59,45 @@ export function getMarcas(): Marca[] {
   return marcasData as Marca[];
 }
 
+/**
+ * Marcas de calzado: todas menos las que tienen categorías de producto y
+ * ninguna es "Calzado" (hoy, las 2 de belleza). Las marcas sin categoría
+ * capturada se cuentan como calzado, que es lo que vende la plaza.
+ */
+export function getMarcasCalzado(): Marca[] {
+  return getMarcas().filter(
+    (m) => m.categorias_producto.length === 0 || m.categorias_producto.includes("Calzado"),
+  );
+}
+
+/**
+ * Cifras que el sitio comunica sobre las marcas, siempre calculadas del
+ * directorio para que el texto nunca se desfase de lo que hay en la plaza.
+ * `masDe` es la decena redonda inmediatamente menor ("más de 50" con 51
+ * marcas, "más de 40" con exactamente 50).
+ */
+export function getCifrasMarcas() {
+  const total = getMarcas().length;
+  const deCalzado = getMarcasCalzado();
+  const calzado = deCalzado.length;
+  // Giros de las marcas que no son de calzado ("belleza"), para nombrarlas.
+  const giros = Array.from(
+    new Set(
+      getMarcas()
+        .filter((m) => !deCalzado.includes(m))
+        .flatMap((m) => m.categorias_producto)
+        .map((c) => c.toLowerCase()),
+    ),
+  );
+  return {
+    total,
+    calzado,
+    otras: total - calzado,
+    giros,
+    masDe: Math.ceil(calzado / 10) * 10 - 10,
+  };
+}
+
 export function getMarcaBySlug(slug: string): Marca | undefined {
   return getMarcas().find((m) => m.slug === slug);
 }
@@ -77,6 +118,14 @@ export function getBeneficios(): Beneficio[] {
 
 export function getCategoriasCalzado(): CategoriaCalzado[] {
   return categoriasCalzadoData as CategoriaCalzado[];
+}
+
+/**
+ * Fotografías reales de la plaza para el fondo del hero. Vacío mientras el
+ * cliente entrega la sesión de fotos: el hero cae a su fondo de greca.
+ */
+export function getHeroFotos(): FotoGaleria[] {
+  return heroFotosData as FotoGaleria[];
 }
 
 export function getCampana(): Campana {

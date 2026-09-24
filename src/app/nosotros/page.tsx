@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { AnimatedTimeline } from "@/components/nosotros/AnimatedTimeline";
+import { getCifrasMarcas } from "@/lib/content/repository";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -28,7 +29,7 @@ const HITOS = [
   {
     anio: "Hoy",
     texto:
-      "Se mantiene consolidada como el recinto especializado en la venta de calzado en Guadalajara, con más de 50 marcas.",
+      `Se mantiene consolidada como el recinto especializado en la venta de calzado en Guadalajara, con más de ${getCifrasMarcas().masDe} marcas.`,
   },
   {
     anio: "Próximamente",
@@ -61,7 +62,7 @@ export default function NosotrosPage() {
           </p>
           <p>
             Diferenciada de otros espacios comerciales, la Galería ofrece a través de sus locales
-            una amplia variedad de modelos de calzado de marcas nacionales, para toda la familia.
+            una amplia variedad de modelos de calzado de marcas nacionales e internacionales, para toda la familia.
             Entre pasillos y vestíbulos, el visitante vive una experiencia que va más allá de comprar
             un producto: un vestigio de tradición que hace reverencia al oficio del artesano
             zapatero.

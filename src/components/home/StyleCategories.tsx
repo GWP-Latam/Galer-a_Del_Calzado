@@ -3,19 +3,16 @@ import { Section, Eyebrow } from "@/components/ui/Section";
 import { Reveal } from "@/components/motion/Reveal";
 import { ImageReveal } from "@/components/motion/ImageReveal";
 import { getCategoriasCalzado } from "@/lib/content/repository";
+import { shoeIconFor } from "@/components/icons/ShoeIcons";
 
 /**
- * An asymmetric editorial gallery, not a grid of icon cards (the look this
- * replaced). Each tile is sized/toned on purpose rather than uniformly. The
- * category art in public/estilos/ is a set of framed silhouette icons (not
- * full-bleed photography), so it's shown as a small "card" in the corner —
- * object-cover-filling the whole tile with it would look like a broken
- * image. Swap those files for real photography whenever the plaza has it;
- * nothing else here should need to change since the icon slot already
- * expects a square-ish image.
+ * An asymmetric editorial gallery, not a grid of icon cards. Each tile is
+ * sized/toned on purpose rather than uniformly. The corner glyph comes from
+ * the line-art set in components/icons/ShoeIcons (it replaced the framed
+ * clip-art PNGs in public/estilos/, which stay only as a fallback for a
+ * category the set doesn't cover yet).
  */
 const TONES = ["ink", "stone", "line"] as const;
-const ROTATIONS = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2"] as const;
 
 export function StyleCategories() {
   const categorias = getCategoriasCalzado();
@@ -38,7 +35,7 @@ export function StyleCategories() {
       <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-6 sm:[grid-auto-rows:9rem]">
         {categorias.map((cat, i) => {
           const tone = TONES[i % TONES.length];
-          const rotation = ROTATIONS[i % ROTATIONS.length];
+          const Icon = shoeIconFor(cat.slug);
           return (
             <Reveal key={cat.slug} delay={i * 0.05} className={spans[i] ?? "sm:col-span-2"}>
               <div
@@ -64,21 +61,21 @@ export function StyleCategories() {
                 />
 
                 <ImageReveal
-                  className={
-                    "absolute right-4 top-4 h-16 w-16 shrink-0 drop-shadow-md transition-transform duration-500 ease-out group-hover:scale-105 sm:h-20 sm:w-20 " +
-                    rotation
-                  }
+                  className="absolute right-4 top-4 transition-transform duration-500 ease-out group-hover:-translate-y-1"
                   delay={i * 0.05}
                 >
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={cat.imagen}
-                      alt=""
-                      fill
-                      sizes="112px"
-                      className="object-contain"
+                  {Icon ? (
+                    <Icon
+                      className={
+                        "h-14 w-[4.7rem] sm:h-16 sm:w-[5.3rem] " +
+                        (tone === "ink" ? "text-paper" : "text-ink")
+                      }
                     />
-                  </div>
+                  ) : (
+                    <div className="relative h-16 w-16 sm:h-20 sm:w-20">
+                      <Image src={cat.imagen} alt="" fill sizes="112px" className="object-contain" />
+                    </div>
+                  )}
                 </ImageReveal>
 
                 <p className="relative font-display text-2xl leading-none">{cat.nombre}</p>

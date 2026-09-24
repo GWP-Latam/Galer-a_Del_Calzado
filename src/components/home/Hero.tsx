@@ -3,9 +3,11 @@ import { HeroMedia } from "./HeroMedia";
 import { LinkButton } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { getCifrasMarcas } from "@/lib/content/repository";
 import type { Plaza } from "@/lib/content/types";
 
 export function Hero({ plaza }: { plaza: Plaza }) {
+  const { masDe } = getCifrasMarcas();
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${plaza.geo.lat},${plaza.geo.lng}`;
 
   return (
@@ -20,10 +22,10 @@ export function Hero({ plaza }: { plaza: Plaza }) {
           as="h1"
           className="mt-4 max-w-3xl font-display text-4xl font-medium leading-[1.05] md:text-6xl"
         >
-          Todo el calzado de Guadalajara,<br />bajo un mismo techo.
+          Guadalajara encuentra<br />aquí su par.
         </TextReveal>
         <p className="mt-5 max-w-lg text-base text-paper/85 md:text-lg">
-          Más de cincuenta marcas de zapatos, tenis, sandalias y botas para toda la familia, a un
+          Más de {masDe} marcas de zapatos, tenis, sandalias y botas para toda la familia, a un
           costado de Av. México.
         </p>
 

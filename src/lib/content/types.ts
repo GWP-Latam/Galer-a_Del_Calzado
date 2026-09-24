@@ -5,6 +5,8 @@
  * Fase 2 without touching any page or component.
  */
 
+import type { Calzado, Publico, TipoOferta } from "@/lib/promociones/clasificacion";
+
 export interface Horario {
   dias: string;
   horario: string;
@@ -100,6 +102,12 @@ export interface Beneficio {
   descripcion: string;
 }
 
+export interface FotoGaleria {
+  /** Ruta en public/ (p. ej. "/galeria/fachada.jpg"), horizontal, ≥1920px de ancho. */
+  src: string;
+  alt: string;
+}
+
 export interface CategoriaCalzado {
   slug: string;
   nombre: string;
@@ -107,20 +115,15 @@ export interface CategoriaCalzado {
   imagen: string;
 }
 
-export type PromocionCategoria =
-  | "liquidacion"
-  | "descuentos"
-  | "rebajas"
-  | "deportivo"
-  | "lujo"
-  | "casual";
-
 export interface Promocion {
   id: string;
   titulo: string;
   descripcion: string;
   marca_slug: string | null;
-  categorias: PromocionCategoria[];
+  /** Ver src/lib/promociones/clasificacion.ts. */
+  tipo_oferta: TipoOferta | null;
+  publico: Publico[];
+  calzado: Calzado[];
   demo: boolean;
   destacada: boolean;
   vigente_desde?: string;
